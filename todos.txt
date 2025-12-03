@@ -1,0 +1,8 @@
+index to create, 
+
+await slotCollection.createIndex({ id: 1 }, { unique: true });
+
+await slotCollection.createIndex(
+  { expiresAt: 1 },
+  { expireAfterSeconds: 0 }
+);

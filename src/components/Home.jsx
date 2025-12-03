@@ -1,163 +1,177 @@
-'use client'
-import Link from 'next/link';
-import { FaMosque, FaBookQuran, FaHandsPraying, FaEnvelope } from 'react-icons/fa6';
-import { useEffect } from 'react';
+"use client"
+
+import { useState } from "react";
+import Link from "next/link";
 
 export default function Home() {
-  // Smooth scrolling for anchor links
-  useEffect(() => {
-    const handleScroll = (e) => {
-      e.preventDefault();
-      const targetId = e.currentTarget.getAttribute('href').substring(1);
-      const targetElement = document.getElementById(targetId);
-      if (targetElement) {
-        window.scrollTo({
-          top: targetElement.offsetTop - 80,
-          behavior: 'smooth',
-        });
-      }
-    };
+  const [openIndex, setOpenIndex] = useState(0);
 
-    const links = document.querySelectorAll('a[href^="#"]');
-    links.forEach((link) => link.addEventListener('click', handleScroll));
-    return () => links.forEach((link) => link.removeEventListener('click', handleScroll));
-  }, []);
+  const faqs = [
+    {
+      q: "রুকইয়াহ কি নিরাপদ?",
+      a: "হ্যাঁ, প্রশিক্ষিত বিশেষজ্ঞের মাধ্যমে পরিচালিত হলে এটি সম্পূর্ণ নিরাপদ এবং শুধুমাত্র কুরআনিক দোয়া ও আধ্যাত্মিক চিকিৎসার মাধ্যম।",
+    },
+    {
+      q: "হিজামা কখন করা যায়?",
+      a: "১৭, ১৯ ও ২১ তারিখে হিজামা করা উত্তম মনে করা হয়, তবে প্রয়োজনে অন্যান্য দিনেও করা যায়।",
+    },
+    {
+      q: "রুকইয়াহ কি চিকিৎসার বিকল্প?",
+      a: "না, এটি আত্মিক চিকিৎসা যা শারীরিক চিকিৎসার সহায়ক হিসেবে কাজ করে।",
+    },
+    {
+      q: "হিজামা কি ব্যথাদায়ক?",
+      a: "না, খুব সামান্য অনুভূতি হয় যা দ্রুত সেরে যায়। অভিজ্ঞ হাতে এটি সম্পূর্ণ আরামদায়ক।",
+    },
+  ];
 
   return (
-    <div className="min-h-screen bg-gradient-to-b from-teal-50 to-white font-sans">
-      {/* Hero Section */}
-      <section className="relative h-screen flex items-center justify-center bg-cover bg-center" style={{ backgroundImage: "url('https://images.unsplash.com/photo-1600585154340-be6161a56a0c')" }}>
-        <div className="absolute inset-0 bg-black opacity-50"></div>
-        <div className="relative z-10 text-center text-white px-4">
-          <h1 className="text-5xl md:text-7xl font-bold mb-4 animate-fade-in">রুকইয়াহ শিফা</h1>
-          <p className="text-xl md:text-2xl mb-8 max-w-2xl mx-auto">কুরআন ও সুন্নাহ ভিত্তিক আধ্যাত্মিক চিকিৎসার মাধ্যমে শান্তি ও সুরক্ষা অর্জন করুন।</p>
-          <Link href="/appointment">
-            <button className="bg-teal-600 hover:bg-teal-700 text-white font-semibold py-3 px-8 rounded-full shadow-lg transition duration-300 transform hover:scale-105">
-              অ্যাপয়েন্টমেন্ট বুক করুন
-            </button>
-          </Link>
-        </div>
-      </section>
+    <div className="min-h-screen bg-gradient-to-b from-[#f8fafc] to-white dark:from-[#0a0f1a] dark:to-[#050b12] text-gray-800 dark:text-gray-100 px-4 sm:px-6 md:px-8">
+      <main className="max-w-6xl mx-auto py-10 md:py-16">
+        {/* HERO SECTION */}
+        <section className="text-center relative overflow-hidden">
+          <svg className="absolute inset-0 w-full h-full opacity-10" viewBox="0 0 600 400" xmlns="http://www.w3.org/2000/svg" aria-hidden>
+            <defs>
+              <linearGradient id="hero-grad" x1="0" x2="1" y1="0" y2="1">
+                <stop offset="0" stopColor="#6366f1" />
+                <stop offset="1" stopColor="#22d3ee" />
+              </linearGradient>
+            </defs>
+            <circle cx="300" cy="200" r="180" fill="url(#hero-grad)" />
+          </svg>
 
-      {/* About Section */}
-      <section id="about" className="py-20 px-4 md:px-20 bg-white">
-        <div className="max-w-6xl mx-auto grid md:grid-cols-2 gap-12 items-center">
-          <div>
-            <h2 className="text-4xl font-bold text-teal-800 mb-6">রুকইয়াহ কী?</h2>
-            <p className="text-gray-600 leading-relaxed mb-4">
-              রুকইয়াহ হলো কুরআনের আয়াত ও নবীজির (সাঃ) শেখানো দোয়ার মাধ্যমে জিন, জাদু, বদনজর এবং শারীরিক-মানসিক সমস্যার শরিয়া সম্মত চিকিৎসা। এটি আল্লাহর কাছে সাহায্য প্রার্থনার একটি মাধ্যম।[](https://www.ruqyahsupport.com/ruqyahcenterbd/)
+          <div className="relative z-10">
+            <h1 className="text-3xl sm:text-4xl md:text-5xl font-extrabold bg-clip-text text-transparent bg-gradient-to-r from-indigo-600 to-sky-500 dark:from-indigo-400 dark:to-cyan-300">
+              আল হিকমাহ রুকইয়াহ ও হিজামা সেন্টার
+            </h1>
+            <p className="mt-3 text-base sm:text-lg md:text-xl opacity-90 max-w-2xl mx-auto">
+              আত্মা ও শরীরের সমন্বিত চিকিৎসা — কুরআনিক রুকইয়াহ ও নিরাপদ হিজামার মাধ্যমে সুস্থতার পথে এক ধাপ এগিয়ে।
             </p>
-            <p className="text-gray-600 leading-relaxed">
-              আমাদের অভিজ্ঞ রাকি (আধ্যাত্মিক চিকিৎসক) আপনাকে শান্তি, সুরক্ষা এবং আধ্যাত্মিক শক্তি অর্জনে সহায়তা করবেন।
-            </p>
-          </div>
-          <div className="relative">
-            <img src="https://images.unsplash.com/photo-1618383607768-3d9d7faca60f" alt="কুরআন" className="rounded-lg shadow-xl w-full h-80 object-cover transform hover:scale-105 transition duration-300" />
-            <div className="absolute -bottom-4 -left-4 bg-teal-600 text-white p-4 rounded-lg shadow-lg">
-              <FaBookQuran className="text-3xl" />
+
+            <div className="flex flex-col sm:flex-row justify-center gap-4 mt-8">
+              <ModernButton href="/appointment" text="অ্যাপয়েন্টমেন্ট বুক করুন" />
+              <ModernButton href="https://ruqyahbd.org/blog" text="রুকইয়াহ সম্পর্কে জানুন" external />
             </div>
           </div>
-        </div>
-      </section>
+        </section>
 
-      {/* Services Section */}
-      <section id="services" className="py-20 px-4 md:px-20 bg-teal-50">
-        <div className="max-w-6xl mx-auto text-center">
-          <h2 className="text-4xl font-bold text-teal-800 mb-12">আমাদের সেবাসমূহ</h2>
-          <div className="grid md:grid-cols-3 gap-8">
-            <div className="bg-white p-8 rounded-lg shadow-lg hover:shadow-xl transition duration-300 transform hover:scale-105">
-              <FaMosque className="text-4xl text-teal-600 mx-auto mb-4" />
-              <h3 className="text-xl font-semibold text-teal-800 mb-2">রুকইয়াহ সেশন</h3>
-              <p className="text-gray-600">অভিজ্ঞ রাকির সাথে ব্যক্তিগত সেশনের মাধ্যমে আধ্যাত্মিক শুদ্ধি ও শিফা।</p>
+        {/* SERVICES SECTION */}
+        <section id="services" className="py-16">
+          <h2 className="text-2xl sm:text-3xl font-bold text-center">আমাদের সেবা সমূহ</h2>
+          <p className="text-center opacity-80 mt-2">রুকইয়াহ ও হিজামার মাধ্যমে আত্মিক ও শারীরিক সুস্থতার যত্নে।</p>
+
+          <div className="mt-10 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
+            <ServiceCard icon={<RuqyahIcon />} title="রুকইয়াহ সেশন" desc="কুরআনিক রুকইয়াহ, দোয়া ও আত্মিক চিকিৎসা যা অভিজ্ঞ প্র্যাকটিশনারের মাধ্যমে পরিচালিত হয়।" />
+            <ServiceCard icon={<HijamaIcon />} title="হিজামা (কাপিং থেরাপি)" desc="নিরাপদ, হালকা ব্যথামুক্ত ও জীবাণুমুক্ত কাপিং প্রক্রিয়া।" />
+            <ServiceCard icon={<ConsultIcon />} title="পরামর্শ ও ফলো-আপ" desc="ব্যক্তিগত পরামর্শ, চিকিৎসা পরিকল্পনা ও পর্যবেক্ষণ সেবা।" />
+          </div>
+        </section>
+
+        {/* FAQ SECTION */}
+        <section id="faq" className="py-12">
+          <h2 className="text-2xl sm:text-3xl font-bold text-center">প্রায় জিজ্ঞাসিত প্রশ্ন</h2>
+          <div className="mt-8 max-w-3xl mx-auto space-y-4">
+            {faqs.map((f, i) => (
+              <div key={i} className="border border-gray-200 dark:border-gray-700 rounded-xl overflow-hidden shadow-sm">
+                <button
+                  onClick={() => setOpenIndex(openIndex === i ? null : i)}
+                  className="w-full flex justify-between items-center px-4 py-3 text-left font-medium bg-white/60 dark:bg-white/5 hover:bg-gray-100/60 transition"
+                >
+                  <span className="flex items-center gap-2"><FaqIcon /> {f.q}</span>
+                  <span>{openIndex === i ? "−" : "+"}</span>
+                </button>
+                {openIndex === i && (
+                  <div className="px-4 py-3 text-sm opacity-90 bg-gray-50 dark:bg-gray-900/40 border-t border-gray-200 dark:border-gray-700">
+                    {f.a}
+                  </div>
+                )}
+              </div>
+            ))}
+          </div>
+        </section>
+
+        {/* NEW SECTION: CLIENT TESTIMONIALS */}
+        <section className="py-16">
+          <h2 className="text-2xl sm:text-3xl font-bold text-center">রোগীর অভিজ্ঞতা</h2>
+          <p className="text-center opacity-80 mt-2">আমাদের সেবার মাধ্যমে যারা আত্মিক ও শারীরিক প্রশান্তি পেয়েছেন।</p>
+          <div className="grid sm:grid-cols-2 md:grid-cols-3 gap-6 mt-10">
+            <Testimonial name="মোঃ রাফি" text="রুকইয়াহ সেশনের মাধ্যমে আল্লাহর রহমতে মন অনেক হালকা হয়েছে। জাযাকাল্লাহু খাইরান।" />
+            <Testimonial name="সুমাইয়া রহমান" text="হিজামা সেশনটি খুবই আরামদায়ক ছিল এবং পরিবেশ ছিল গোপনীয় ও পরিচ্ছন্ন।" />
+            <Testimonial name="হাসান উদ্দিন" text="চিকিৎসকদের আচরণ অত্যন্ত বন্ধুসুলভ, আমি নিয়মিত ফলো-আপ নিচ্ছি।" />
+          </div>
+        </section>
+
+        {/* CONTACT SECTION WITH MAP */}
+        <section className="py-16">
+          <h2 className="text-2xl sm:text-3xl font-bold text-center">যোগাযোগ করুন</h2>
+          <p className="text-center opacity-80 mt-2">আপনার যেকোন প্রশ্ন বা অ্যাপয়েন্টমেন্টের জন্য আমাদের সাথে যোগাযোগ করুন।</p>
+
+          <div className="mt-10 grid md:grid-cols-2 gap-6 items-center">
+            <div className="rounded-2xl overflow-hidden shadow-md border border-gray-200 dark:border-gray-800">
+              <iframe
+                title="Al Hikmah Location"
+                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3651.8484!2d90.4125!3d23.8103!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2z!5e0!3m2!1sen!2sbd!4v0000000000"
+                className="w-full h-64 md:h-80 border-0"
+                loading="lazy"
+                allowFullScreen
+              ></iframe>
             </div>
-            <div className="bg-white p-8 rounded-lg shadow-lg hover:shadow-xl transition duration-300 transform hover:scale-105">
-              <FaBookQuran className="text-4xl text-teal-600 mx-auto mb-4" />
-              <h3 className="text-xl font-semibold text-teal-800 mb-2">কুরআনিক নির্দেশনা</h3>
-              <p className="text-gray-600">প্রতিদিনের আধ্যাত্মিক শক্তির জন্য সুরক্ষামূলক দোয়া ও কুরআন তিলাওয়াত শিখুন।</p>
-            </div>
-            <div className="bg-white p-8 rounded-lg shadow-lg hover:shadow-xl transition duration-300 transform hover:scale-105">
-              <FaHandsPraying className="text-4xl text-teal-600 mx-auto mb-4" />
-              <h3 className="text-xl font-semibold text-teal-800 mb-2">কাউন্সেলিং</h3>
-              <p className="text-gray-600">আধ্যাত্মিক ও মানসিক নির্দেশনার মাধ্যমে অভ্যন্তরীণ শান্তি অর্জন।</p>
+
+            <div className="space-y-4 text-center md:text-left">
+              <p className="text-lg font-medium">📍 ঢাকা, বাংলাদেশ</p>
+              <p className="opacity-80">আমরা শিগগিরই আপনার সেবায় উপস্থিত হব ইনশাআল্লাহ।</p>
+              <a
+                href="https://www.google.com/maps/dir/?api=1&destination=23.8103,90.4125"
+                target="_blank"
+                rel="noreferrer"
+                className="inline-block px-6 py-3 bg-gradient-to-r from-indigo-600 to-sky-500 text-white rounded-xl shadow-md hover:scale-[1.02] transition"
+              >
+                📍 দিকনির্দেশনা দেখুন
+              </a>
             </div>
           </div>
-        </div>
-      </section>
+        </section>
 
-      {/* Testimonials Section */}
-      <section className="py-20 px-4 md:px-20 bg-white">
-        <div className="max-w-6xl mx-auto text-center">
-          <h2 className="text-4xl font-bold text-teal-800 mb-12">আমাদের ক্লায়েন্টদের মতামত</h2>
-          <div className="grid md:grid-cols-2 gap-8">
-            <div className="bg-teal-50 p-8 rounded-lg shadow-lg hover:shadow-xl transition duration-300">
-              <p className="text-gray-600 italic mb-4">"রুকইয়াহ সেশন আমার জীবনে অপূর্ব শান্তি এনেছে। আমি আধ্যাত্মিকভাবে নতুন জীবন পেয়েছি।"</p>
-              <p className="font-semibold text-teal-800">- আয়েশা এম.</p>
-            </div>
-            <div className="bg-teal-50 p-8 rounded-lg shadow-lg hover:shadow-xl transition duration-300">
-              <p className="text-gray-600 italic mb-4">"প্রাপ্ত নির্দেশনা ও সহায়তা আমার জীবন বদলে দিয়েছে। অত্যন্ত সুপারিশ করি!"</p>
-              <p className="font-semibold text-teal-800">- ওমর কে.</p>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* Appointment Booking Section */}
-      <section className="py-20 px-4 md:px-20 bg-teal-600 text-white text-center">
-        <div className="max-w-4xl mx-auto">
-          <h2 className="text-4xl font-bold mb-6">আপনার শিফার যাত্রা শুরু করতে প্রস্তুত?</h2>
-          <p className="text-lg mb-8">আমাদের অভিজ্ঞ রাকিদের সাথে সেশন বুক করুন এবং রুকইয়াহর রূপান্তরকারী শক্তি অনুভব করুন।</p>
-          <Link href="/appointment">
-            <button className="bg-white text-teal-600 font-semibold py-3 px-8 rounded-full shadow-lg hover:bg-gray-100 transition duration-300 transform hover:scale-105">
-              এখনই অ্যাপয়েন্টমেন্ট বুক করুন
-            </button>
-          </Link>
-        </div>
-      </section>
-
-      {/* Contact Section */}
-      <section id="contact" className="py-20 px-4 md:px-20 bg-white">
-        <div className="max-w-4xl mx-auto text-center">
-          <h2 className="text-4xl font-bold text-teal-800 mb-6">যোগাযোগ করুন</h2>
-          <p className="text-gray-600 mb-8">প্রশ্ন বা নির্দেশনার প্রয়োজন? আমাদের সাথে যোগাযোগ করুন।</p>
-          <div className="flex flex-col items-center space-y-4">
-            <div className="flex items-center space-x-2 text-teal-600">
-              <FaEnvelope className="text-2xl" />
-              <p className="text-lg">contact@ruqyahhealing.com</p>
-            </div>
-            <div className="w-full max-w-md">
-              <input
-                type="text"
-                placeholder="আপনার নাম"
-                className="w-full p-3 mb-4 border border-teal-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-teal-600"
-              />
-              <input
-                type="email"
-                placeholder="আপনার ইমেইল"
-                className="w-full p-3 mb-4 border border-teal-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-teal-600"
-              />
-              <textarea
-                placeholder="আপনার বার্তা"
-                className="w-full p-3 mb-4 border border-teal-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-teal-600"
-                rows="4"
-              ></textarea>
-              <button className="bg-teal-600 text-white font-semibold py-3 px-8 rounded-full shadow-lg hover:bg-teal-700 transition duration-300 transform hover:scale-105">
-                বার্তা পাঠান
-              </button>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* Custom CSS for Animations */}
-      <style jsx>{`
-        @keyframes fadeIn {
-          from { opacity: 0; transform: translateY(20px); }
-          to { opacity: 1; transform: translateY(0); }
-        }
-        .animate-fade-in {
-          animation: fadeIn 1s ease-out;
-        }
-      `}</style>
+        {/* FOOTER */}
+        <footer className="mt-16 pt-8 pb-10 border-t border-gray-200 dark:border-gray-800 text-center">
+          <p className="text-sm opacity-80">© {new Date().getFullYear()} আল হিকমাহ রুকইয়াহ ও হিজামা সেন্টার — সর্বস্বত্ব সংরক্ষিত।</p>
+        </footer>
+      </main>
     </div>
   );
 }
+
+function ModernButton({ href, text, external }) {
+  const base = "inline-block rounded-xl px-6 py-3 font-medium text-sm text-white bg-gradient-to-r from-indigo-600 to-sky-500 hover:from-indigo-500 hover:to-sky-400 shadow-md transition-transform hover:scale-[1.03]";
+  if (external) return <a href={href} target="_blank" rel="noreferrer" className={base}>{text}</a>;
+  return <Link href={href} className={base}>{text}</Link>;
+}
+
+function ServiceCard({ icon, title, desc }) {
+  return (
+    <div className="p-5 rounded-2xl bg-white/80 dark:bg-white/5 shadow-md hover:scale-[1.02] transition-transform">
+      <div className="flex items-start gap-4">
+        <div className="w-12 h-12 flex items-center justify-center rounded-xl bg-indigo-50 dark:bg-indigo-900/30">{icon}</div>
+        <div>
+          <h4 className="font-semibold">{title}</h4>
+          <p className="text-sm opacity-80 mt-1">{desc}</p>
+        </div>
+      </div>
+    </div>
+  );
+}
+
+function Testimonial({ name, text }) {
+  return (
+    <div className="p-5 rounded-2xl bg-white/80 dark:bg-white/5 shadow-md text-center">
+      <p className="text-sm opacity-90">“{text}”</p>
+      <p className="mt-3 font-semibold text-indigo-600 dark:text-indigo-400">— {name}</p>
+    </div>
+  );
+}
+
+/* SVG ICONS */
+const RuqyahIcon = () => <svg viewBox="0 0 24 24" fill="none" className="w-6 h-6"><path d="M12 2v6M6 9h12M8 16h8" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round"/></svg>;
+const HijamaIcon = () => <svg viewBox="0 0 24 24" fill="none" className="w-6 h-6"><circle cx="12" cy="10" r="4" stroke="currentColor" strokeWidth="1.6"/><path d="M4 20c2-4 8-6 16-2" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round"/></svg>;
+const ConsultIcon = () => <svg viewBox="0 0 24 24" fill="none" className="w-6 h-6"><rect x="3" y="4" width="18" height="14" rx="2" stroke="currentColor" strokeWidth="1.6"/><path d="M8 8h8M8 14h8" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round"/></svg>;
+const FaqIcon = () => <svg viewBox="0 0 24 24" fill="none" className="w-5 h-5"><circle cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="1.6"/><path d="M12 16h.01M12 8a2 2 0 012 2c0 1-1 1.5-1.5 2s-.5 1-.5 1.5" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round"/></svg>;

@@ -5,6 +5,8 @@ import AuthProvider from "@/components/providers/AuthProvider";
 import getAdminFromCookies from "@/utils/getAdminFromCookies.mjs";
 import Footer from "@/components/Footer";
 import UnderConstruction from "@/components/UnderConstruction";
+import { Toaster } from "react-hot-toast";
+import getThemeCookie from "@/utils/getThemeCookie.mjs";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -24,8 +26,11 @@ export const metadata = {
 export default async function RootLayout({ children }) {
   const isAdmin = await getAdminFromCookies();
   const nodeEnv = process.env.NODE_ENV;
+  const storedTheme = await getThemeCookie();
   return (
-    <html lang="en">
+    <html lang="en" 
+        data-theme={storedTheme || "light"}
+    >
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
@@ -33,9 +38,10 @@ export default async function RootLayout({ children }) {
           <UnderConstruction />
         ) : (
           <AuthProvider adminDetailsFromCookie={isAdmin}>
-            <Navbar />
+            {/* <Navbar /> */}
             {children}
             <Footer />
+            <Toaster />
           </AuthProvider>
         )}
       </body>
