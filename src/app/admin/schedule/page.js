@@ -1,10 +1,11 @@
 "use client";
 import React, { useState, useMemo } from "react";
 import DatePicker from "react-datepicker";
-import { FiTrash2, FiPlus, FiDownload, FiCalendar } from "react-icons/fi";
+import { FiTrash2, FiPlus, FiCalendar } from "react-icons/fi";
 import { format, addMinutes, addDays } from "date-fns";
 import "react-datepicker/dist/react-datepicker.css";
 import toast from "react-hot-toast";
+import combineDateTime from "@/utils/combineDateTime.mjs";
 
 export default function SchedulePage() {
   const [startDate, setStartDate] = useState(null);
@@ -16,14 +17,6 @@ export default function SchedulePage() {
   const [selectedDate, setSelectedDate] = useState(null);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
-
-  const combineDateTime = (dateObj, timeStr) => {
-    if (!dateObj || !timeStr) return null;
-    const [h, m] = timeStr.split(":").map(Number);
-    const d = new Date(dateObj);
-    d.setHours(h, m, 0, 0);
-    return d;
-  };
 
   const generateSlots = () => {
     setError(null);

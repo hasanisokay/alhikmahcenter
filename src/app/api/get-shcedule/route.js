@@ -6,7 +6,8 @@ export const GET = async (req) => {
     const db = await dbConnect();
     const slotCollection = await db.collection("appointment-slots");
     const result = await slotCollection.find({}).toArray()
-    if (result) {
+
+    if (result && result?.length > 0) {
       return NextResponse.json({
         message: "Success to get schedules.",
         status: 200,
@@ -17,6 +18,6 @@ export const GET = async (req) => {
     }
   } catch (err) {
     console.error("API Error:", err);
-    return NextResponse.json({ message: "Server error" }, { status: 500 });
+    return NextResponse.json({ message: "Server error", status: 500 });
   }
 };

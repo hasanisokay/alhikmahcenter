@@ -1,6 +1,7 @@
 import dbConnect from "@/services/dbConnect.mjs";
 import { NextResponse } from "next/server";
 import argon2 from "argon2";
+import strictAdminCheck from "@/server-fns/strictAdminCheck.mjs";
 
 export const POST = async (req) => {
   try {
@@ -12,6 +13,11 @@ export const POST = async (req) => {
         { status: 400 }
       );
     }
+        const authResult = await strictAdminCheck("admin");
+    if (authResult instanceof NextResponse) {
+      return authResult;
+    }
+
     // MSelim!123
     const db = await dbConnect();
     const userCollection = db.collection("users");

@@ -33,7 +33,7 @@ export const POST = async (req) => {
 
     const secret = new TextEncoder().encode(process.env.JWT_ENCRYPTION_KEY);
     const token = await new SignJWT({
-      sub: user._id,
+      sub: user._id.toString(),
       username: user.username,
       status: user?.status,
       name: user.name,

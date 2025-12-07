@@ -2,11 +2,14 @@
 
 import React, { useEffect, useMemo, useState } from "react";
 import toast from "react-hot-toast";
+import { format } from "date-fns";
+import combineDateTime from "@/utils/combineDateTime.mjs";
+import getSchedules from "@/utils/getSchedules.mjs";
 
 export default function MorphicScheduleManager({
   initialSchedules = [],
   fetchUrl = "/api/get-shcedule",
-  deleteUrl = "/api/delete-schedules",
+  deleteUrl = "/api/delete-schedule",
   updateUrl = "/api/update-schedule",
 }) {
   const [schedules, setSchedules] = useState(initialSchedules);
@@ -23,19 +26,14 @@ export default function MorphicScheduleManager({
   }, []);
 
   async function fetchSchedule() {
-    try {
-      setLoading(true);
-      const res = await fetch(fetchUrl, { credentials: "include" });
-      const resData = await res.json();
-      if (resData?.status === 200) {
-        setSchedules(resData?.schedules || []);
-      }
-    } catch (e) {
-      console.error(e);
-      // user can wire up a toast
-    } finally {
-      setLoading(false);
+    setLoading(true);
+    const data = await getSchedules();
+    if (data?.status === 200) {
+      setSchedules(data?.schedules);
+    } else {
+      toast.error(data.message || "ERROR");
     }
+    setLoading(false)
   }
 
   const groupedByDate = useMemo(() => {
@@ -75,23 +73,23 @@ export default function MorphicScheduleManager({
     const ids = Array.from(selected);
     const remaining = schedules.filter((s) => !ids.includes(s._id || s.id));
     try {
-      const res = await fetch("/api/delete-schedule", {
+      const res = await fetch(deleteUrl, {
         method: "DELETE",
         headers: { "Content-Type": "application/json" },
         credentials: "include",
         body: JSON.stringify({ ids }),
       });
       const resData = await res.json();
-      console.log({resData})
       if (resData.status === 200) {
         setSchedules(remaining);
         setSelected(new Set());
         toast.success("Deleted");
-      }else{
-        toast.error("Error deleting. reload page")
+      } else {
+        toast.error("Error deleting. Reload page");
       }
     } catch (e) {
       console.error(e);
+      toast.error("Error deleting. Reload page");
     }
   }
 
@@ -101,22 +99,70 @@ export default function MorphicScheduleManager({
 
   async function saveEdit() {
     if (!editing) return;
-    // optimistic update
-    setSchedules((prev) =>
-      prev.map((s) =>
-        s._id === editing._id || s.id === editing.id ? editing : s
-      )
-    );
-    setEditing(null);
+
     try {
-      await fetch(updateUrl, {
-        method: "POST",
+      // 1. Rebuild Date from date + time like your generator
+      const baseDate = new Date(editing.date);
+      const dt = combineDateTime(baseDate, editing.time);
+
+      if (!dt || Number.isNaN(dt.getTime())) {
+        toast.error("Invalid date or time");
+        return;
+      }
+
+      // 2. Build new slot in same shape as generateSlots
+      const iso = dt.toISOString();
+      const updatedSlot = {
+        ...editing,
+        id: iso, // unique slot id = ISO datetime
+        time: format(dt, "HH:mm"),
+        date: format(dt, "yyyy-MM-dd"),
+        readable: format(dt, "PPP p"),
+        expiresAt: iso,
+      };
+
+      const currentKey = editing._id || editing.id;
+
+      // 3. Ensure uniqueness of id (no duplicate slot at same datetime)
+      const hasDuplicate = schedules.some((s) => {
+        const key = s._id || s.id;
+        return key !== currentKey && s.id === updatedSlot.id;
+      });
+
+      if (hasDuplicate) {
+        toast.error("A slot already exists at that date & time.");
+        return;
+      }
+
+      // 4. Optimistic update in local state, sorted by time
+      setSchedules((prev) => {
+        const next = prev.map((s) =>
+          (s._id || s.id) === currentKey ? updatedSlot : s
+        );
+        return next.sort(
+          (a, b) => new Date(a.expiresAt) - new Date(b.expiresAt)
+        );
+      });
+
+      setEditing(null);
+
+      // 5. Persist to API
+      const res = await fetch(updateUrl, {
+        method: "PATCH",
         headers: { "Content-Type": "application/json" },
         credentials: "include",
-        body: JSON.stringify(editing),
+        body: JSON.stringify(updatedSlot),
       });
+
+      const resData = await res.json();
+      if (res.ok && resData?.status === 200) {
+        toast.success("Slot updated");
+      } else {
+        toast.error("Error updating slot. Please reload.");
+      }
     } catch (e) {
       console.error(e);
+      toast.error("Error updating slot");
     }
   }
 

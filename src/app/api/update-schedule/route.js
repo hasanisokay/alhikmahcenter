@@ -1,24 +1,26 @@
+import strictAdminCheck from "@/server-fns/strictAdminCheck.mjs";
 import dbConnect from "@/services/dbConnect.mjs";
 import { ObjectId } from "mongodb";
 import { NextResponse } from "next/server";
 
-export const DELETE = async (req) => {
+export const PATCH = async (req) => {
   try {
     const body = await req.json();
     const db = await dbConnect();
-    const ids = body.ids;
-    if (ids.length < 1) {
-      return NextResponse.json({
-        message: "No ids provided",
-        status: 404,
-      });
-    }
-    const idsWithObjectId = ids.map(i=> new ObjectId(i));
     const slotCollection = await db.collection("appointment-slots");
-    const result = await slotCollection.deleteMany({ _id: { $in: idsWithObjectId} });
-    if (result?.deletedCount > 0) {
+    const { _id, ...dataWithoutObjectId } = body;
+        const authResult = await strictAdminCheck("admin");
+    if (authResult instanceof NextResponse) {
+      return authResult;
+    }
+    const result = await slotCollection.updateOne(
+      { _id: new ObjectId(_id) },
+      { $set: dataWithoutObjectId }
+    );
+
+    if (result?.modifiedCount > 0) {
       return NextResponse.json({
-        message: "Success to delete the slots",
+        message: "Success to save the slots",
         status: 200,
       });
     } else {
