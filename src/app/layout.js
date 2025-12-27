@@ -4,7 +4,6 @@ import Navbar from "@/components/Navbar";
 import AuthProvider from "@/components/providers/AuthProvider";
 import getAdminFromCookies from "@/utils/getAdminFromCookies.mjs";
 import Footer from "@/components/Footer";
-import UnderConstruction from "@/components/UnderConstruction";
 import { Toaster } from "react-hot-toast";
 import getThemeCookie from "@/utils/getThemeCookie.mjs";
 
@@ -34,16 +33,13 @@ export default async function RootLayout({ children }) {
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
-        {nodeEnv === "production" ? (
-          <UnderConstruction />
-        ) : (
+
           <AuthProvider adminDetailsFromCookie={isAdmin}>
             <Navbar />
             {children}
             <Footer />
             <Toaster />
           </AuthProvider>
-        )}
       </body>
     </html>
   );
