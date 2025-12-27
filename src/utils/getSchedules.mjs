@@ -5,6 +5,7 @@ import hostname from "./hostname.mjs";
 const getSchedules = async () => {
   try {
     const host = await hostname();
+
     const res = await fetch(`${host}/api/get-shcedule`, {
       credentials: "include",
     });

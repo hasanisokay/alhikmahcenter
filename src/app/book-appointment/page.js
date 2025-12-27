@@ -218,6 +218,7 @@ const Page = () => {
         setSummary("");
       } else {
         toast.error(data.message || "Error booking appointment");
+        window.location.reload()
       }
     } catch {
       toast.error("Server error. Try again later.");

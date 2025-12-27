@@ -38,7 +38,7 @@ export default async function RootLayout({ children }) {
           <UnderConstruction />
         ) : (
           <AuthProvider adminDetailsFromCookie={isAdmin}>
-            {/* <Navbar /> */}
+            <Navbar />
             {children}
             <Footer />
             <Toaster />
