@@ -19,7 +19,7 @@ const escapeHtml = (str = "") =>
     .replace(/'/g, "&#039;");
 
 const sendEmail = async (data) => {
-  const { name, date, time, summary, phone, address } = data;
+  const { name, date, time, summary, phone, address, service } = data;
 
   const html = `
   <div style="font-family: Arial, Helvetica, sans-serif; background-color:#f4f6f8; padding:30px;">
@@ -69,6 +69,12 @@ const sendEmail = async (data) => {
             )}</td>
           </tr>
           <tr>
+            <td style="padding:10px; background:#f1f5f9; font-weight:bold;">Service</td>
+            <td style="padding:10px; white-space:pre-wrap;">${escapeHtml(
+              service
+            )}</td>
+          </tr>
+          <tr>
             <td style="padding:10px; background:#f1f5f9; font-weight:bold;">Summary</td>
             <td style="padding:10px; white-space:pre-wrap;"> ${
               summary ? escapeHtml(summary) : "—"
@@ -77,7 +83,7 @@ const sendEmail = async (data) => {
         </table>
 
         <p style="margin-top:24px; font-size:14px; color:#555;">
-          To see all the appointments <a href='https://alhikmahbd.org/admin/appointments' style="color:blue">Click here</a>
+          To see all the appointments <a href='https://www.alhikmahbd.org//admin/appointments' style="color:blue">Click here</a>
         </p>
       </div>
 

@@ -55,20 +55,20 @@ const Homepage = () => {
     {
       icon: <FaHeartbeat className="w-12 h-12" />,
       title: "Hijama Therapy",
-      description: "Traditional wet cupping therapy for detoxification and healing various conditions.",
-      link: "/book-appointment"
+      description: "Traditional cupping therapy for detoxification and healing various conditions.",
+      link: `/book-appointment?service=Hijama`
     },
     {
       icon: <FaStethoscope className="w-12 h-12" />,
       title: "Self Diagnosis",
-      description: "Take our online test to understand if you need ruqyah treatment.",
+      description: "Take Ruqyah Support BDs online test to understand if you need ruqyah treatment.",
       link: "https://test.ruqyahbd.org/bn"
     },
     {
       icon: <FaUserMd className="w-12 h-12" />,
       title: "Consultation",
-      description: "One-on-one sessions with experienced practitioners for personalized care.",
-      link: "/book-appointment"
+      description: "Ruqyah sessions with experienced practitioners.",
+      link: `/book-appointment?service=Ruqyah`
     }
   ];
 

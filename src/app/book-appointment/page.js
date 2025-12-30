@@ -4,8 +4,11 @@ import { useEffect, useMemo, useRef, useState } from "react";
 import getSchedules from "@/utils/getSchedules.mjs";
 import toast from "react-hot-toast";
 import { format } from "date-fns";
+import { useSearchParams } from "next/navigation";
 
 const Page = () => {
+  const searchParams = useSearchParams();
+  const preSelectedService = searchParams.get("service");
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(false);
   const [slots, setSlots] = useState([]);
@@ -13,7 +16,6 @@ const Page = () => {
   const [monthOffset, setMonthOffset] = useState(0);
   const [selectedDate, setSelectedDate] = useState(null);
   const [selectedSlotId, setSelectedSlotId] = useState(null);
-const [selectedService, setSelectedService] = useState(['Ruqyah']);
   // Form fields
   const [name, setName] = useState("");
   const [address, setAddress] = useState("");
@@ -21,19 +23,21 @@ const [selectedService, setSelectedService] = useState(['Ruqyah']);
   const [summary, setSummary] = useState("");
   const [bookingLoading, setBookingLoading] = useState(false);
 
-
+  const [selectedService, setSelectedService] = useState(["Ruqyah"]);
   const serviceOptions = ["Ruqyah", "Hijama"];
 
-    const toggleServiceOption = (option) => {
+  // Field-level errors
+  const [fieldErrors, setFieldErrors] = useState({});
+
+  const toggleServiceOption = (option) => {
+    setFieldErrors((prev) => ({ ...prev, selectedService: undefined }));
+
     setSelectedService((prev) =>
       prev.includes(option)
         ? prev.filter((item) => item !== option)
         : [...prev, option]
     );
   };
-
-  // Field-level errors
-  const [fieldErrors, setFieldErrors] = useState({});
 
   const fetchSchedule = async () => {
     setLoading(true);
@@ -50,6 +54,11 @@ const [selectedService, setSelectedService] = useState(['Ruqyah']);
   useEffect(() => {
     fetchSchedule();
   }, []);
+  useEffect(() => {
+    if (preSelectedService) {
+      setSelectedService([preSelectedService]);
+    }
+  }, [preSelectedService]);
 
   useEffect(() => {
     if (!slots.length) return;
@@ -133,7 +142,9 @@ const [selectedService, setSelectedService] = useState(['Ruqyah']);
 
     // validate all fields
     const errors = {};
-
+    if (selectedService?.length === 0) {
+      errors.selectedService = "Please select a service";
+    }
     if (!selectedDate) {
       errors.date = "Please select a date.";
     }
@@ -176,6 +187,7 @@ const [selectedService, setSelectedService] = useState(['Ruqyah']);
         address,
         phone,
         summary,
+        service: selectedService.join(", ")
       };
 
       const res = await fetch("/api/book-appointment", {
@@ -229,7 +241,7 @@ const [selectedService, setSelectedService] = useState(['Ruqyah']);
         setSummary("");
       } else {
         toast.error(data.message || "Error booking appointment");
-        window.location.reload()
+        window.location.reload();
       }
     } catch {
       toast.error("Server error. Try again later.");
@@ -478,53 +490,7 @@ const [selectedService, setSelectedService] = useState(['Ruqyah']);
                   )}
                 </div>
               </div>
- <div className="space-y-3">
-      {serviceOptions?.map((option) => (
-        <label
-          key={option}
-          className="flex items-center gap-3 cursor-pointer"
-        >
-          <input
-            type="checkbox"
-            checked={selectedService.includes(option)}
-            onChange={() => toggleServiceOption(option)}
-            className="peer hidden"
-          />
 
-          <div
-            className="
-              h-5 w-5
-              rounded border border-gray-400
-              flex items-center justify-center
-              peer-checked:bg-blue-600
-              peer-checked:border-blue-600
-              transition
-            "
-          >
-            <svg
-              className="h-3 w-3 text-white hidden peer-checked:block"
-              fill="none"
-              stroke="currentColor"
-              strokeWidth="3"
-              viewBox="0 0 24 24"
-            >
-              <path
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                d="M5 13l4 4L19 7"
-              />
-            </svg>
-          </div>
-
-          <span className="text-sm text-gray-700">{option}</span>
-        </label>
-      ))}
-
-      {/* Debug / Display selected values */}
-      <div className="text-sm text-gray-500">
-        Selected: {selectedService.join(", ") || "None"}
-      </div>
-    </div>
               <div>
                 <label className="text-xs font-medium">Address *</label>
                 <input
@@ -543,6 +509,168 @@ const [selectedService, setSelectedService] = useState(['Ruqyah']);
                     {fieldErrors.address}
                   </p>
                 )}
+              </div>
+              <div className="space-y-4">
+                {serviceOptions?.map((option) => {
+                  const isChecked = selectedService.includes(option);
+                  const hasError = Boolean(fieldErrors.selectedService);
+
+                  return (
+                    <label
+                      key={option}
+                      className={`
+          group relative flex items-center gap-4
+          rounded-2xl border p-4
+          cursor-pointer
+          transition-all duration-300
+          ${
+            hasError
+              ? "border-red-400 bg-red-50/40"
+              : isChecked
+              ? "border-blue-600 bg-gradient-to-br from-blue-50 to-white shadow-lg"
+              : "border-gray-200 bg-white hover:border-blue-400 hover:shadow-md"
+          }
+        `}
+                    >
+                      {/* Hidden Input */}
+                      <input
+                        type="checkbox"
+                        checked={isChecked}
+                        onChange={() => toggleServiceOption(option)}
+                        className="peer hidden"
+                      />
+
+                      {/* Checkbox */}
+                      <div
+                        className={`
+            relative flex h-7 w-7 items-center justify-center
+            rounded-lg border-2
+            transition-all duration-300
+            ${
+              hasError
+                ? "border-red-500"
+                : isChecked
+                ? "border-blue-600 bg-blue-600"
+                : "border-gray-300 bg-white"
+            }
+          `}
+                      >
+                        {/* Check */}
+                        <svg
+                          viewBox="0 0 24 24"
+                          className={`
+              h-4 w-4 text-white
+              transition-all duration-200
+              ${isChecked ? "scale-100 opacity-100" : "scale-0 opacity-0"}
+            `}
+                          fill="none"
+                          stroke="currentColor"
+                          strokeWidth="3"
+                        >
+                          <path
+                            strokeLinecap="round"
+                            strokeLinejoin="round"
+                            d="M5 13l4 4L19 7"
+                          />
+                        </svg>
+
+                        {/* Glow */}
+                        <span
+                          className={`
+              absolute inset-0 rounded-lg blur-md
+              ${
+                hasError
+                  ? "bg-red-400/30 opacity-100"
+                  : isChecked
+                  ? "bg-blue-500/30 opacity-100"
+                  : "opacity-0"
+              }
+              transition
+            `}
+                        />
+                      </div>
+
+                      {/* Text */}
+                      <div className="flex flex-col gap-0.5">
+                        <span className="text-sm font-semibold text-gray-900">
+                          {option}
+                        </span>
+                        <span
+                          className={`text-xs ${
+                            hasError ? "text-red-600" : "text-gray-500"
+                          }`}
+                        >
+                          Professional service selection
+                        </span>
+                      </div>
+
+                      {/* Status */}
+                      <div
+                        className={`
+            ml-auto rounded-full px-3 py-1 text-[11px] font-medium
+            transition-all
+            ${
+              hasError
+                ? "bg-red-100 text-red-600"
+                : isChecked
+                ? "bg-blue-600 text-white"
+                : "bg-gray-100 text-gray-400"
+            }
+          `}
+                      >
+                        {hasError
+                          ? "Required"
+                          : isChecked
+                          ? "Selected"
+                          : "Select"}
+                      </div>
+
+                      {/* Accent rail */}
+                      <span
+                        className={`
+            absolute left-0 top-1/2 h-10 w-1 -translate-y-1/2 rounded-r-full
+            transition-all
+            ${
+              hasError
+                ? "bg-red-500 opacity-100"
+                : isChecked
+                ? "bg-blue-600 opacity-100"
+                : "opacity-0"
+            }
+          `}
+                      />
+                    </label>
+                  );
+                })}
+
+                {/* Error Message */}
+                {fieldErrors.selectedService && (
+                  <p className="flex items-center gap-2 text-xs text-red-600">
+                    <span className="inline-block h-1.5 w-1.5 rounded-full bg-red-500" />
+                    {fieldErrors.selectedService}
+                  </p>
+                )}
+
+                {/* Selected Summary */}
+                <div
+                  className={`
+      rounded-2xl border border-dashed p-4 text-xs
+      ${
+        fieldErrors.selectedService
+          ? "border-red-300 bg-red-50/40"
+          : "border-gray-300 bg-gray-50"
+      }
+    `}
+                >
+                  <span className="font-semibold text-gray-800">
+                    Selected Services
+                  </span>
+                  <div className="mt-1 text-gray-600">
+                    {selectedService.length > 0
+                      ? selectedService.join(", ")
+                      : "No services selected"}
+                  </div>
+                </div>
               </div>
 
               <div>

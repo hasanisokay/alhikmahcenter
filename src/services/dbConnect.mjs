@@ -13,7 +13,7 @@ const dbConnect = async () => {
         deprecationErrors: true,
       },
     });
-    db = client.db("mahmud-selim");
+    db = client.db("alhikmahbdorg");
     await client.db("admin").command({ ping: 1 });
     return db;
   } catch (e) {
