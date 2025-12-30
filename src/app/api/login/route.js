@@ -57,6 +57,6 @@ export const POST = async (req) => {
     );
   } catch (err) {
     console.error("API Error:", err);
-    return NextResponse.json({ message: "Server error" }, { status: 500 });
+    return NextResponse.json({ message: "Server error", status: 500, err });
   }
 };
