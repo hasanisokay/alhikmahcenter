@@ -26,7 +26,7 @@ const Navbar = () => {
   const navItems = [
     { name: 'Audio', icon: IoHeadsetSharp, href: '/audio' },
     { name: 'PDF', icon: BsFiletypePdf, href: '/pdf' },
-    { name: 'Book Appointment', icon: MdEventAvailable, href: '/appointment' },
+    { name: 'Book Appointment', icon: MdEventAvailable, href: '/book-appointment' },
     { name: 'Blog', icon: FaBlog, href: '/blog' },
   ];
 
