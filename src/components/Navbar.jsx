@@ -1,181 +1,207 @@
-"use client";
+'use client'
+import React, { useState, useEffect } from 'react';
+import Image from 'next/image';
+import Link from 'next/link';
+import { usePathname } from 'next/navigation';
+import { HiMenu, HiX } from 'react-icons/hi';
+import { IoHeadsetSharp } from 'react-icons/io5';
+import { BsFiletypePdf } from 'react-icons/bs';
+import { MdEventAvailable } from 'react-icons/md';
+import { FaBlog } from 'react-icons/fa';
+import alhikmahLogo from './../../public/images/alhikmah.png';
 
-import { useEffect, useState } from "react";
-import Link from "next/link";
-import Image from "next/image";
+const Navbar = () => {
+  const [isOpen, setIsOpen] = useState(false);
+  const [scrolled, setScrolled] = useState(false);
+  const pathname = usePathname();
 
-import alhikmahLogo from "./../../public/images/alhikmah.png";
-
-export default function Navbar() {
-  const [menuOpen, setMenuOpen] = useState(false);
-  const [showLogo, setShowLogo] = useState(false);
-
-  // Logo slide-in animation
   useEffect(() => {
-    const timer = setTimeout(() => {
-      setShowLogo(true);
-    }, 1000);
-
-    return () => clearTimeout(timer);
+    const handleScroll = () => {
+      setScrolled(window.scrollY > 20);
+    };
+    window.addEventListener('scroll', handleScroll);
+    return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
+  const navItems = [
+    { name: 'Audio', icon: IoHeadsetSharp, href: '/audio' },
+    { name: 'PDF', icon: BsFiletypePdf, href: '/pdf' },
+    { name: 'Book Appointment', icon: MdEventAvailable, href: '/appointment' },
+    { name: 'Blog', icon: FaBlog, href: '/blog' },
+  ];
+
   return (
-    <>
-      {/* NAVBAR */}
-        <div className="mx-auto max-w-7xl px-4">
-          <div className="flex items-center justify-between  bg-white/90 backdrop-blur px-6 py-3 shadow-sm">
-            {/* Logo */}
-            <div
-              className={`flex items-center gap-3 transition-all duration-700 ease-out
-              ${showLogo ? "translate-x-0 opacity-100" : "-translate-x-12 opacity-0"}`}
-            >
+    <nav
+      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${
+        scrolled
+          ? 'bg-white/80 backdrop-blur-lg shadow-lg'
+          : 'bg-white/95 backdrop-blur-sm'
+      }`}
+    >
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="flex items-center justify-between h-16 md:h-20">
+          {/* Logo */}
+          <Link
+            href="/"
+            className="flex items-center space-x-2 group relative z-10"
+          >
+            <div className="relative w-10 h-10 md:w-12 md:h-12 overflow-hidden rounded-lg transform transition-all duration-500 group-hover:scale-110 group-hover:rotate-6">
+              <div className="absolute inset-0 bg-gradient-to-br from-blue-500 to-purple-600 opacity-0 group-hover:opacity-20 transition-opacity duration-500" />
               <Image
                 src={alhikmahLogo}
-                alt="Al Hikmah"
-                className="h-9 w-auto"
-                priority
+                alt="Al Hikmah Logo"
+                className="object-contain"
+                loading='eager'
               />
-              <span className="font-semibold text-gray-900 whitespace-nowrap">
-                Al Hikmah
-              </span>
             </div>
-
-            {/* Desktop Navigation */}
-            <nav className="hidden md:flex items-center gap-8">
-              <Link
-                href="/"
-                className="text-sm font-medium text-gray-700 hover:text-gray-900"
-              >
-                Home
-              </Link>
-
-              <Link
-                href="/book-appointment"
-                className="text-sm font-medium text-gray-700 hover:text-gray-900"
-              >
-                Book Appointment
-              </Link>
-
-              <Link
-                href="https://ruqyahbd.org/blog"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="text-sm font-medium text-gray-700 hover:text-gray-900"
-              >
-                Blog ↗
-              </Link>
-            </nav>
-
-            {/* Desktop CTA */}
-            <div className="hidden md:block">
-              <Link
-                href="/book-appointment"
-                className="rounded-full bg-emerald-500 px-5 py-2 text-sm font-semibold text-white shadow hover:bg-emerald-600 transition"
-              >
-                Book Now
-              </Link>
+     <div className="">
+              <h1 className="text-xl font-bold text-emerald-900 leading-tight">AL-HIKMAH</h1>
+              <p className="text-xs text-emerald-600 font-medium tracking-wider">RUQYAH & HIJAMA</p>
             </div>
+          </Link>
 
-            {/* Mobile Menu Button */}
-            <button
-              onClick={() => setMenuOpen(true)}
-              className="md:hidden rounded-full p-2 hover:bg-gray-100"
-            >
-              <svg
-                className="h-6 w-6"
-                fill="none"
-                stroke="currentColor"
-                viewBox="0 0 24 24"
-              >
-                <path
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  strokeWidth={2}
-                  d="M4 6h16M4 12h16M4 18h16"
-                />
-              </svg>
-            </button>
-          </div>
-        </div>
-      {/* MOBILE MENU OVERLAY */}
-      <div
-        className={`fixed inset-0 z-50 bg-white transition-all duration-500 ease-out md:hidden
-        ${menuOpen ? "opacity-100 pointer-events-auto" : "opacity-0 pointer-events-none"}`}
-      >
-        {/* Mobile Header */}
-        <div className="flex items-center justify-between px-6 py-4 border-b">
-          <div
-            className={`flex items-center gap-3 transition-all duration-700
-            ${menuOpen ? "translate-x-0 opacity-100" : "-translate-x-10 opacity-0"}`}
-          >
-            <Image
-              src={alhikmahLogo}
-              alt="Al Hikmah"
-              className="h-9 w-auto"
-            />
-            <span className="font-semibold text-gray-900">Al Hikmah</span>
+          {/* Desktop Navigation */}
+          <div className="hidden md:flex items-center space-x-1 lg:space-x-2">
+            {navItems.map((item, index) => {
+              const isActive = pathname === item.href;
+              return (
+                <Link
+                  key={item.name}
+                  href={item.href}
+                  className={`group relative px-4 py-2 rounded-xl overflow-hidden transition-all duration-300 hover:scale-105 ${
+                    isActive ? 'bg-gradient-to-r from-emerald-50 to-teal-50' : ''
+                  }`}
+                  style={{
+                    animation: `fadeInDown 0.6s ease-out ${index * 0.1}s both`,
+                  }}
+                >
+                  <div className={`absolute inset-0 bg-gradient-to-r from-emerald-500 to-teal-600 transition-opacity duration-300 ${
+                    isActive ? 'opacity-10' : 'opacity-0 group-hover:opacity-10'
+                  }`} />
+                  <div className={`absolute bottom-0 left-0 right-0 h-0.5 bg-gradient-to-r from-emerald-600 to-teal-600 transform transition-transform duration-300 origin-left ${
+                    isActive ? 'scale-x-100' : 'scale-x-0 group-hover:scale-x-100'
+                  }`} />
+                  
+                  <div className="flex items-center space-x-2 relative">
+                    <item.icon className={`w-4 h-4 transition-colors duration-300 transform group-hover:rotate-12 ${
+                      isActive ? 'text-emerald-700' : 'text-gray-600 group-hover:text-emerald-700'
+                    }`} />
+                    <span className={`text-sm lg:text-base font-medium transition-colors duration-300 ${
+                      isActive ? 'text-emerald-900 font-semibold' : 'text-gray-700 group-hover:text-gray-900'
+                    }`}>
+                      {item.name}
+                    </span>
+                  </div>
+                </Link>
+              );
+            })}
           </div>
 
+          {/* Mobile Menu Button */}
           <button
-            onClick={() => setMenuOpen(false)}
-            className="rounded-full p-2 hover:bg-gray-100"
+            onClick={() => setIsOpen(!isOpen)}
+            className="md:hidden relative w-10 h-10 rounded-lg flex items-center justify-center group hover:bg-gray-100 transition-colors duration-300"
+            aria-label="Toggle menu"
           >
-            <svg
-              className="h-6 w-6"
-              fill="none"
-              stroke="currentColor"
-              viewBox="0 0 24 24"
-            >
-              <path
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                strokeWidth={2}
-                d="M6 18 18 6M6 6l12 12"
+            <div className="relative w-6 h-6">
+              <HiMenu
+                className={`absolute inset-0 w-6 h-6 text-gray-700 transition-all duration-300 transform ${
+                  isOpen
+                    ? 'rotate-90 opacity-0 scale-0'
+                    : 'rotate-0 opacity-100 scale-100'
+                }`}
               />
-            </svg>
+              <HiX
+                className={`absolute inset-0 w-6 h-6 text-gray-700 transition-all duration-300 transform ${
+                  isOpen
+                    ? 'rotate-0 opacity-100 scale-100'
+                    : '-rotate-90 opacity-0 scale-0'
+                }`}
+              />
+            </div>
           </button>
         </div>
 
-        {/* Mobile Links */}
+        {/* Mobile Navigation */}
         <div
-          className={`flex flex-col gap-6 px-6 py-10 transition-all duration-700 delay-100
-          ${menuOpen ? "translate-y-0 opacity-100" : "translate-y-6 opacity-0"}`}
+          className={`md:hidden overflow-hidden transition-all duration-500 ease-in-out ${
+            isOpen ? 'max-h-96 opacity-100' : 'max-h-0 opacity-0'
+          }`}
         >
-          <Link
-            href="/"
-            onClick={() => setMenuOpen(false)}
-            className="text-lg font-medium"
-          >
-            Home
-          </Link>
-
-          <Link
-            href="/book-appointment"
-            onClick={() => setMenuOpen(false)}
-            className="text-lg font-medium"
-          >
-            Book Appointment
-          </Link>
-
-          <Link
-            href="https://ruqyahbd.org/blog"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="text-lg font-medium"
-          >
-            Blog ↗
-          </Link>
-
-          {/* Highlight CTA */}
-          <Link
-            href="/book-appointment"
-            onClick={() => setMenuOpen(false)}
-            className="mt-8 inline-flex justify-center rounded-full bg-emerald-500 px-6 py-3 text-sm font-semibold text-white shadow hover:bg-emerald-600 transition"
-          >
-            Book Now
-          </Link>
+          <div className="py-4 space-y-2">
+            {navItems.map((item, index) => {
+              const isActive = pathname === item.href;
+              return (
+                <Link
+                  key={item.name}
+                  href={item.href}
+                  onClick={() => setIsOpen(false)}
+                  className={`group relative flex items-center space-x-3 px-4 py-3 rounded-xl overflow-hidden transition-all duration-300 ${
+                    isActive 
+                      ? 'bg-gradient-to-r from-emerald-50 to-teal-50' 
+                      : 'hover:bg-gradient-to-r hover:from-emerald-50 hover:to-teal-50'
+                  }`}
+                  style={{
+                    animation: isOpen
+                      ? `slideInLeft 0.4s ease-out ${index * 0.1}s both`
+                      : 'none',
+                  }}
+                >
+                  <div className={`absolute left-0 w-1 h-full bg-gradient-to-b from-emerald-600 to-teal-600 transform transition-transform duration-300 origin-top ${
+                    isActive ? 'scale-y-100' : 'scale-y-0 group-hover:scale-y-100'
+                  }`} />
+                  
+                  <div className={`w-10 h-10 rounded-lg bg-gradient-to-br flex items-center justify-center transform group-hover:scale-110 group-hover:rotate-6 transition-all duration-300 ${
+                    isActive 
+                      ? 'from-emerald-100 to-teal-100' 
+                      : 'from-emerald-50 to-teal-50'
+                  }`}>
+                    <item.icon className={`w-5 h-5 transition-colors duration-300 ${
+                      isActive 
+                        ? 'text-emerald-700' 
+                        : 'text-emerald-600 group-hover:text-emerald-700'
+                    }`} />
+                  </div>
+                  
+                  <span className={`text-base font-medium transition-colors duration-300 ${
+                    isActive 
+                      ? 'text-emerald-900 font-semibold' 
+                      : 'text-gray-700 group-hover:text-gray-900'
+                  }`}>
+                    {item.name}
+                  </span>
+                </Link>
+              );
+            })}
+          </div>
         </div>
       </div>
-    </>
+
+      <style jsx>{`
+        @keyframes fadeInDown {
+          from {
+            opacity: 0;
+            transform: translateY(-20px);
+          }
+          to {
+            opacity: 1;
+            transform: translateY(0);
+          }
+        }
+
+        @keyframes slideInLeft {
+          from {
+            opacity: 0;
+            transform: translateX(-30px);
+          }
+          to {
+            opacity: 1;
+            transform: translateX(0);
+          }
+        }
+      `}</style>
+    </nav>
   );
-}
+};
+
+export default Navbar;

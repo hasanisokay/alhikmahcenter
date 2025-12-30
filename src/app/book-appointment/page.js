@@ -13,13 +13,24 @@ const Page = () => {
   const [monthOffset, setMonthOffset] = useState(0);
   const [selectedDate, setSelectedDate] = useState(null);
   const [selectedSlotId, setSelectedSlotId] = useState(null);
-
+const [selectedService, setSelectedService] = useState(['Ruqyah']);
   // Form fields
   const [name, setName] = useState("");
   const [address, setAddress] = useState("");
   const [phone, setPhone] = useState("");
   const [summary, setSummary] = useState("");
   const [bookingLoading, setBookingLoading] = useState(false);
+
+
+  const serviceOptions = ["Ruqyah", "Hijama"];
+
+    const toggleServiceOption = (option) => {
+    setSelectedService((prev) =>
+      prev.includes(option)
+        ? prev.filter((item) => item !== option)
+        : [...prev, option]
+    );
+  };
 
   // Field-level errors
   const [fieldErrors, setFieldErrors] = useState({});
@@ -467,7 +478,53 @@ const Page = () => {
                   )}
                 </div>
               </div>
+ <div className="space-y-3">
+      {serviceOptions?.map((option) => (
+        <label
+          key={option}
+          className="flex items-center gap-3 cursor-pointer"
+        >
+          <input
+            type="checkbox"
+            checked={selectedService.includes(option)}
+            onChange={() => toggleServiceOption(option)}
+            className="peer hidden"
+          />
 
+          <div
+            className="
+              h-5 w-5
+              rounded border border-gray-400
+              flex items-center justify-center
+              peer-checked:bg-blue-600
+              peer-checked:border-blue-600
+              transition
+            "
+          >
+            <svg
+              className="h-3 w-3 text-white hidden peer-checked:block"
+              fill="none"
+              stroke="currentColor"
+              strokeWidth="3"
+              viewBox="0 0 24 24"
+            >
+              <path
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                d="M5 13l4 4L19 7"
+              />
+            </svg>
+          </div>
+
+          <span className="text-sm text-gray-700">{option}</span>
+        </label>
+      ))}
+
+      {/* Debug / Display selected values */}
+      <div className="text-sm text-gray-500">
+        Selected: {selectedService.join(", ") || "None"}
+      </div>
+    </div>
               <div>
                 <label className="text-xs font-medium">Address *</label>
                 <input

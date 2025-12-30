@@ -28,6 +28,7 @@ export default async function RootLayout({ children }) {
   const storedTheme = await getThemeCookie();
   return (
     <html lang="en" 
+    data-scroll-behavior="smooth"
         data-theme={storedTheme || "light"}
     >
       <body
@@ -35,7 +36,9 @@ export default async function RootLayout({ children }) {
       >
 
           <AuthProvider adminDetailsFromCookie={isAdmin}>
-            <Navbar />
+         <div className="h-[64px] md:h-[80px]">
+             <Navbar />
+         </div>
             {children}
             <Footer />
             <Toaster />
