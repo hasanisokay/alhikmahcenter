@@ -17,6 +17,7 @@ export const POST = async (req) => {
     // MSelim!123
     const db = await dbConnect();
     const userCollection = db.collection("users");
+    console.log(userCollection)
     const user = await userCollection.findOne({ username });
     if (!user) {
       return NextResponse.json({ message: "User not found" }, { status: 404 });
