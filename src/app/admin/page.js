@@ -26,8 +26,6 @@ export default function Dashboard() {
       });
       const json = await res.json();
       const data = json.data;
-      console.log(data);
-
       setTodayAppointments(data.today.appointments);
       setUpcomingAppointments(data.upcoming10Days.appointments);
       setRecentAppointments(data.recentPast10Days.appointments);
@@ -39,6 +37,7 @@ export default function Dashboard() {
       setLoading(false);
     }
   };
+
 
   useEffect(() => {
     fetchDashboardData();
@@ -231,16 +230,8 @@ function ListCard({ title, list, color, onSelect }) {
 
 /* MODAL COMPONENT */
 function AppointmentModal({ appointment, onClose }) {
-  const {
-    name,
-    phone,
-    date,
-    time,
-    address,
-    summary,
-    appointmentDate,
-    _id,
-  } = appointment || {};
+  const { name, phone, date, time, address, summary, appointmentDate, _id } =
+    appointment || {};
 
   const formattedDate =
     date ||
@@ -258,9 +249,7 @@ function AppointmentModal({ appointment, onClose }) {
         <div className="flex items-center justify-between px-5 py-3 border-b bg-gradient-to-r from-blue-500 to-indigo-500 text-white">
           <div>
             <h2 className="text-lg font-semibold">Appointment Details</h2>
-            {_id && (
-              <p className="text-xs text-white/80 mt-0.5">ID: {_id}</p>
-            )}
+            {_id && <p className="text-xs text-white/80 mt-0.5">ID: {_id}</p>}
           </div>
           <button
             onClick={onClose}

@@ -48,7 +48,14 @@ export default function Sidebar() {
     { href: "/admin/schedule", label: "Schedule", icon: <FaPlusCircle /> },
     { href: "/admin/schedule-data", label: "Schedule Data", icon: <FaDatabase /> },
   ];
-
+  const logOut = async () => {
+    const res = await fetch("/api/log-out", {
+      credentials: "include",
+      method:"POST"
+    });
+    const json = await res.json();
+    window.location.reload();
+  };
   return (
     <>
       {/* Mobile overlay (appears when sidebar open) */}
@@ -169,8 +176,8 @@ export default function Sidebar() {
                 <p className="text-xs text-slate-100/70">Signed in as</p>
                 <p className="text-sm font-semibold">Mahmud Selim</p>
               </div>
-              <div className="px-3 py-1.5 rounded-full bg-white/15 text-[0.7rem] uppercase tracking-wide">
-                Admin
+              <div onClick={()=>logOut()} className="px-3 py-1.5 cursor-pointer rounded-full bg-white/15 text-[0.7rem] uppercase tracking-wide">
+                Log Out
               </div>
             </div>
           )}

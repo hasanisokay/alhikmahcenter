@@ -26,6 +26,7 @@ export default function AdminLogin({ redirectTo = null }) {
                 body: JSON.stringify(formData)
             })
             const resData = await res.json();
+            console.log(resData)
             if (resData.status === 200) {
            toast.success(resData?.message || "Success")
                 window.location.href = redirectTo || '/admin'
