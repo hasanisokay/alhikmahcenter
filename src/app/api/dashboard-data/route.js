@@ -12,7 +12,7 @@ export const GET = async () => {
     }
 
     const db = await dbConnect();
-    const appointmentCollection = db.collection("booked-appointments");
+    const appointmentCollection = await db.collection("booked-appointments");
 
     // ----- Date Ranges -----
     const startOfToday = new Date(

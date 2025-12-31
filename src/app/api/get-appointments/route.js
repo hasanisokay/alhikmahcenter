@@ -18,7 +18,7 @@ export const GET = async (req) => {
       return authResult;
     }
     const db = await dbConnect();
-    const appointmentCollection = db.collection("booked-appointments");
+    const appointmentCollection = await db.collection("booked-appointments");
 
     // Base query
     const query = {};

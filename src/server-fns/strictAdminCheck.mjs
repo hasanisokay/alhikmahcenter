@@ -58,7 +58,7 @@ const strictAdminCheck = async (requiredRole = "admin") => {
     }
 
     const db = await dbConnect();
-    const userCollection = db.collection("users");
+    const userCollection = await db.collection("users");
 
     const userCheckInDb = await userCollection.findOne(
       { _id: new ObjectId(payload.sub) },

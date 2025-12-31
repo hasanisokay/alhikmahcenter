@@ -14,6 +14,7 @@ const dbConnect = async () => {
       },
     });
     db = client.db('alhikmahbdorg');
+    console.log('DB called', db)
     await client.db("admin").command({ ping: 1 });
     return db;
   } catch (e) {
