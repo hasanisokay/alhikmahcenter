@@ -76,7 +76,7 @@ const Homepage = () => {
     {
       id: 1,
       title: "Self Assessment",
-      desc: "Take our free online test to understand your symptoms.",
+      desc: "Take free online test to understand your symptoms.",
       icon: <FaStethoscope />
     },
     {
@@ -306,7 +306,7 @@ const Homepage = () => {
               
               <ul className="space-y-4 mb-8">
                 {[
-                  "Certified & Experienced Practitioners",
+                  "Experienced Practitioners",
                   "100% Sterile & Safe Environment",
                   "Confidential & Compassionate Care",
                   "Based on Authentic Islamic Teachings"

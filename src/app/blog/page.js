@@ -1,8 +1,8 @@
 
 const page = () => {
     return (
-        <div>
-            
+        <div className="min-h-screen text-center">
+            Coming soon...
         </div>
     );
 };

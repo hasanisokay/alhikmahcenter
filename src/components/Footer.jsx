@@ -22,9 +22,9 @@ const Footer = () => {
                         </p>
                         <div className="flex gap-4">
                             {/* Social Placeholders */}
-                            <div className="w-8 h-8 bg-emerald-900 rounded-full flex items-center justify-center hover:bg-amber-500 hover:text-emerald-900 cursor-pointer transition-colors"><FaFacebook /></div>
-                            <div className="w-8 h-8 bg-emerald-900 rounded-full flex items-center justify-center hover:bg-amber-500 hover:text-emerald-900 cursor-pointer transition-colors">in</div>
-                            <div className="w-8 h-8 bg-emerald-900 rounded-full flex items-center justify-center hover:bg-amber-500 hover:text-emerald-900 cursor-pointer transition-colors">yt</div>
+                            <Link href={'https://www.facebook.com/ruqyahcentermymensingh'} target='_blank' className="w-8 h-8 bg-emerald-900 rounded-full flex items-center justify-center hover:bg-amber-500 hover:text-emerald-900 cursor-pointer transition-colors"><FaFacebook /></Link>
+                            {/* <div className="w-8 h-8 bg-emerald-900 rounded-full flex items-center justify-center hover:bg-amber-500 hover:text-emerald-900 cursor-pointer transition-colors">in</div>
+                            <div className="w-8 h-8 bg-emerald-900 rounded-full flex items-center justify-center hover:bg-amber-500 hover:text-emerald-900 cursor-pointer transition-colors">yt</div> */}
                         </div>
                     </div>
 
@@ -41,10 +41,10 @@ const Footer = () => {
                     <div>
                         <h5 className="text-lg font-bold mb-6 text-amber-400">Services</h5>
                         <ul className="space-y-3 text-emerald-300 text-sm">
-                            <li><Link href="#" className="hover:text-white transition-colors">Ruqyah Shar'iyyah</Link></li>
-                            <li><Link href="#" className="hover:text-white transition-colors">Hijama Therapy</Link></li>
-                            <li><Link href="#" className="hover:text-white transition-colors">Self Diagnosis</Link></li>
-                            <li><Link href="#" className="hover:text-white transition-colors">Consultation</Link></li>
+                            <li><Link href="/book-appointment?service=Ruqyah" className="hover:text-white transition-colors">Ruqyah Shar'iyyah</Link></li>
+                            <li><Link href="/book-appointment?service=Hijama" className="hover:text-white transition-colors">Hijama Therapy</Link></li>
+                            <li><Link href="https://test.ruqyahbd.org/en" target='_blank' className="hover:text-white transition-colors">Self Diagnosis</Link></li>
+                            <li><Link href="/appointment" className="hover:text-white transition-colors">Consultation</Link></li>
                         </ul>
                     </div>
 

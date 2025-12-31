@@ -26,7 +26,7 @@ const dbConnect = async () => {
     }
 
     db = client.db("alhikmahbdorg");
-    await db.command({ ping: 1 }); 
+  //  await client.db("alhikmahbdorg").command({ ping: 1 });
     return db;
   } catch (error) {
     console.error("MongoDB connection error:", error);

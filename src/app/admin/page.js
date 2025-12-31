@@ -38,7 +38,6 @@ export default function Dashboard() {
     }
   };
 
-
   useEffect(() => {
     fetchDashboardData();
   }, []);
@@ -189,7 +188,6 @@ function ListCard({ title, list, color, onSelect }) {
                       </span>
                     )}
                   </div>
-
                   {a.summary && (
                     <p className="text-xs text-slate-600 line-clamp-2">
                       {a.summary}
@@ -201,6 +199,12 @@ function ListCard({ title, list, color, onSelect }) {
                       {a.address}
                     </p>
                   )}
+                                    {a.service && (
+                    <span className="text-xs px-2 py-0.5 rounded-full bg-white/80 text-slate-700 border border-slate-200">
+                      {a.service}
+                    </span>
+                  )}
+
                 </div>
 
                 {/* Right: date / time */}
@@ -215,6 +219,7 @@ function ListCard({ title, list, color, onSelect }) {
                       {timeLabel}
                     </span>
                   )}
+                  
                   <span className="mt-1 text-[11px] text-blue-700 underline">
                     View details
                   </span>
@@ -230,8 +235,17 @@ function ListCard({ title, list, color, onSelect }) {
 
 /* MODAL COMPONENT */
 function AppointmentModal({ appointment, onClose }) {
-  const { name, phone, date, time, address, summary, appointmentDate, _id } =
-    appointment || {};
+  const {
+    name,
+    phone,
+    date,
+    time,
+    address,
+    summary,
+    service,
+    appointmentDate,
+    _id,
+  } = appointment || {};
 
   const formattedDate =
     date ||
@@ -264,6 +278,7 @@ function AppointmentModal({ appointment, onClose }) {
         <div className="px-5 py-4 space-y-3 text-sm text-slate-800">
           <DetailRow label="Name" value={name} />
           <DetailRow label="Phone" value={phone} />
+          <DetailRow label="Service" value={service} />
           <DetailRow
             label="Date & Time"
             value={

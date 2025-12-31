@@ -212,6 +212,7 @@ const Page = () => {
                   <tr className="text-left text-xs text-slate-500 border-b border-slate-100">
                     <th className="py-2 pr-4">Patient</th>
                     <th className="py-2 pr-4">Mobile</th>
+                    <th className="py-2 pr-4">Service</th>
                     <th className="py-2 pr-4">Date & Time</th>
                     <th className="py-2 pr-4">Summary</th>
                   </tr>
@@ -234,6 +235,11 @@ const Page = () => {
                         <td className="py-3 pr-4 align-top">
                           <div className="text-slate-700">
                             {apt.phone || apt.mobile || "-"}
+                          </div>
+                        </td>
+                        <td className="py-3 pr-4 align-top">
+                          <div className="text-slate-700">
+                            {apt.service || apt.service || "-"}
                           </div>
                         </td>
                         <td className="py-3 pr-4 align-top">
