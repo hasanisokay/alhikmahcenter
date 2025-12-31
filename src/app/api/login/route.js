@@ -10,17 +10,15 @@ export const POST = async (req) => {
     const { username, password } = body;
     if (!username || !password) {
       return NextResponse.json(
-        { message: "Missing username or password" },
-        { status: 400 }
+        { message: "Missing username or password" , status: 400 }
       );
     }
     // MSelim!123
     const db = await dbConnect();
-    const userCollection = db.collection("users");
-    console.log(userCollection)
+    const userCollection = await db.collection("users");
     const user = await userCollection.findOne({ username });
     if (!user) {
-      return NextResponse.json({ message: "User not found" }, { status: 404 });
+      return NextResponse.json({ message: "User not found", status: 404 });
     }
     const valid = await argon2.verify(user.password, password);
 
