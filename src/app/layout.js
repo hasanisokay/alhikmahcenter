@@ -24,7 +24,6 @@ export const metadata = {
 
 export default async function RootLayout({ children }) {
   const isAdmin = await getAdminFromCookies();
-  const nodeEnv = process.env.NODE_ENV;
   const storedTheme = await getThemeCookie();
   return (
     <html lang="en" 
@@ -32,7 +31,7 @@ export default async function RootLayout({ children }) {
         data-theme={storedTheme || "light"}
     >
       <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased`}
+        className={`${geistSans.variable} ${geistMono.variable} antialiased text-black`}
       >
 
           <AuthProvider adminDetailsFromCookie={isAdmin}>
