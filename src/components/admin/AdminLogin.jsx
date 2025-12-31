@@ -41,9 +41,9 @@ export default function AdminLogin({ redirectTo = null }) {
         }
     }
     return (
-        <div className="h-screen">
-            <div className="w-full mt-10 mx-auto text-white max-w-md space-y-4 rounded-lg border bg-white p-7 shadow-lg sm:p-10 dark:border-zinc-700 dark:bg-zinc-900">
-                <h1 className="text-3xl font-semibold tracking-tight">Sign In</h1>
+        <div className="min-h-screen text-black">
+            <div className="w-full mt-10 mx-auto max-w-md space-y-4 rounded-lg border bg-white p-7 shadow-lg sm:p-10 dark:border-zinc-700 dark:bg-zinc-900">
+                <h1 className="text-3xl font-semibold text-white tracking-tight">Sign In</h1>
                 <form onSubmit={handleSubmit} className="space-y-6">
                     <div className="space-y-2 text-sm">
                         <label htmlFor="username" className="block font-medium text-zinc-700 dark:text-zinc-300">

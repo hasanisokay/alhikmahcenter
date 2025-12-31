@@ -253,7 +253,7 @@ const Page = () => {
   // If server failed
   if (error) {
     return (
-      <div className="min-h-screen flex items-center justify-center bg-slate-50">
+      <div className="min-h-screen text-black flex items-center justify-center bg-slate-50">
         <div className={cardBase + " max-w-md text-center"}>
           <h1 className="text-xl font-semibold mb-2">Server Busy</h1>
           <p className="text-sm text-slate-600 mb-3">
@@ -271,7 +271,7 @@ const Page = () => {
   }
 
   return (
-    <div className="min-h-screen p-6 bg-gradient-to-br from-slate-50 via-sky-50 to-slate-100">
+    <div className="min-h-screen text-black p-6 bg-gradient-to-br from-slate-50 via-sky-50 to-slate-100">
       <div className="max-w-6xl mx-auto grid grid-cols-1 lg:grid-cols-5 gap-6">
         {/* Calendar */}
         <section className={`${cardBase} lg:col-span-2`}>
@@ -387,12 +387,12 @@ const Page = () => {
         <section className="lg:col-span-3 flex flex-col gap-6">
           {/* Time slots */}
           <div ref={slotSectionRef} className={cardBase}>
-            <h2 className="text-lg font-semibold mb-2">
+            {selectedDate && <h2 className="text-lg font-semibold mb-2">
               Available Time Slots for{" "}
               <span className="text-blue-400 font-semibold">
                 {format(new Date(selectedDate), "PPPP")}
               </span>
-            </h2>
+            </h2>}
 
             {loading ? (
               <p className="text-sm text-center text-slate-500 py-4">
