@@ -3,44 +3,9 @@ import React from "react";
 const audioList = [
   {
     title: "Evil Eye Ruqyah",
-    src: "https://files.ruqyahbd.org/1.mp3",
+    src: "https://ia600309.us.archive.org/21/items/ruqyah-evil-eye-ruqyahbd.org/Ruqyah-EvilEye-ruqyahbd.org.mp3",
   },
-  {
-    title: "Eye Hasad Ruqyah",
-    src: "https://files.ruqyahbd.org/2.mp3",
-  },
-  {
-    title: "Sihr & Jinn Ruqyah",
-    src: "https://files.ruqyahbd.org/3.mp3",
-  },
-  {
-    title: "Black Magic & Jinn Ruqyah",
-    src: "https://files.ruqyahbd.org/4.mp3",
-  },
-  {
-    title: "Ayatul Harq Audio",
-    src: "https://files.ruqyahbd.org/5.mp3",
-  },
-  {
-    title: "Jinn Ruqyah",
-    src: "https://files.ruqyahbd.org/6.mp3",
-  },
-  {
-    title: "Three Qul Ruqyah",
-    src: "https://files.ruqyahbd.org/8.mp3",
-  },
-  {
-    title: "Ayatul Kursi Ruqyah",
-    src: "https://files.ruqyahbd.org/9.mp3",
-  },
-  {
-    title: "Curse Against Magicians",
-    src: "https://files.ruqyahbd.org/10.mp3",
-  },
-  {
-    title: "Ruqyah Dua & Misc",
-    src: "https://files.ruqyahbd.org/23.mp3",
-  },
+
 ];
 
 const AudioPage = () => {

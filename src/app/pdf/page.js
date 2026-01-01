@@ -3,53 +3,8 @@ import React from "react";
 const pdfList = [
   {
     title: "Common Ruqyah Ayat",
-    viewLink: "https://example.com/view/common-ruqyah",
-    downloadLink: "https://example.com/download/common-ruqyah.pdf",
-  },
-  {
-    title: "Ayatul Harq (Protection)",
-    viewLink: "https://example.com/view/ayatul-harq",
-    downloadLink: "https://example.com/download/ayatul-harq.pdf",
-  },
-  {
-    title: "Sihr & Jinn Ayat",
-    viewLink: "https://example.com/view/sihr-jinn",
-    downloadLink: "https://example.com/download/sihr-jinn.pdf",
-  },
-  {
-    title: "Ayatul Shifa (Healing)",
-    viewLink: "https://example.com/view/ayatul-shifa",
-    downloadLink: "https://example.com/download/ayatul-shifa.pdf",
-  },
-  {
-    title: "Ayatus Sakinah (Calmness)",
-    viewLink: "https://example.com/view/ayatus-sakinah",
-    downloadLink: "https://example.com/download/ayatus-sakinah.pdf",
-  },
-  {
-    title: "Compiled Ruqyah Duas",
-    viewLink: "https://example.com/view/ruqyah-duas",
-    downloadLink: "https://example.com/download/ruqyah-duas.pdf",
-  },
-  {
-    title: "Mukhtasar Ruqyah Shariah",
-    viewLink: "https://example.com/view/mukhtasar-ruqyah",
-    downloadLink: "https://example.com/download/mukhtasar-ruqyah.pdf",
-  },
-  {
-    title: "Masnun Amals (Short)",
-    viewLink: "https://example.com/view/masnun-amals",
-    downloadLink: "https://example.com/download/masnun-amals.pdf",
-  },
-  {
-    title: "Ruqyah Symptoms & Guidance",
-    viewLink: "https://example.com/view/symptoms-guidance",
-    downloadLink: "https://example.com/download/symptoms-guidance.pdf",
-  },
-  {
-    title: "Protection from Evil Eye",
-    viewLink: "https://example.com/view/evil-eye-protection",
-    downloadLink: "https://example.com/download/evil-eye-protection.pdf",
+    viewLink: "https://files.ruqyahbd.org/pdf/ruqyah-ayat-ruqyahbd.org.pdf",
+    downloadLink: "https://files.ruqyahbd.org/pdf/ruqyah-ayat-ruqyahbd.org.pdf",
   },
 ];
 
