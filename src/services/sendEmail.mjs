@@ -83,7 +83,7 @@ const sendEmail = async (data) => {
         </table>
 
         <p style="margin-top:24px; font-size:14px; color:#555;">
-          To see all the appointments <a href='https://www.alhikmahbd.org//admin/appointments' style="color:blue">Click here</a>
+          To see all the appointments <a href='https://www.alhikmahbd.org/admin/appointments' style="color:blue">Click here</a>
         </p>
       </div>
 

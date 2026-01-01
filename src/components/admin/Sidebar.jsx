@@ -4,6 +4,8 @@ import Link from "next/link";
 import { useEffect, useRef, useState } from "react";
 import {
   FaBars,
+  FaBlog,
+  FaBloggerB,
   FaCalendarAlt,
   FaDatabase,
   FaPlusCircle,
@@ -47,6 +49,8 @@ export default function Sidebar() {
     { href: "/admin/appointments", label: "All Appointments", icon: <FaCalendarAlt /> },
     { href: "/admin/schedule", label: "Schedule", icon: <FaPlusCircle /> },
     { href: "/admin/schedule-data", label: "Schedule Data", icon: <FaDatabase /> },
+    { href: "/admin/add-blog", label: "Add New Blog", icon: <FaBlog /> },
+    { href: "/admin/all-blog", label: "All Blog", icon: <FaBloggerB /> },
   ];
   const logOut = async () => {
     const res = await fetch("/api/log-out", {

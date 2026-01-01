@@ -57,7 +57,7 @@ const Footer = () => {
                             </li>
                             <li className="flex items-center gap-3">
                                 <FaPhoneAlt className="text-amber-500" />
-                                <span>01723-501455</span>
+                                <a href='tel:01723-501455'>01723-501455</a>
                             </li>
                             <li className="flex items-center gap-3">
                                 <FaClock className="text-amber-500" />
