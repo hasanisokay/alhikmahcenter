@@ -40,7 +40,7 @@ const SingleBlog = ({ blog }) => {
   });
 
   return (
-    <article className="mx-auto max-w-3xl px-6 py-12">
+    <article className="bg-white min-h-screen mx-auto max-w-3xl px-6 py-12">
       {/* Title */}
       <h1 className="text-3xl font-semibold tracking-tight text-gray-900">
         {blog.title}
