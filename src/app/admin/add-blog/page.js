@@ -26,47 +26,46 @@ const AddBlogAdmin = () => {
   const [ogTitle, setOgTitle] = useState("");
   const [ogDescription, setOgDescription] = useState("");
 
-const [textColor, setTextColor] = useState("#2563eb");
+  const [textColor, setTextColor] = useState("#2563eb");
 
-const editor = useEditor({
-  extensions: [
-    StarterKit,
-    Underline,
-    TextStyle,
-    Color,
-    Image,
-    Link.configure({
-      openOnClick: false,
-      autolink: true,
-      HTMLAttributes: {
-        target: "_blank",
-        rel: "noopener noreferrer",
-        class: "editor-link",
-      },
-    }),
-  ],
-  immediatelyRender: false,
-  content: "<p>Start writing your blog…</p>",
-});
+  const editor = useEditor({
+    extensions: [
+      StarterKit.configure({
+        heading: {
+          levels: [1, 2, 3],
+        },
+      }),
+      Underline,
+      TextStyle,
+      Color,
+      Image,
+      Link.configure({
+        openOnClick: false,
+        autolink: true,
+        HTMLAttributes: {
+          target: "_blank",
+          rel: "noopener noreferrer",
+          class: "editor-link",
+        },
+      }),
+    ],
+    immediatelyRender: false,
+    content: "<p>Start writing your blog…</p>",
+  });
 
-const setLink = () => {
-  const previousUrl = editor.getAttributes("link").href;
-  const url = window.prompt("Enter URL", previousUrl);
+  const setLink = () => {
+    const previousUrl = editor.getAttributes("link").href;
+    const url = window.prompt("Enter URL", previousUrl);
 
-  if (url === null) return;
+    if (url === null) return;
 
-  if (url === "") {
-    editor.chain().focus().extendMarkRange("link").unsetLink().run();
-    return;
-  }
+    if (url === "") {
+      editor.chain().focus().extendMarkRange("link").unsetLink().run();
+      return;
+    }
 
-  editor
-    .chain()
-    .focus()
-    .extendMarkRange("link")
-    .setLink({ href: url })
-    .run();
-};
+    editor.chain().focus().extendMarkRange("link").setLink({ href: url }).run();
+  };
 
   const handleImageUpload = async (file) => {
     const url = await uploadImage(file);
@@ -78,9 +77,9 @@ const setLink = () => {
       toast.error("Title and content and slug are required");
       return;
     }
-    if(!slugAvailable){
-       toast.error("Slug is not available.");
-       return;
+    if (!slugAvailable) {
+      toast.error("Slug is not available.");
+      return;
     }
 
     setLoading(true);
@@ -187,18 +186,31 @@ const setLink = () => {
         {/* TOOLBAR */}
         <div className="flex flex-wrap gap-2">
           {[
-  ["Bold", () => editor.chain().focus().toggleBold().run()],
-  ["Italic", () => editor.chain().focus().toggleItalic().run()],
-  ["Underline", () => editor.chain().focus().toggleUnderline().run()],
-  ["Link", setLink],
-  ["H1", () => editor.chain().focus().toggleHeading({ level: 1 }).run()],
-  ["H2", () => editor.chain().focus().toggleHeading({ level: 2 }).run()],
-  ["Bullet", () => editor.chain().focus().toggleBulletList().run()],
-  ["Numbered", () => editor.chain().focus().toggleOrderedList().run()],
-  ["Quote", () => editor.chain().focus().toggleBlockquote().run()],
-  ["Code", () => editor.chain().focus().toggleCodeBlock().run()],
-  ["Divider", () => editor.chain().focus().setHorizontalRule().run()],
-].map(([label, action]) => (
+            ["Bold", () => editor.chain().focus().toggleBold().run()],
+            ["Italic", () => editor.chain().focus().toggleItalic().run()],
+            ["Underline", () => editor.chain().focus().toggleUnderline().run()],
+            ["Link", setLink],
+            [
+              "H1",
+              () => editor.chain().focus().toggleHeading({ level: 1 }).run(),
+            ],
+            [
+              "H2",
+              () => editor.chain().focus().toggleHeading({ level: 2 }).run(),
+            ],
+            [
+              "H3",
+              () => editor.chain().focus().toggleHeading({ level: 3 }).run(),
+            ],
+            ["Bullet", () => editor.chain().focus().toggleBulletList().run()],
+            [
+              "Numbered",
+              () => editor.chain().focus().toggleOrderedList().run(),
+            ],
+            ["Quote", () => editor.chain().focus().toggleBlockquote().run()],
+            ["Code", () => editor.chain().focus().toggleCodeBlock().run()],
+            ["Divider", () => editor.chain().focus().setHorizontalRule().run()],
+          ].map(([label, action]) => (
             <button
               key={label}
               onClick={action}
@@ -220,32 +232,31 @@ const setLink = () => {
           </label>
 
           {/* 🎨 COLOR PICKER */}
-<input
-  type="color"
-  value={textColor}
-  onChange={(e) => {
-    setTextColor(e.target.value);
-    editor.chain().focus().setColor(e.target.value).run();
-  }}
-  className="h-8 w-10 cursor-pointer"
-/>
+          <input
+            type="color"
+            value={textColor}
+            onChange={(e) => {
+              setTextColor(e.target.value);
+              editor.chain().focus().setColor(e.target.value).run();
+            }}
+            className="h-8 w-10 cursor-pointer"
+          />
 
-<input
-  type="text"
-  value={textColor}
-  onChange={(e) => setTextColor(e.target.value)}
-  onBlur={() => editor.chain().focus().setColor(textColor).run()}
-  className="w-24 rounded border px-2 text-sm"
-  placeholder="#2563eb"
-/>
+          <input
+            type="text"
+            value={textColor}
+            onChange={(e) => setTextColor(e.target.value)}
+            onBlur={() => editor.chain().focus().setColor(textColor).run()}
+            className="w-24 rounded border px-2 text-sm"
+            placeholder="#2563eb"
+          />
 
-<button
-  onClick={() => editor.chain().focus().unsetColor().run()}
-  className="rounded border px-2 text-sm"
->
-  Clear Color
-</button>
-
+          <button
+            onClick={() => editor.chain().focus().unsetColor().run()}
+            className="rounded border px-2 text-sm"
+          >
+            Clear Color
+          </button>
         </div>
 
         {/* EDITOR */}

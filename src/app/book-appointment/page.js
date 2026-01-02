@@ -5,11 +5,12 @@ import getSchedules from "@/utils/getSchedules.mjs";
 import toast from "react-hot-toast";
 import { format } from "date-fns";
 import { useSearchParams } from "next/navigation";
+import Loader from "@/components/Loader";
 
 const Page = () => {
   const searchParams = useSearchParams();
   const preSelectedService = searchParams.get("service");
-  const [loading, setLoading] = useState(false);
+  const [loading, setLoading] = useState(true);
   const [error, setError] = useState(false);
   const [slots, setSlots] = useState([]);
   const slotSectionRef = useRef(null);
@@ -187,7 +188,7 @@ const Page = () => {
         address,
         phone,
         summary,
-        service: selectedService.join(", ")
+        service: selectedService.join(", "),
       };
 
       const res = await fetch("/api/book-appointment", {
@@ -269,7 +270,7 @@ const Page = () => {
       </div>
     );
   }
-
+  if (loading) return <Loader />;
   return (
     <div className="min-h-screen text-black p-6 bg-gradient-to-br from-slate-50 via-sky-50 to-slate-100">
       <div className="max-w-6xl mx-auto grid grid-cols-1 lg:grid-cols-5 gap-6">
@@ -387,12 +388,14 @@ const Page = () => {
         <section className="lg:col-span-3 flex flex-col gap-6">
           {/* Time slots */}
           <div ref={slotSectionRef} className={cardBase}>
-            {selectedDate && <h2 className="text-lg font-semibold mb-2">
-              Available Time Slots for{" "}
-              <span className="text-blue-400 font-semibold">
-                {format(new Date(selectedDate), "PPPP")}
-              </span>
-            </h2>}
+            {selectedDate && (
+              <h2 className="text-lg font-semibold mb-2">
+                Available Time Slots for{" "}
+                <span className="text-blue-400 font-semibold">
+                  {format(new Date(selectedDate), "PPPP")}
+                </span>
+              </h2>
+            )}
 
             {loading ? (
               <p className="text-sm text-center text-slate-500 py-4">

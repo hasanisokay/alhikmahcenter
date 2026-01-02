@@ -1,12 +1,8 @@
-import React from 'react';
+
+import Loader from './Loader';
 
 const Loading = () => {
-    return (
-        <div className="min-h-screen mx-auto max-w-3xs flex items-center justify-centers">
-            <div className='loader'>
-            </div>
-        </div>
-    );
+    return <Loader />
 };
 
 export default Loading;

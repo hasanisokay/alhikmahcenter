@@ -1,4 +1,5 @@
 @import "tailwindcss";
+@plugin "@tailwindcss/typography";
 
 :root {
   --background: #ffffff;
@@ -19,20 +20,6 @@ body {
   color: var(--foreground);
   font-family: Arial, Helvetica, sans-serif;
 }
-
-.loader {
-  width: fit-content;
-  font-weight: bold;
-  font-family: monospace;
-  font-size: 30px;
-  clip-path: inset(0 3ch 0 0);
-  animation: l4 1s steps(4) infinite;
-}
-.loader:before {
-  content:"Loading..."
-}
-@keyframes l4 {to{clip-path: inset(0 -1ch 0 0)}}
-
 
 
 @keyframes float {
@@ -477,3 +464,38 @@ body {
 ::-webkit-scrollbar-thumb:hover {
   background: linear-gradient(to bottom, #047857, #059669);
 }
+.editor-link{
+color: blue !important;
+}
+
+/* 
+.ProseMirror h1,
+.blog-content h1 {
+  font-size: 2rem;
+  font-weight: 700;
+  margin: 1.5rem 0 1rem;
+}
+
+.ProseMirror h2,
+.blog-content h2 {
+  font-size: 1.5rem;
+  font-weight: 600;
+  margin: 1.25rem 0 0.75rem;
+}
+
+.ProseMirror h3,
+.blog-content h3 {
+  font-size: 1.25rem;
+  font-weight: 600;
+  margin: 1rem 0 0.5rem;
+}
+
+.ProseMirror p,
+.blog-content p {
+  margin: 0.75rem 0;
+}
+.blog-content br {
+  content: "";
+  display: block;
+  margin-bottom: 0.5rem;
+} */

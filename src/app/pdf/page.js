@@ -54,6 +54,7 @@ const PdfPage = () => {
                 </a>
 
                 <a
+                  download
                   href={pdf.downloadLink}
                   target="_blank"
                   rel="noopener noreferrer"
@@ -72,8 +73,8 @@ const PdfPage = () => {
         <div className="mx-auto max-w-4xl px-6 text-center">
           <p className="text-xs text-gray-500">
             PDF topics are curated with reference and credit to{" "}
-            <span className="font-medium text-gray-700">RuqyahBD</span>.
-            All materials are intended for sincere and respectful use.
+            <span className="font-medium text-gray-700">RuqyahBD</span>. All
+            materials are intended for sincere and respectful use.
           </p>
         </div>
       </section>
