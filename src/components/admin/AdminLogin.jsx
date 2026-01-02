@@ -44,7 +44,7 @@ export default function AdminLogin({ redirectTo = null }) {
 
   return (
     <div className="min-h-screen bg-white text-gray-900 dark:bg-gray-900 dark:text-gray-100">
-      <div className="mx-auto mt-10 w-full max-w-md space-y-4 rounded-lg border border-gray-200 bg-white p-7 shadow-lg sm:p-10 dark:border-zinc-700 dark:bg-zinc-900">
+      <div className="mx-auto pt-10 w-full max-w-md space-y-4 rounded-lg border border-gray-200 bg-white p-7 shadow-lg sm:p-10 dark:border-zinc-700 dark:bg-zinc-900">
         <h1 className="text-3xl font-semibold tracking-tight text-gray-900 dark:text-white">
           Sign In
         </h1>
