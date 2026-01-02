@@ -40,7 +40,7 @@ const BlogList = ({ blogs, pagination }) => {
 
   return (
     <>
-      <div className="grid min-h-screen bg-white gap-8">
+      <div className="grid  gap-8">
         {blogs.map((blog) => {
      const publishedDate = new Date(
   blog.lastUpdated || blog.date

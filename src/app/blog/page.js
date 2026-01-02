@@ -25,7 +25,7 @@ const PublicBlogPage = async ({ searchParams }) => {
     }
 
     return (
-      <main className="mx-auto max-w-6xl px-6 py-12">
+      <main className="mx-auto min-h-screen bg-white max-w-6xl px-6 py-12">
         <div className="mb-10 text-center">
           <h1 className="text-3xl font-semibold tracking-tight">
             Al Hikmah Blogs
