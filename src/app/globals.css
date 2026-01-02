@@ -12,12 +12,6 @@
   --font-mono: var(--font-geist-mono);
 }
 
-@media (prefers-color-scheme: light) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
-}
 
 
 body {
@@ -41,15 +35,6 @@ body {
 
 
 
-
-
-
-
-
-
-/* globals.css */
-
-/* Add these animation classes */
 @keyframes float {
   0%, 100% {
     transform: translateY(0px);
@@ -220,7 +205,6 @@ body {
   }
 }
 
-/* Animation classes for direct usage */
 .animate-float {
   animation: float 3s ease-in-out infinite;
 }
@@ -473,11 +457,6 @@ body {
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   animation: gradient-shift 3s linear infinite;
-}
-
-/* Add smooth scrolling to the whole page */
-html {
-  scroll-behavior: smooth;
 }
 
 /* Custom scrollbar */

@@ -31,7 +31,7 @@ export default async function RootLayout({ children }) {
         data-theme={storedTheme || "light"}
     >
       <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased text-black`}
+        className={`${geistSans.variable} ${geistMono.variable} antialiased  bg-white text-black`}
       >
 
           <AuthProvider adminDetailsFromCookie={isAdmin}>

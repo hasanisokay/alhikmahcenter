@@ -27,7 +27,7 @@ export default function AdminLayout({ children }) {
   if (loading) return <Loading />;
   if (!isAdmin) return <AdminLogin />;
   return (
-    <div className="min-h-screen flex md:flex-row flex-col">
+    <div className="min-h-screen flex md:flex-row flex-col  bg-white text-black">
       {isAdmin && <Sidebar />}
       <main className="flex-1 p-6  mt-16 md:mt-0">{children}</main>
     </div>

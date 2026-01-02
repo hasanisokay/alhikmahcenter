@@ -3,9 +3,10 @@ import hostname from "@/utils/hostname.mjs";
 
 const PublicBlogPage = async ({ searchParams }) => {
   try {
-    const limit = parseInt(searchParams.limit) || 10;
-    const page = parseInt(searchParams.page) || 1;
-    const keyword = searchParams.keyword || "";
+    const s = await searchParams;
+    const limit = parseInt(s.limit) || 10;
+    const page = parseInt(s.page) || 1;
+    const keyword = s.keyword || "";
 
     const host = await hostname();
     const res = await fetch(
@@ -17,19 +18,19 @@ const PublicBlogPage = async ({ searchParams }) => {
 
     if (data?.status !== 200) {
       return (
-        <div className="text-center text-sm text-gray-500 dark:text-gray-400">
+        <div className="text-center text-sm text-gray-500 ">
           Failed to load blogs.
         </div>
       );
     }
 
     return (
-      <main className="mx-auto min-h-screen max-w-6xl bg-white px-6 py-12 dark:bg-gray-900">
+      <main className="mx-auto min-h-screen max-w-6xl  px-6 py-12 ">
         <div className="mb-10 text-center">
-          <h1 className="text-3xl font-semibold tracking-tight text-gray-900 dark:text-gray-100">
+          <h1 className="text-3xl font-semibold tracking-tight ">
             Al Hikmah Blogs
           </h1>
-          <p className="mt-2 text-sm text-gray-600 dark:text-gray-400">
+          <p className="mt-2 text-sm text-gray-600">
             Latest articles & updates
           </p>
         </div>
@@ -42,7 +43,7 @@ const PublicBlogPage = async ({ searchParams }) => {
     );
   } catch {
     return (
-      <div className="text-center text-sm text-red-500 dark:text-red-400">
+      <div className="text-center text-sm text-red-500">
         Error loading blogs. Please reload.
       </div>
     );

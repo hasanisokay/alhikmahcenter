@@ -156,7 +156,7 @@ function ListCard({ title, list, color, onSelect }) {
   const headingColor = colorClassMap[color] || "text-slate-700";
 
   return (
-    <div className="p-5 border rounded-xl shadow-md bg-white">
+    <div className="p-5 border rounded-xl shadow-md  bg-white text-black">
       <h3 className={`text-xl font-bold mb-4 ${headingColor}`}>{title}</h3>
 
       {list.length === 0 ? (

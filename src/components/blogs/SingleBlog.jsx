@@ -21,7 +21,7 @@ const getReadTime = (html) => {
 const SingleBlog = ({ blog }) => {
   if (!blog) {
     return (
-      <div className="text-center text-sm text-gray-500 dark:text-gray-400">
+      <div className="text-center text-sm text-gray-500 ">
         Blog not found.
       </div>
     );
@@ -36,14 +36,14 @@ const SingleBlog = ({ blog }) => {
   });
 
   return (
-    <article className="mx-auto max-w-3xl px-6 py-12">
+    <article className="mx-auto max-w-3xl px-6 py-12 bg-white text-black">
       {/* Title */}
-      <h1 className="text-3xl font-semibold tracking-tight text-gray-900 dark:text-gray-100">
+      <h1 className="text-3xl font-semibold tracking-tight text-gray-900">
         {blog.title}
       </h1>
 
       {/* Meta */}
-      <div className="mt-3 flex flex-wrap items-center gap-3 text-xs text-gray-500 dark:text-gray-400">
+      <div className="mt-3 flex flex-wrap items-center gap-3 text-xs">
         <span>{publishedDate}</span>
         <span>•</span>
         <span>{getReadTime(blog.content)}</span>
@@ -51,7 +51,7 @@ const SingleBlog = ({ blog }) => {
 
       {/* Content */}
       <div
-        className="prose prose-lg mt-8 max-w-none text-gray-800 dark:prose-invert dark:text-gray-200"
+        className="prose prose-lg mt-8 max-w-none "
         dangerouslySetInnerHTML={{ __html: blog.content }}
       />
     </article>
