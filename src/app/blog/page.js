@@ -11,26 +11,25 @@ const PublicBlogPage = async ({ searchParams }) => {
     const res = await fetch(
       `${host}/api/all-public-blog?limit=${limit}&page=${page}&keyword=${keyword}`,
       { cache: "no-store" }
-      // or: { next: { revalidate: 3600 } }
     );
 
     const data = await res.json();
 
     if (data?.status !== 200) {
       return (
-        <div className="text-center text-sm text-gray-500">
+        <div className="text-center text-sm text-gray-500 dark:text-gray-400">
           Failed to load blogs.
         </div>
       );
     }
 
     return (
-      <main className="mx-auto min-h-screen bg-white max-w-6xl px-6 py-12">
+      <main className="mx-auto min-h-screen max-w-6xl bg-white px-6 py-12 dark:bg-gray-900">
         <div className="mb-10 text-center">
-          <h1 className="text-3xl font-semibold tracking-tight">
+          <h1 className="text-3xl font-semibold tracking-tight text-gray-900 dark:text-gray-100">
             Al Hikmah Blogs
           </h1>
-          <p className="mt-2 text-sm text-gray-600">
+          <p className="mt-2 text-sm text-gray-600 dark:text-gray-400">
             Latest articles & updates
           </p>
         </div>
@@ -43,7 +42,7 @@ const PublicBlogPage = async ({ searchParams }) => {
     );
   } catch {
     return (
-      <div className="text-center text-sm text-red-500">
+      <div className="text-center text-sm text-red-500 dark:text-red-400">
         Error loading blogs. Please reload.
       </div>
     );
