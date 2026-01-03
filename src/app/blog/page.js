@@ -51,3 +51,64 @@ const PublicBlogPage = async ({ searchParams }) => {
 };
 
 export default PublicBlogPage;
+
+
+
+export async function generateMetadata() {
+  const siteName = "Al Hikmah Ruqyah & Hijama Center";
+  const siteUrl = "https://alhikmahbd.org/blog";
+
+  const title =
+    "Islamic Ruqyah & Hijama Blog | Al Hikmah Center";
+
+  const description =
+    "Read authentic articles on Islamic Ruqyah, Hijama (cupping therapy), spiritual healing, and health guidance based on Qur'an and Sunnah. Trusted insights from Al Hikmah Center.";
+
+  return {
+    title,
+    description,
+
+    alternates: {
+      canonical: siteUrl,
+    },
+
+    keywords: [
+      "Ruqyah Blog",
+      "Islamic Healing Blog",
+      "Hijama Articles",
+      "Islamic Health Blog",
+      "Spiritual Healing Islam",
+      "আল হিকমাহ ব্লগ",
+      "রুকইয়াহ ইসলামিক আর্টিকেল",
+      "হিজামা ইসলামিক লেখা",
+    ],
+
+    openGraph: {
+      title,
+      description,
+      url: siteUrl,
+      siteName,
+      type: "website",
+      images: [
+        {
+          url: "https://alhikmahbd.org/og-blog.jpg",
+          width: 1200,
+          height: 630,
+          alt: "Islamic Ruqyah & Hijama Blog – Al Hikmah Center",
+        },
+      ],
+    },
+
+    twitter: {
+      card: "summary_large_image",
+      title,
+      description,
+      images: ["https://alhikmahbd.org/og-blog.jpg"],
+    },
+
+    robots: {
+      index: true,
+      follow: true,
+    },
+  };
+}

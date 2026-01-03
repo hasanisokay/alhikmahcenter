@@ -22,11 +22,6 @@ import alhikmahLogo from './../../public/images/alhikmah.png';
 import Image from 'next/image';
 const Homepage = () => {
   const [activeTestimonial, setActiveTestimonial] = useState(0);
-  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
-
-  // Using your provided Logo URL
-  const logoUrl = "https://z-cdn-media.chatglm.cn/files/11340c41-c14d-4d40-b27e-96405245eb59.png?auth_key=1867069901-6c3c208bf75146208c06c4b9ce0f8810-0-51e1a8c31fb3d95788801b1ad9c15037";
-
   const testimonials = [
     {
       name: "Mohammed Rahman",

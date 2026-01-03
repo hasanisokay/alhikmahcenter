@@ -130,3 +130,62 @@ const ServicesPage = () => {
 };
 
 export default ServicesPage;
+
+export async function generateMetadata() {
+  const siteName = "Al Hikmah Ruqyah & Hijama Center";
+  const siteUrl = "https://alhikmahbd.org/services";
+
+  const title =
+    "Our Services – Ruqyah & Hijama Treatment | Al Hikmah Center";
+
+  const description =
+    "Explore our Islamic healing services including Ruqyah, Hijama (cupping therapy), spiritual consultation, and Sunnah-based treatments at Al Hikmah Center.";
+
+  return {
+    title,
+    description,
+
+    alternates: {
+      canonical: siteUrl,
+    },
+
+    keywords: [
+      "Ruqyah Services",
+      "Hijama Services",
+      "Islamic Healing Services",
+      "Cupping Therapy Bangladesh",
+      "Islamic Treatment Center",
+      "আল হিকমাহ সার্ভিস",
+      "রুকইয়াহ চিকিৎসা",
+      "হিজামা সেবা",
+    ],
+
+    openGraph: {
+      title,
+      description,
+      url: siteUrl,
+      siteName,
+      type: "website",
+      images: [
+        {
+          url: "https://alhikmahbd.org/og-image.jpg",
+          width: 1200,
+          height: 630,
+          alt: "Ruqyah & Hijama Services – Al Hikmah Center",
+        },
+      ],
+    },
+
+    twitter: {
+      card: "summary_large_image",
+      title,
+      description,
+      images: ["https://alhikmahbd.org/og-image.jpg"],
+    },
+
+    robots: {
+      index: true,
+      follow: true,
+    },
+  };
+}

@@ -468,34 +468,30 @@ body {
 color: blue !important;
 }
 
-/* 
-.ProseMirror h1,
-.blog-content h1 {
+
+.ProseMirror h1{
   font-size: 2rem;
   font-weight: 700;
   margin: 1.5rem 0 1rem;
 }
 
-.ProseMirror h2,
-.blog-content h2 {
+.ProseMirror h2 {
   font-size: 1.5rem;
   font-weight: 600;
   margin: 1.25rem 0 0.75rem;
 }
 
-.ProseMirror h3,
-.blog-content h3 {
+.ProseMirror h3 {
   font-size: 1.25rem;
   font-weight: 600;
   margin: 1rem 0 0.5rem;
 }
 
-.ProseMirror p,
-.blog-content p {
+.ProseMirror p {
   margin: 0.75rem 0;
 }
 .blog-content br {
   content: "";
   display: block;
   margin-bottom: 0.5rem;
-} */
+} 

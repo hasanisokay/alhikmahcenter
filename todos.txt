@@ -6,3 +6,5 @@ await slotCollection.createIndex(
   { expiresAt: 1 },
   { expireAfterSeconds: 0 }
 );
+
+check logoUrl with z. chat

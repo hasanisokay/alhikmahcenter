@@ -92,3 +92,61 @@ const AudioPage = () => {
 };
 
 export default AudioPage;
+
+export async function generateMetadata() {
+  const siteName = "Al Hikmah Ruqyah & Hijama Center";
+  const siteUrl = "https://alhikmahbd.org/audio";
+
+  const title =
+    "Ruqyah Audio Collection | Al Hikmah Center";
+
+  const description =
+    "Listen to authentic Islamic Ruqyah audio recitations based on Qur'an and Sunnah. Al Hikmah Center provides spiritual healing audio for protection, shifa, and peace of heart.";
+
+  return {
+    title,
+    description,
+
+    alternates: {
+      canonical: siteUrl,
+    },
+
+    keywords: [
+      "Ruqyah Audio",
+      "Islamic Ruqyah Audio",
+      "Quran Ruqyah MP3",
+      "Spiritual Healing Audio",
+      "Ruqyah Listening",
+      "আল হিকমাহ রুকইয়াহ অডিও",
+      "রুকইয়াহ কুরআন অডিও",
+    ],
+
+    openGraph: {
+      title,
+      description,
+      url: siteUrl,
+      siteName,
+      type: "website",
+      images: [
+        {
+          url: "https://alhikmahbd.org/og-audio.jpg",
+          width: 1200,
+          height: 630,
+          alt: "Ruqyah Audio Collection – Al Hikmah Center",
+        },
+      ],
+    },
+
+    twitter: {
+      card: "summary_large_image",
+      title,
+      description,
+      images: ["https://alhikmahbd.org/og-audio.jpg"],
+    },
+
+    robots: {
+      index: true,
+      follow: true,
+    },
+  };
+}

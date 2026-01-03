@@ -1,17 +1,15 @@
 import Link from 'next/link';
-import React from 'react';
 import { FaClock, FaMapMarkerAlt, FaPhoneAlt, FaFacebook } from 'react-icons/fa';
-
+import logo from "./../../public/images/alhikmah.png"
+import Image from 'next/image';
 const Footer = () => {
-      const logoUrl = "https://z-cdn-media.chatglm.cn/files/11340c41-c14d-4d40-b27e-96405245eb59.png?auth_key=1867069901-6c3c208bf75146208c06c4b9ce0f8810-0-51e1a8c31fb3d95788801b1ad9c15037";
-
     return (
         <footer className="bg-emerald-950 text-white pt-16 pb-8 border-t border-emerald-900">
             <div className="container mx-auto px-6">
                 <div className="grid grid-cols-1 md:grid-cols-4 gap-12 mb-12">
                     <div className="col-span-1 md:col-span-1">
                         <div className="flex items-center gap-3 mb-4">
-                            <img src={logoUrl} alt="Logo" className="w-12 h-12 rounded-full bg-white p-1" />
+                            <Image src={logo} alt="Logo" width={1000} height={1000} className="w-12 h-12 rounded-full bg-white p-1" />
                             <div>
                                 <h4 className="font-bold text-lg">AL-HIKMAH</h4>
                                 <p className="text-xs text-emerald-400">Mymensingh</p>

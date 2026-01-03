@@ -124,3 +124,61 @@ const AboutPage = () => {
 };
 
 export default AboutPage;
+
+export async function generateMetadata() {
+  const siteName = "Al Hikmah Ruqyah & Hijama Center";
+  const siteUrl = "https://alhikmahbd.org/about";
+
+  const title =
+    "About Al Hikmah Center | Islamic Ruqyah & Hijama Care";
+
+  const description =
+    "Learn about Al Hikmah Ruqyah & Hijama Center, our mission, values, and authentic Islamic healing practices based on Qur'an and Sunnah in Bangladesh.";
+
+  return {
+    title,
+    description,
+
+    alternates: {
+      canonical: siteUrl,
+    },
+
+    keywords: [
+      "About Al Hikmah Center",
+      "Islamic Ruqyah Center",
+      "Hijama Center Bangladesh",
+      "Islamic Healing Center",
+      "আল হিকমাহ সম্পর্কে",
+      "রুকইয়াহ সেন্টার",
+      "হিজামা চিকিৎসা কেন্দ্র",
+    ],
+
+    openGraph: {
+      title,
+      description,
+      url: siteUrl,
+      siteName,
+      type: "website",
+      images: [
+        {
+          url: "https://alhikmahbd.org/og-image.jpg",
+          width: 1200,
+          height: 630,
+          alt: "About Al Hikmah Ruqyah & Hijama Center",
+        },
+      ],
+    },
+
+    twitter: {
+      card: "summary_large_image",
+      title,
+      description,
+      images: ["https://alhikmahbd.org/og-image.jpg"],
+    },
+
+    robots: {
+      index: true,
+      follow: true,
+    },
+  };
+}
