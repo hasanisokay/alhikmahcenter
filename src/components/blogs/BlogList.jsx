@@ -1,14 +1,7 @@
 "use client";
 
+import { getExcerpt, stripHtml } from "@/utils/getExcerpt.mjs";
 import Pagination from "./Pagination";
-
-/**
- * Strip HTML tags and return plain text
- */
-const stripHtml = (html) => {
-  if (!html) return "";
-  return html.replace(/<[^>]*>/g, "");
-};
 
 /**
  * Calculate read time (200 wpm)
@@ -20,14 +13,6 @@ const getReadTime = (html) => {
   return `${minutes} min read`;
 };
 
-/**
- * Create excerpt
- */
-export const getExcerpt = (html, length = 180) => {
-  const text = stripHtml(html);
-  if (text.length <= length) return text;
-  return text.slice(0, length).trim() + "…";
-};
 
 const BlogList = ({ blogs, pagination }) => {
   if (!blogs || blogs.length === 0) {

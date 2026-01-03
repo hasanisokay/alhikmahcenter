@@ -1,7 +1,7 @@
 import alhikmah from "@/../public/images/og-blog.jpg";
 import SingleBlog from "@/components/blogs/SingleBlog";
 import getBlogBySlug from "@/utils/getBlogBySlug.mjs";
-import { getExcerpt } from "@/components/blogs/BlogList";
+import { getExcerpt } from "@/utils/getExcerpt.mjs";
 import hostname from "@/utils/hostname.mjs";
 
 const Page = async ({ params }) => {
