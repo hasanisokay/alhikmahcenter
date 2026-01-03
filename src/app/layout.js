@@ -8,7 +8,7 @@ import { Toaster } from "react-hot-toast";
 import getThemeCookie from "@/utils/getThemeCookie.mjs";
 import { GoogleAnalytics } from "@next/third-parties/google";
 
-import alhikmah from "@/../public/images/og-image.jpg";
+import alhikmah from "./../../public/og-image.jpg";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
