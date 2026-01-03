@@ -124,7 +124,7 @@ export async function generateMetadata() {
   const host = await hostname();
   const siteUrl = `${host}/about` || "https://alhikmahbd.org/about";
   const title = "About Al Hikmah Center | Islamic Ruqyah & Hijama Care";
-
+  const metaImage = `${siteUrl}${alhikmah.src}`;
   const description =
     "Learn about Al Hikmah Ruqyah & Hijama Center, our mission, values, and authentic Islamic healing practices based on Qur'an and Sunnah in Bangladesh.";
 
