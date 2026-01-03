@@ -8,7 +8,9 @@ import { Toaster } from "react-hot-toast";
 import getThemeCookie from "@/utils/getThemeCookie.mjs";
 import { GoogleAnalytics } from "@next/third-parties/google";
 
-import alhikmah from "./../../public/og-image.jpg";
+import alhikmah from "@/../public/images/og-image.jpg";
+
+import hostname from "@/utils/hostname.mjs";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -22,12 +24,12 @@ const geistMono = Geist_Mono({
 
 export async function generateMetadata() {
   const siteName = "Al Hikmah Ruqyah & Hijama Center";
-  const siteUrl = "https://alhikmahbd.org";
+  const host = await hostname()
+  const siteUrl = host || "https://alhikmahbd.org";
   const title = "Al Hikmah Center – আল হিকমাহ রুকইয়াহ এন্ড হিজামা সেন্টার";
   const description =
     "Al Hikmah Ruqyah & Hijama Center provides authentic Islamic Ruqyah, Hijama (cupping therapy), and spiritual healing services in Bangladesh based on Qur'an & Sunnah.";
-  // const metaImage = `${siteUrl}${alhikmah.src}`;
-  const metaImage = `/images/og-image.jpg`;
+  const metaImage = `${siteUrl}${alhikmah.src}`;
   return {
     title: {
       default: title,
