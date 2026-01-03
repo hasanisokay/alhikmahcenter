@@ -1,18 +1,12 @@
 import hostname from "@/utils/hostname.mjs";
 import SingleBlog from "@/components/blogs/SingleBlog";
+import getBlogBySlug from "@/utils/getBlogBySlug.mjs";
 
 const Page = async ({ params }) => {
   try {
     const p = await params;
     const slug = p.slug;
-    const host = await hostname();
-
-    const res = await fetch(
-      `${host}/api/get-blog?slug=${slug}`,
-{ next: { revalidate: 3600 } }
-    );
-
-    const data = await res.json();
+    const data = await getBlogBySlug(slug);
     if (data?.status !== 200) {
       return (
         <div className="py-20 text-center text-sm text-gray-500">
@@ -33,19 +27,12 @@ const Page = async ({ params }) => {
 
 export default Page;
 
-import getBlogBySlug from "@/utils/getBlogBySlug"; 
-// ⬆️ replace with your actual data function
-
 export async function generateMetadata({ params }) {
-  const { slug } = params;
-
+  const p = await params;
+  const slug = p.slug;
   const siteName = "Al Hikmah Ruqyah & Hijama Center";
   const baseUrl = "https://alhikmahbd.org";
-
-  // Fetch blog data
   const blog = await getBlogBySlug(slug);
-
-  // Fallback (important for SEO safety)
   if (!blog) {
     return {
       title: "Blog Not Found | Al Hikmah Center",
@@ -65,8 +52,7 @@ export async function generateMetadata({ params }) {
     "Authentic Islamic guidance based on Qur'an and Sunnah from Al Hikmah Center.";
 
   const url = `${baseUrl}/blog/${slug}`;
-  const image =
-    blog.ogImage || blog.coverImage || `${baseUrl}/og-blog.jpg`;
+  const image = blog.ogImage || blog.coverImage || `${baseUrl}/og-blog.jpg`;
 
   return {
     title,
@@ -89,8 +75,8 @@ export async function generateMetadata({ params }) {
       description,
       url,
       siteName,
-      publishedTime: blog.publishedAt,
-      modifiedTime: blog.updatedAt,
+      publishedTime: blog.date,
+      modifiedTime: blog.lastUpdated,
       authors: ["Al Hikmah Center"],
       images: [
         {
