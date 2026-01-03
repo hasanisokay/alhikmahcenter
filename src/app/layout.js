@@ -23,11 +23,11 @@ const geistMono = Geist_Mono({
 export async function generateMetadata() {
   const siteName = "Al Hikmah Ruqyah & Hijama Center";
   const siteUrl = "https://alhikmahbd.org";
-  const title =
-    "Al Hikmah Center – আল হিকমাহ রুকইয়াহ এন্ড হিজামা সেন্টার";
+  const title = "Al Hikmah Center – আল হিকমাহ রুকইয়াহ এন্ড হিজামা সেন্টার";
   const description =
     "Al Hikmah Ruqyah & Hijama Center provides authentic Islamic Ruqyah, Hijama (cupping therapy), and spiritual healing services in Bangladesh based on Qur'an & Sunnah.";
-  const metaImage = `${siteUrl}${alhikmah.src}`;
+  // const metaImage = `${siteUrl}${alhikmah.src}`;
+  const metaImage = `/og-image.jpg`;
   return {
     title: {
       default: title,
@@ -70,7 +70,7 @@ export async function generateMetadata() {
       description,
       images: [
         {
-          url:metaImage,
+          url: metaImage,
           width: 1200,
           height: 630,
           alt: "Al Hikmah Ruqyah & Hijama Center",
@@ -82,7 +82,14 @@ export async function generateMetadata() {
       card: "summary_large_image",
       title,
       description,
-      images: [metaImage],
+      images: [
+        {
+          url: metaImage,
+          width: 1200,
+          height: 630,
+          alt: "Al Hikmah Ruqyah & Hijama Center",
+        },
+      ],
     },
 
     icons: {
@@ -113,35 +120,35 @@ export async function generateMetadata() {
   };
 }
 export const viewport = {
-  width: 'device-width',
+  width: "device-width",
   initialScale: 1,
   maximumScale: 1,
   userScalable: false,
   // Also supported but less commonly used
   // interactiveWidget: 'resizes-visual',
-}
+};
 
 export default async function RootLayout({ children }) {
   const isAdmin = await getAdminFromCookies();
   const storedTheme = await getThemeCookie();
   return (
-    <html lang="en" 
-    data-scroll-behavior="smooth"
-        data-theme={storedTheme || "light"}
+    <html
+      lang="en"
+      data-scroll-behavior="smooth"
+      data-theme={storedTheme || "light"}
     >
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased  bg-white text-black`}
       >
-
-          <AuthProvider adminDetailsFromCookie={isAdmin}>
-         <div className="h-[64px] md:h-[80px]">
-             <Navbar />
-         </div>
-            {children}
-            <Footer />
-            <Toaster />
-          </AuthProvider>
-           <GoogleAnalytics gaId="G-G8Z65RX4RL"  />
+        <AuthProvider adminDetailsFromCookie={isAdmin}>
+          <div className="h-[64px] md:h-[80px]">
+            <Navbar />
+          </div>
+          {children}
+          <Footer />
+          <Toaster />
+        </AuthProvider>
+        <GoogleAnalytics gaId="G-G8Z65RX4RL" />
       </body>
     </html>
   );
