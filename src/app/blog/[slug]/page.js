@@ -27,17 +27,22 @@ const Page = async ({ params }) => {
 
 export default Page;
 
+
+
 export async function generateMetadata({ params }) {
   const p = await params;
   const slug = p.slug;
+
   const siteName = "Al Hikmah Ruqyah & Hijama Center";
   const baseUrl = "https://alhikmahbd.org";
+
   const blog = await getBlogBySlug(slug);
+
   if (!blog) {
     return {
       title: "Blog Not Found | Al Hikmah Center",
       description:
-        "Read authentic Islamic articles on Ruqyah, Hijama, and spiritual healing at Al Hikmah Center.",
+        "Read authentic Islamic articles on Ruqyah, Hijama, and spiritual healing based on Qur'an and Sunnah.",
       robots: {
         index: false,
         follow: false,
@@ -45,42 +50,69 @@ export async function generateMetadata({ params }) {
     };
   }
 
-  const title = blog.seoTitle || blog.title;
+  /* ---------------------------
+     Extract image from content
+  ---------------------------- */
+  let seoImage = `${baseUrl}/og-blog.jpg`;
+
+  if (blog.content) {
+    const imgMatch = blog.content.match(
+      /<img[^>]+src=["']([^"']+)["']/i
+    );
+
+    if (imgMatch?.[1]) {
+      seoImage = imgMatch[1].startsWith("http")
+        ? imgMatch[1]
+        : `${baseUrl}${imgMatch[1]}`;
+    }
+  }
+
+  /* ---------------------------
+     SEO fields
+  ---------------------------- */
+  const title =
+    blog.seo?.ogTitle ||
+    blog.title;
+
   const description =
-    blog.seoDescription ||
-    blog.excerpt ||
-    "Authentic Islamic guidance based on Qur'an and Sunnah from Al Hikmah Center.";
+    blog.seo?.description ||
+    blog.seo?.ogDescription ||
+    "Authentic Islamic guidance on Ruqyah, Hijama, and spiritual healing based on Qur'an and Sunnah.";
 
-  const url = `${baseUrl}/blog/${slug}`;
-  const image = blog.ogImage || blog.coverImage || `${baseUrl}/og-blog.jpg`;
+  const canonicalUrl =
+    blog.seo?.canonicalUrl ||
+    `${baseUrl}/blog/${slug}`;
 
+  const keywords =
+    blog.seo?.tags?.length > 0
+      ? blog.seo.tags
+      : ["ruqyah", "hijama", "রুকইয়া ব্লগ","আল হিকমাহ ব্লগ"];
+
+  /* ---------------------------
+     Metadata return
+  ---------------------------- */
   return {
     title,
     description,
 
     alternates: {
-      canonical: url,
+      canonical: canonicalUrl,
     },
 
-    keywords: blog.keywords || [
-      "Islamic Ruqyah",
-      "Hijama",
-      "Islamic Healing",
-      "Al Hikmah Blog",
-    ],
+    keywords,
 
     openGraph: {
       type: "article",
       title,
       description,
-      url,
+      url: canonicalUrl,
       siteName,
       publishedTime: blog.date,
-      modifiedTime: blog.lastUpdated,
-      authors: ["Al Hikmah Center"],
+      modifiedTime: blog.lastUpdated || new Date().toISOString(),
+      authors: ["Al Hikmah BD"],
       images: [
         {
-          url: image,
+          url: seoImage,
           width: 1200,
           height: 630,
           alt: title,
@@ -92,7 +124,7 @@ export async function generateMetadata({ params }) {
       card: "summary_large_image",
       title,
       description,
-      images: [image],
+      images: [seoImage],
     },
 
     robots: {
@@ -101,3 +133,4 @@ export async function generateMetadata({ params }) {
     },
   };
 }
+

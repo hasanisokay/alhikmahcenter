@@ -52,6 +52,8 @@ const Navbar = () => {
                 alt="Al Hikmah Logo"
                 className="object-contain"
                 loading='eager'
+                width={1000}
+                height={1000}
               />
             </div>
      <div className="">

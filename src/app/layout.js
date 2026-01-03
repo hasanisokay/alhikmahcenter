@@ -6,7 +6,7 @@ import getAdminFromCookies from "@/utils/getAdminFromCookies.mjs";
 import Footer from "@/components/Footer";
 import { Toaster } from "react-hot-toast";
 import getThemeCookie from "@/utils/getThemeCookie.mjs";
-import Script from "next/script";
+import { GoogleAnalytics } from "@next/third-parties/google";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -101,16 +101,23 @@ export async function generateMetadata() {
       },
     },
 
-    viewport: {
-      width: "device-width",
-      initialScale: 1,
-      maximumScale: 1,
-    },
+    // viewport: {
+    //   width: "device-width",
+    //   initialScale: 1,
+    //   maximumScale: 1,
+    // },
 
     category: "health",
   };
 }
-
+export const viewport = {
+  width: 'device-width',
+  initialScale: 1,
+  maximumScale: 1,
+  userScalable: false,
+  // Also supported but less commonly used
+  // interactiveWidget: 'resizes-visual',
+}
 
 export default async function RootLayout({ children }) {
   const isAdmin = await getAdminFromCookies();
@@ -120,24 +127,6 @@ export default async function RootLayout({ children }) {
     data-scroll-behavior="smooth"
         data-theme={storedTheme || "light"}
     >
-         <head>
-        {/* Google Analytics */}
-        <Script
-          src="https://www.googletagmanager.com/gtag/js?id=G-G8Z65RX4RL"
-          strategy="afterInteractive"
-        />
-
-        <Script id="google-analytics" strategy="afterInteractive">
-          {`
-            window.dataLayer = window.dataLayer || [];
-            function gtag(){dataLayer.push(arguments);}
-            gtag('js', new Date());
-            gtag('config', 'G-G8Z65RX4RL', {
-              page_path: window.location.pathname,
-            });
-          `}
-        </Script>
-      </head>
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased  bg-white text-black`}
       >
@@ -150,6 +139,7 @@ export default async function RootLayout({ children }) {
             <Footer />
             <Toaster />
           </AuthProvider>
+           <GoogleAnalytics gaId="G-G8Z65RX4RL"  />
       </body>
     </html>
   );
