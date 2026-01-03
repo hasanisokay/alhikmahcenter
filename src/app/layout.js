@@ -6,6 +6,7 @@ import getAdminFromCookies from "@/utils/getAdminFromCookies.mjs";
 import Footer from "@/components/Footer";
 import { Toaster } from "react-hot-toast";
 import getThemeCookie from "@/utils/getThemeCookie.mjs";
+import Script from "next/script";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -119,6 +120,24 @@ export default async function RootLayout({ children }) {
     data-scroll-behavior="smooth"
         data-theme={storedTheme || "light"}
     >
+         <head>
+        {/* Google Analytics */}
+        <Script
+          src="https://www.googletagmanager.com/gtag/js?id=G-G8Z65RX4RL"
+          strategy="afterInteractive"
+        />
+
+        <Script id="google-analytics" strategy="afterInteractive">
+          {`
+            window.dataLayer = window.dataLayer || [];
+            function gtag(){dataLayer.push(arguments);}
+            gtag('js', new Date());
+            gtag('config', 'G-G8Z65RX4RL', {
+              page_path: window.location.pathname,
+            });
+          `}
+        </Script>
+      </head>
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased  bg-white text-black`}
       >
