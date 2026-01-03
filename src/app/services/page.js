@@ -136,7 +136,7 @@ export async function generateMetadata() {
   const siteName = "Al Hikmah Ruqyah & Hijama Center";
   const host = await hostname();
   const siteUrl = `${host}/services` || "https://alhikmahbd.org/services";
- const metaImage = `${siteUrl}${alhikmah.src}`;
+ const metaImage = `${host}${alhikmah.src}`;
   const title =
     "Our Services – Ruqyah & Hijama Treatment | Al Hikmah Center";
 

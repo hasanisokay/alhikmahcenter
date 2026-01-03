@@ -90,7 +90,7 @@ export async function generateMetadata() {
   const siteName = "Al Hikmah Ruqyah & Hijama Center";
   const host = await hostname()
   const siteUrl = `${host}/pdf` || "https://alhikmahbd.org/pdf";
- const metaImage = `${siteUrl}${alhikmah.src}`;
+ const metaImage = `${host}${alhikmah.src}`;
   const title =
     "Islamic Ruqyah PDF & Dua Collection | Al Hikmah Center";
 

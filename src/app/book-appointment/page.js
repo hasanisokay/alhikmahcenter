@@ -11,7 +11,7 @@ export async function generateMetadata() {
   const siteName = "Al Hikmah Ruqyah & Hijama Center";
   const host  = await hostname()
   const siteUrl = `${host}/book-appointment` || "https://alhikmahbd.org/book-appointment";
-  const metaImage = `${siteUrl}${alhikmah.src}`;
+  const metaImage = `${host}${alhikmah.src}`;
   
   const title =
     "Book Appointment – Ruqyah & Hijama | Al Hikmah Center";

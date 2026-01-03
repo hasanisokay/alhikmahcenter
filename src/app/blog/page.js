@@ -57,8 +57,9 @@ export default PublicBlogPage;
 
 export async function generateMetadata() {
   const siteName = "Al Hikmah Ruqyah & Hijama Center";
+  const host = await hostname();
   const siteUrl = `${host}/blog`||"https://alhikmahbd.org/blog";
-  const metaImage = `${siteUrl}${alhikmah.src}`;
+  const metaImage = `${host}${alhikmah.src}`;
   const title =
     "Islamic Ruqyah & Hijama Blog | Al Hikmah Center";
 

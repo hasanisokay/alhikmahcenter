@@ -97,7 +97,7 @@ export async function generateMetadata() {
   const siteName = "Al Hikmah Ruqyah & Hijama Center";
   const host = await hostname();
   const siteUrl = `${host}/audio` || "https://alhikmahbd.org/audio";
-  const metaImage = `${siteUrl}${alhikmah.src}`;
+  const metaImage = `${host}${alhikmah.src}`;
   const title = "Ruqyah Audio Collection | Al Hikmah Center";
 
   const description =
