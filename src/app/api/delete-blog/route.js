@@ -12,9 +12,7 @@ export const DELETE = async (req) => {
     }
     const db = await dbConnect();
     const blogsCollection = await db.collection("blogs");
-    const result = await blogsCollection.deleteOne({ slug });
-    console.log(result);
-    
+    const result = await blogsCollection.deleteOne({ slug });    
     if (result.deletedCount > 0) {
       return NextResponse.json({
         message: "Success to delete the blog.",

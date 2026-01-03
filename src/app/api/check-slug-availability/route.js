@@ -8,7 +8,6 @@ export const GET = async (req) => {
     if (!slug || slug.length < 1) {
       return NextResponse.json({ message: "No slug provided", status: 400 });
     }
-    console.log(slug)
     const db = await dbConnect();
     const blogsCollection = await db.collection("blogs");
     const result = await blogsCollection.findOne(

@@ -23,7 +23,7 @@ const getReadTime = (html) => {
 /**
  * Create excerpt
  */
-const getExcerpt = (html, length = 180) => {
+export const getExcerpt = (html, length = 180) => {
   const text = stripHtml(html);
   if (text.length <= length) return text;
   return text.slice(0, length).trim() + "…";

@@ -1,6 +1,7 @@
 import hostname from "@/utils/hostname.mjs";
 import SingleBlog from "@/components/blogs/SingleBlog";
 import getBlogBySlug from "@/utils/getBlogBySlug.mjs";
+import { getExcerpt } from "@/components/blogs/BlogList";
 
 const Page = async ({ params }) => {
   try {
@@ -27,8 +28,6 @@ const Page = async ({ params }) => {
 
 export default Page;
 
-
-
 export async function generateMetadata({ params }) {
   const p = await params;
   const slug = p.slug;
@@ -36,8 +35,8 @@ export async function generateMetadata({ params }) {
   const siteName = "Al Hikmah Ruqyah & Hijama Center";
   const baseUrl = "https://alhikmahbd.org";
 
-  const blog = await getBlogBySlug(slug);
-
+  const b = await getBlogBySlug(slug);
+  const blog = b?.blog;
   if (!blog) {
     return {
       title: "Blog Not Found | Al Hikmah Center",
@@ -56,9 +55,7 @@ export async function generateMetadata({ params }) {
   let seoImage = `${baseUrl}/og-blog.jpg`;
 
   if (blog.content) {
-    const imgMatch = blog.content.match(
-      /<img[^>]+src=["']([^"']+)["']/i
-    );
+    const imgMatch = blog.content.match(/<img[^>]+src=["']([^"']+)["']/i);
 
     if (imgMatch?.[1]) {
       seoImage = imgMatch[1].startsWith("http")
@@ -70,23 +67,18 @@ export async function generateMetadata({ params }) {
   /* ---------------------------
      SEO fields
   ---------------------------- */
-  const title =
-    blog.seo?.ogTitle ||
-    blog.title;
-
+  const title = blog.title || blog.seo?.ogTitle ;
   const description =
     blog.seo?.description ||
-    blog.seo?.ogDescription ||
+    blog.seo?.ogDescription || getExcerpt(blog?.content) || 
     "Authentic Islamic guidance on Ruqyah, Hijama, and spiritual healing based on Qur'an and Sunnah.";
 
-  const canonicalUrl =
-    blog.seo?.canonicalUrl ||
-    `${baseUrl}/blog/${slug}`;
+  const canonicalUrl = blog.seo?.canonicalUrl || `${baseUrl}/blog/${slug}`;
 
   const keywords =
     blog.seo?.tags?.length > 0
       ? blog.seo.tags
-      : ["ruqyah", "hijama", "রুকইয়া ব্লগ","আল হিকমাহ ব্লগ"];
+      : ["ruqyah", "hijama", "রুকইয়া ব্লগ", "আল হিকমাহ ব্লগ"];
 
   /* ---------------------------
      Metadata return
@@ -94,13 +86,10 @@ export async function generateMetadata({ params }) {
   return {
     title,
     description,
-
     alternates: {
       canonical: canonicalUrl,
     },
-
     keywords,
-
     openGraph: {
       type: "article",
       title,
@@ -133,4 +122,3 @@ export async function generateMetadata({ params }) {
     },
   };
 }
-
