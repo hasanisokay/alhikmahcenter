@@ -1,4 +1,5 @@
-import React from "react";
+import alhikmah from "@/../public/images/og-pdf.jpg";
+import hostname from "@/utils/hostname.mjs";
 
 const pdfList = [
   {
@@ -87,8 +88,9 @@ export default PdfPage;
 
 export async function generateMetadata() {
   const siteName = "Al Hikmah Ruqyah & Hijama Center";
-  const siteUrl = "https://alhikmahbd.org/pdf";
-
+  const host = await hostname()
+  const siteUrl = `${host}/pdf` || "https://alhikmahbd.org/pdf";
+ const metaImage = `${siteUrl}${alhikmah.src}`;
   const title =
     "Islamic Ruqyah PDF & Dua Collection | Al Hikmah Center";
 
@@ -121,7 +123,7 @@ export async function generateMetadata() {
       type: "website",
       images: [
         {
-          url: "https://alhikmahbd.org/og-pdf.jpg",
+          url: metaImage,
           width: 1200,
           height: 630,
           alt: "Islamic Ruqyah PDF – Al Hikmah Center",
@@ -133,7 +135,14 @@ export async function generateMetadata() {
       card: "summary_large_image",
       title,
       description,
-      images: ["https://alhikmahbd.org/og-pdf.jpg"],
+      images: [
+        {
+          url: metaImage,
+          width: 1200,
+          height: 630,
+          alt: "Al Hikmah Ruqyah & Hijama Center",
+        },
+      ],
     },
 
     robots: {

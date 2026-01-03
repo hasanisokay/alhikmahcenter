@@ -1,3 +1,5 @@
+import alhikmah from "@/../public/images/og-image.jpg";
+import hostname from "@/utils/hostname.mjs";
 const AboutPage = () => {
   return (
     <main className="bg-white text-gray-800">
@@ -31,8 +33,8 @@ const AboutPage = () => {
 
           <div className="relative rounded-3xl border border-blue-100 bg-blue-50/60 p-8">
             <p className="text-sm italic text-gray-700">
-              “And We send down of the Qur’an that which is healing and mercy for
-              the believers.”
+              “And We send down of the Qur’an that which is healing and mercy
+              for the believers.”
             </p>
             <span className="mt-2 block text-xs font-medium text-gray-500">
               — Qur’an 17:82
@@ -44,9 +46,7 @@ const AboutPage = () => {
       {/* Services Overview */}
       <section className="bg-gray-50 py-16">
         <div className="mx-auto max-w-7xl px-6">
-          <h2 className="text-center text-2xl font-semibold">
-            What We Offer
-          </h2>
+          <h2 className="text-center text-2xl font-semibold">What We Offer</h2>
 
           <div className="mt-10 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
             {[
@@ -70,9 +70,7 @@ const AboutPage = () => {
                 <h3 className="text-lg font-semibold text-gray-900">
                   {item.title}
                 </h3>
-                <p className="mt-2 text-sm text-gray-600">
-                  {item.desc}
-                </p>
+                <p className="mt-2 text-sm text-gray-600">{item.desc}</p>
               </div>
             ))}
           </div>
@@ -81,9 +79,7 @@ const AboutPage = () => {
 
       {/* Values */}
       <section className="mx-auto max-w-7xl px-6 py-16">
-        <h2 className="text-center text-2xl font-semibold">
-          Our Core Values
-        </h2>
+        <h2 className="text-center text-2xl font-semibold">Our Core Values</h2>
 
         <div className="mt-10 grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
           {[
@@ -104,9 +100,7 @@ const AboutPage = () => {
 
       {/* Call To Action */}
       <section className="bg-blue-600 py-14 text-center text-white">
-        <h2 className="text-2xl font-semibold">
-          Begin Your Healing Journey
-        </h2>
+        <h2 className="text-2xl font-semibold">Begin Your Healing Journey</h2>
         <p className="mx-auto mt-3 max-w-xl text-sm text-blue-100">
           If you’re seeking spiritual and physical healing through Islamic
           methods, Al Hikmah is here to support you with care and sincerity.
@@ -127,10 +121,9 @@ export default AboutPage;
 
 export async function generateMetadata() {
   const siteName = "Al Hikmah Ruqyah & Hijama Center";
-  const siteUrl = "https://alhikmahbd.org/about";
-
-  const title =
-    "About Al Hikmah Center | Islamic Ruqyah & Hijama Care";
+  const host = await hostname();
+  const siteUrl = `${host}/about` || "https://alhikmahbd.org/about";
+  const title = "About Al Hikmah Center | Islamic Ruqyah & Hijama Care";
 
   const description =
     "Learn about Al Hikmah Ruqyah & Hijama Center, our mission, values, and authentic Islamic healing practices based on Qur'an and Sunnah in Bangladesh.";
@@ -161,7 +154,7 @@ export async function generateMetadata() {
       type: "website",
       images: [
         {
-          url: "https://alhikmahbd.org/og-image.jpg",
+          url: metaImage,
           width: 1200,
           height: 630,
           alt: "About Al Hikmah Ruqyah & Hijama Center",
@@ -173,7 +166,14 @@ export async function generateMetadata() {
       card: "summary_large_image",
       title,
       description,
-      images: ["https://alhikmahbd.org/og-image.jpg"],
+      images: [
+        {
+          url: metaImage,
+          width: 1200,
+          height: 630,
+          alt: "Al Hikmah Ruqyah & Hijama Center",
+        },
+      ],
     },
 
     robots: {

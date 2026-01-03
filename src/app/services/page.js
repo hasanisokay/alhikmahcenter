@@ -1,4 +1,5 @@
-import React from "react";
+import alhikmah from "@/../public/images/og-image.jpg";
+import hostname from "@/utils/hostname.mjs";
 
 const ServicesPage = () => {
   const services = [
@@ -133,8 +134,9 @@ export default ServicesPage;
 
 export async function generateMetadata() {
   const siteName = "Al Hikmah Ruqyah & Hijama Center";
-  const siteUrl = "https://alhikmahbd.org/services";
-
+  const host = await hostname();
+  const siteUrl = `${host}/services` || "https://alhikmahbd.org/services";
+ const metaImage = `${siteUrl}${alhikmah.src}`;
   const title =
     "Our Services – Ruqyah & Hijama Treatment | Al Hikmah Center";
 
@@ -168,21 +170,26 @@ export async function generateMetadata() {
       type: "website",
       images: [
         {
-          url: "https://alhikmahbd.org/og-image.jpg",
+          url: metaImage,
           width: 1200,
           height: 630,
           alt: "Ruqyah & Hijama Services – Al Hikmah Center",
         },
       ],
     },
-
     twitter: {
       card: "summary_large_image",
       title,
       description,
-      images: ["https://alhikmahbd.org/og-image.jpg"],
+      images: [
+        {
+          url: metaImage,
+          width: 1200,
+          height: 630,
+          alt: "Al Hikmah Ruqyah & Hijama Center",
+        },
+      ],
     },
-
     robots: {
       index: true,
       follow: true,

@@ -1,5 +1,6 @@
 import BlogList from "@/components/blogs/BlogList";
 import hostname from "@/utils/hostname.mjs";
+import alhikmah from "@/../public/images/og-blog.jpg";
 
 const PublicBlogPage = async ({ searchParams }) => {
   try {
@@ -56,8 +57,8 @@ export default PublicBlogPage;
 
 export async function generateMetadata() {
   const siteName = "Al Hikmah Ruqyah & Hijama Center";
-  const siteUrl = "https://alhikmahbd.org/blog";
-
+  const siteUrl = `${host}/blog`||"https://alhikmahbd.org/blog";
+  const metaImage = `${siteUrl}${alhikmah.src}`;
   const title =
     "Islamic Ruqyah & Hijama Blog | Al Hikmah Center";
 
@@ -91,7 +92,7 @@ export async function generateMetadata() {
       type: "website",
       images: [
         {
-          url: "https://alhikmahbd.org/og-blog.jpg",
+          url: metaImage,
           width: 1200,
           height: 630,
           alt: "Islamic Ruqyah & Hijama Blog – Al Hikmah Center",
@@ -103,7 +104,14 @@ export async function generateMetadata() {
       card: "summary_large_image",
       title,
       description,
-      images: ["https://alhikmahbd.org/og-blog.jpg"],
+      images: [
+        {
+          url: metaImage,
+          width: 1200,
+          height: 630,
+          alt: "Al Hikmah Ruqyah & Hijama Center",
+        },
+      ],
     },
 
     robots: {

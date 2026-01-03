@@ -1,5 +1,6 @@
 import BookAppointment from "@/components/appointment/BookAppointment";
-
+import alhikmah from "@/../public/images/og-book-appointment.jpg";
+import hostname from "@/utils/hostname.mjs";
 const page = () => {
   return <BookAppointment />
 };
@@ -8,11 +9,14 @@ export default page;
 
 export async function generateMetadata() {
   const siteName = "Al Hikmah Ruqyah & Hijama Center";
-  const siteUrl = "https://alhikmahbd.org/book-appointment";
-
+  const host  = await hostname()
+  const siteUrl = `${host}/book-appointment` || "https://alhikmahbd.org/book-appointment";
+  const metaImage = `${siteUrl}${alhikmah.src}`;
+  
   const title =
     "Book Appointment – Ruqyah & Hijama | Al Hikmah Center";
-  const description =
+  
+    const description =
     "Book your appointment for authentic Islamic Ruqyah and Hijama (cupping therapy) at Al Hikmah Center. Trusted spiritual healing based on Qur'an and Sunnah in Bangladesh.";
 
   return {
@@ -44,21 +48,26 @@ export async function generateMetadata() {
       type: "website",
       images: [
         {
-          url: "https://alhikmahbd.org/og-book-appointment.jpg",
+          url: metaImage,
           width: 1200,
           height: 630,
           alt: "Book Appointment – Al Hikmah Center",
         },
       ],
     },
-
     twitter: {
       card: "summary_large_image",
       title,
       description,
-      images: ["https://alhikmahbd.org/og-book-appointment.jpg"],
+      images: [
+        {
+          url: metaImage,
+          width: 1200,
+          height: 630,
+          alt: "Al Hikmah Ruqyah & Hijama Center",
+        },
+      ],
     },
-
     robots: {
       index: true,
       follow: true,

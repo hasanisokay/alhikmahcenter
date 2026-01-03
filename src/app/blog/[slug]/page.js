@@ -1,7 +1,8 @@
-import hostname from "@/utils/hostname.mjs";
+import alhikmah from "@/../public/images/og-blog.jpg";
 import SingleBlog from "@/components/blogs/SingleBlog";
 import getBlogBySlug from "@/utils/getBlogBySlug.mjs";
 import { getExcerpt } from "@/components/blogs/BlogList";
+import hostname from "@/utils/hostname.mjs";
 
 const Page = async ({ params }) => {
   try {
@@ -33,7 +34,9 @@ export async function generateMetadata({ params }) {
   const slug = p.slug;
 
   const siteName = "Al Hikmah Ruqyah & Hijama Center";
-  const baseUrl = "https://alhikmahbd.org";
+  const host = await hostname();
+  const baseUrl = host || "https://alhikmahbd.org";
+  const metaImage = `${baseUrl}${alhikmah.src}`;
 
   const b = await getBlogBySlug(slug);
   const blog = b?.blog;
@@ -52,7 +55,7 @@ export async function generateMetadata({ params }) {
   /* ---------------------------
      Extract image from content
   ---------------------------- */
-  let seoImage = `${baseUrl}/og-blog.jpg`;
+  let seoImage = metaImage;
 
   if (blog.content) {
     const imgMatch = blog.content.match(/<img[^>]+src=["']([^"']+)["']/i);
@@ -113,7 +116,14 @@ export async function generateMetadata({ params }) {
       card: "summary_large_image",
       title,
       description,
-      images: [seoImage],
+      images: [
+        {
+          url: seoImage,
+          width: 1200,
+          height: 630,
+          alt: "Al Hikmah Ruqyah & Hijama Center",
+        },
+      ],
     },
 
     robots: {

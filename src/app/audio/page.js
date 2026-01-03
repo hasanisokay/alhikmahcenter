@@ -1,11 +1,11 @@
+import hostname from "@/utils/hostname.mjs";
 import React from "react";
-
+import alhikmah from "@/../public/images/og-audio.jpg";
 const audioList = [
   {
     title: "Evil Eye Ruqyah",
     src: "https://ia600309.us.archive.org/21/items/ruqyah-evil-eye-ruqyahbd.org/Ruqyah-EvilEye-ruqyahbd.org.mp3",
   },
-
 ];
 
 const AudioPage = () => {
@@ -19,7 +19,7 @@ const AudioPage = () => {
           </h1>
           <p className="mx-auto mt-4 max-w-2xl text-sm text-gray-600 sm:text-base">
             For maximum benefit, please listen to these audio recitations with
-            focus and sincerity. 
+            focus and sincerity.
           </p>
         </div>
       </section>
@@ -32,20 +32,20 @@ const AudioPage = () => {
               key={index}
               className="group rounded-3xl border border-gray-200 bg-white p-6 transition-all duration-300 hover:shadow-lg"
             >
-                             {/* Index */}
+              {/* Index */}
               <div className="mb-3 text-xs font-semibold text-blue-600">
                 {index + 1 < 10 ? `0${index + 1}` : index + 1}
               </div>
 
               <h3 className="text-sm font-semibold text-gray-900">
- {audio.title}
+                {audio.title}
               </h3>
 
               <audio
                 controls
                 className="mt-4 w-full rounded-lg"
                 src={audio.src}
-               preload="none"
+                preload="none"
               />
               <a
                 href={audio.src}
@@ -95,10 +95,10 @@ export default AudioPage;
 
 export async function generateMetadata() {
   const siteName = "Al Hikmah Ruqyah & Hijama Center";
-  const siteUrl = "https://alhikmahbd.org/audio";
-
-  const title =
-    "Ruqyah Audio Collection | Al Hikmah Center";
+  const host = await hostname();
+  const siteUrl = `${host}/audio` || "https://alhikmahbd.org/audio";
+  const metaImage = `${siteUrl}${alhikmah.src}`;
+  const title = "Ruqyah Audio Collection | Al Hikmah Center";
 
   const description =
     "Listen to authentic Islamic Ruqyah audio recitations based on Qur'an and Sunnah. Al Hikmah Center provides spiritual healing audio for protection, shifa, and peace of heart.";
@@ -129,7 +129,7 @@ export async function generateMetadata() {
       type: "website",
       images: [
         {
-          url: "https://alhikmahbd.org/og-audio.jpg",
+          url: metaImage,
           width: 1200,
           height: 630,
           alt: "Ruqyah Audio Collection – Al Hikmah Center",
@@ -141,7 +141,14 @@ export async function generateMetadata() {
       card: "summary_large_image",
       title,
       description,
-      images: ["https://alhikmahbd.org/og-audio.jpg"],
+      images: [
+        {
+          url: metaImage,
+          width: 1200,
+          height: 630,
+          alt: "Al Hikmah Ruqyah & Hijama Center",
+        },
+      ],
     },
 
     robots: {
