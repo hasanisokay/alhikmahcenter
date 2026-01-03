@@ -26,8 +26,8 @@ export async function generateMetadata() {
   const title = "Al Hikmah Center – আল হিকমাহ রুকইয়াহ এন্ড হিজামা সেন্টার";
   const description =
     "Al Hikmah Ruqyah & Hijama Center provides authentic Islamic Ruqyah, Hijama (cupping therapy), and spiritual healing services in Bangladesh based on Qur'an & Sunnah.";
-  // const metaImage = `${siteUrl}${alhikmah.src}`;
-  const metaImage = `/og-image.jpg`;
+  const metaImage = `${siteUrl}${alhikmah.src}`;
+  // const metaImage = `/og-image.jpg`;
   return {
     title: {
       default: title,
