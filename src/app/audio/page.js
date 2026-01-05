@@ -119,7 +119,109 @@ const audioList = [
     title: "২৯. রুকইয়াহ খুরুজ",
     src: "https://files.ruqyahbd.org/audio/Ruqyah-Khuruj-ruqyahbd.org.mp3",
   },
+  {
+    title: "৩০. আয়াতুশ শিফা",
+    src: "https://files.ruqyahbd.org/clips/ayat-shifa-ruqyahbd.org.mp3",
+  },
+  {
+    title: "৩১. আয়াতুস সাকিনা",
+    src: "https://files.ruqyahbd.org/clips/ayatus-sakinah-ruqyahbd.org.mp3",
+  },
+  {
+    title: "৩২. সূরা তাগাবুন",
+    src: "https://files.ruqyahbd.org/audio/SuraTaghabun-ruqyahbd.org.mp3",
+  },
+  {
+    title: "৩৩. সূরা যিলযাল থেকে নাস",
+    src: "https://files.ruqyahbd.org/audio/Sura-Zilzal-to-Nas-ruqyahbd.org.mp3",
+  },
+  {
+    title: "৩৪. সূরা বাকারা – শাইখ হুজাইফি",
+    src: "https://files.ruqyahbd.org/audio/Surah-Baqara-by-Hujaifi-ruqyahbd.org.mp3",
+  },
+  {
+    title: "৩৫. সূরা ফুরকান (২৩ আয়াত) – পুনরাবৃত্তি",
+    src: "https://bit.ly/furqan23mp3",
+  },
+  {
+    title: "৩৬. ১০০ বার – লা ইলাহা ইল্লাল্লাহু ওয়াহদাহু",
+    src: "https://files.ruqyahbd.org/clips/Dua-laa-ilaha-illallahu-wahdahu-100xtime-ruqyahbd.org.mp3",
+  },
+  {
+    title: "৩৭. আয়াতুল ইযাম",
+    src: "https://files.ruqyahbd.org/clips%2Fayat-ejam-ruqyahbd.org.mp3",
+  },
+  {
+    title: "৩৮. রুকইয়াহ ইলম",
+    src: "https://files.ruqyahbd.org/audio/Ruqyah-ilm-ruqyahbd.org.mp3",
+  },
+  {
+    title: "৩৯. রুকইয়াহ তাদমির – ক্বিতাল",
+    src: "https://files.ruqyahbd.org/audio/Ruqyah-tadmir-qital-ruqyahbd.org.mp3",
+  },
+  {
+    title: "৪০. জাদু ধ্বংসের দোয়া",
+    src: "https://files.ruqyahbd.org/clips/Dua-DestroyMagic-ruqyahbd.org.mp3",
+  },
+    {
+    title: "৪১. দোয়া রুকইয়াহ (২) – শাইখ ইদরিস",
+    src: "https://files.ruqyahbd.org/audio/Ruqyah-Dua-by-idrees-ruqyahbd.org.mp3",
+  },
+  {
+    title: "৪২. কমন রুকইয়াহ – বাংলা অনুবাদসহ",
+    src: "https://files.ruqyahbd.org/audio/Ruqyah-withBangla-ruqyahbd.org.mp3",
+  },
+  {
+    title: "৪৩. রুকইয়াহ যিনা (Short)",
+    src: "http://bitly.com/2X0cKbr",
+  },
+  {
+    title: "৪৪. রুকইয়াহ খুরুজ (Short)",
+    src: "http://bitly.com/2X46BzJ",
+  },
+  {
+    title: "৪৫. আয়াতুল হারক (২) – শাইখ শুরাইম",
+    src: "https://bitly.com/3aA4SI7",
+  },
+  {
+    title: "৪৬. আয়াতুল হারক (৩) – শাইখ সালেহ (Long)",
+    src: "https://files.ruqyahbd.org/audio/Ruqyah-Harq-long-ruqyahbd.org.mp3",
+  },
+  {
+    title: "৪৭. সিদ্দিক আল মিনশাবী",
+    src: "https://files.ruqyahbd.org/audio/Ruqyah-Manshawi-ruqyahbd.org.mp3",
+  },
+  {
+    title: "৪৮. শাইখ মুহাইসিনী",
+    src: "https://files.ruqyahbd.org/audio/Ruqyah-Muhaisini-ruqyahbd.org.mp3",
+  },
+  {
+    title: "৪৯. সা’দ আল-গামিদী (Long)",
+    src: "https://files.ruqyahbd.org/audio/Ruqyah-ghamidi-long-ruqyahbd.org.mp3",
+  },
+  {
+    title: "৫০. খালিদ হিবশী – মুখতাসার (Short)",
+    src: "https://files.ruqyahbd.org/audio/Ruqyah-Hibshi-Mukhtasar-ruqyahbd.org.mp3",
+  },
+  {
+    title: "৫১. মুহাম্মাদ আল-হাশিমি (Short)",
+    src: "https://files.ruqyahbd.org/audio/Ruqyah-Hashimi-ruqyahbd.org.mp3",
+  },
+  {
+    title: "৫২. মুহাম্মাদ বিন মুসা আত্তারি",
+    src: "https://files.ruqyahbd.org/audio%2FRuqyah-MousaAttary-ruqyahbd.org.mp3",
+  },
+  {
+    title: "৫৩. ধমকের সুরে তিলাওয়াত (With Force)",
+    src: "https://files.ruqyahbd.org/audio/Ruqyah-WithStrongForce-ruqyahbd.org.mp3",
+  },
+  {
+    title: "৫৪. শাইখ নূরিন মুহাম্মাদ সিদ্দিক (Non Hafs)",
+    src: "https://files.ruqyahbd.org/audio%2FRuqyah-NourinSiddiq-ruqyahbd.org.mp3",
+  },
+
 ];
+
 
 const AudioPage = () => {
   return (

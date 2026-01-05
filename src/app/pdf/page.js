@@ -77,6 +77,37 @@ const pdfList = [
     viewLink: "https://files.ruqyahbd.org/docs/masnun-amal-ruqyahbd.org.pdf",
     downloadLink: "https://files.ruqyahbd.org/docs/masnun-amal-ruqyahbd.org.pdf",
   },
+    {
+    title: "১৬। মুখতাসার রুকইয়াহ শারইয়্যাহ (PDF)",
+    viewLink: "https://files.ruqyahbd.org/docs/mukhtasar-ruqyah-ruqyahbd.org.pdf",
+    downloadLink: "https://files.ruqyahbd.org/docs/mukhtasar-ruqyah-ruqyahbd.org.pdf",
+  },
+  {
+    title: "১৭। মাসনুন আমল (সংক্ষিপ্ত) (PDF)",
+    viewLink: "https://files.ruqyahbd.org/docs/masnun-amal-ruqyahbd.org.pdf",
+    downloadLink: "https://files.ruqyahbd.org/docs/masnun-amal-ruqyahbd.org.pdf",
+  },
+  {
+    title: "১৮। বহুল জিজ্ঞাসিত প্রশ্নগুলো (FAQ – সংক্ষিপ্ত)",
+    viewLink: "https://files.ruqyahbd.org/docs/faq-common-questions-ruqyahbd.org.pdf",
+    downloadLink: "https://files.ruqyahbd.org/docs/faq-common-questions-ruqyahbd.org.pdf",
+  },
+  {
+    title: "১৯। লক্ষণ এবং প্রশ্নোত্তর (Symptoms & FAQ)",
+    viewLink: "https://files.ruqyahbd.org/docs/symptoms-n-faq-ruqyahbd.org.pdf",
+    downloadLink: "https://files.ruqyahbd.org/docs/symptoms-n-faq-ruqyahbd.org.pdf",
+  },
+  {
+    title: "২০। শিশুদের কথা শিখতে দেরি ও অটিজম সমস্যা",
+    viewLink: "https://files.ruqyahbd.org/pdf/speech-delay-ruqyahbd.org.pdf",
+    downloadLink: "https://files.ruqyahbd.org/pdf/speech-delay-ruqyahbd.org.pdf",
+  },
+  {
+    title: "২১। শত্রুর দৃষ্টি থেকে গোপন থাকার আমল",
+    viewLink: "http://bitly.com/ayat-hide",
+    downloadLink: "http://bitly.com/ayat-hide",
+  },
+
 ];
 
 
