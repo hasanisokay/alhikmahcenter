@@ -18,46 +18,63 @@ export default function SchedulePage() {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
 
-  const generateSlots = () => {
-    setError(null);
-    if (!startDate || !endDate) {
-      setError("Select start and end date");
-      return;
-    }
-    if (startDate > endDate) {
-      setError("Start date cannot be after end date");
-      return;
-    }
+const generateSlots = () => {
+  setError(null);
 
-    const newSlots = [];
-    for (let d = new Date(startDate); d <= endDate; d = addDays(d, 1)) {
-      const first = combineDateTime(d, startTime);
-      const last = combineDateTime(d, endTime);
-      if (!first || !last) continue;
-      if (first > last) continue;
-      let cursor = new Date(first);
-      while (cursor <= last) {
-        const iso = cursor.toISOString();
-        newSlots.push({
-          id: iso,
-          time: format(cursor, "HH:mm"),
-          //   datetime: iso,
-          date: format(cursor, "yyyy-MM-dd"),
-          readable: format(cursor, "PPP p"),
-          expiresAt: iso,
-        });
-        cursor = addMinutes(cursor, Number(gapMinutes));
+  if (!startDate || !endDate) {
+    setError("Select start and end date");
+    return;
+  }
+  if (startDate > endDate) {
+    setError("Start date cannot be after end date");
+    return;
+  }
+
+  const newSlots = [];
+
+  for (let d = new Date(startDate); d <= endDate; d = addDays(d, 1)) {
+    const first = combineDateTime(d, startTime);
+    const last = combineDateTime(d, endTime);
+
+    if (!first || !last) continue;
+    if (first > last) continue;
+
+    let cursor = new Date(first);
+
+    while (cursor <= last) {
+      const hour = cursor.getHours();
+
+      // ⏸ Skip 1:00 PM – 2:00 PM (13:00–14:00)
+      if (hour === 13) {
+        cursor = setMinutes(setHours(cursor, 14), 0);
+        continue;
       }
-    }
 
-    const merged = [...slots];
-    const seen = new Set(merged.map((s) => s.id));
-    newSlots.forEach((s) => {
-      if (!seen.has(s.id)) merged.push(s);
-    });
-    merged.sort((a, b) => new Date(a.datetime) - new Date(b.datetime));
-    setSlots(merged);
-  };
+      const iso = cursor.toISOString();
+
+      newSlots.push({
+        id: iso,
+        time: format(cursor, "HH:mm"),
+        date: format(cursor, "yyyy-MM-dd"),
+        readable: format(cursor, "PPP p"),
+        expiresAt: iso,
+      });
+
+      cursor = addMinutes(cursor, Number(gapMinutes));
+    }
+  }
+
+  const merged = [...slots];
+  const seen = new Set(merged.map((s) => s.id));
+
+  newSlots.forEach((s) => {
+    if (!seen.has(s.id)) merged.push(s);
+  });
+
+  merged.sort((a, b) => new Date(a.id) - new Date(b.id));
+  setSlots(merged);
+};
+
 
   const deleteSlot = (id) => setSlots((p) => p.filter((s) => s.id !== id));
 
@@ -114,7 +131,7 @@ export default function SchedulePage() {
   }, [slots]);
 
   return (
-    <div className="min-h-screen p-6 bg-gradient-to-br from-gray-950 via-gray-900 to-gray-800 text-gray-100">
+    <div className="min-h-screen md:p-6 bg-gradient-to-br from-gray-950 via-gray-900 to-gray-800 text-gray-100">
       <div className="max-w-6xl mx-auto">
         <header className="flex items-center justify-between mb-6">
           <h1 className="text-2xl md:text-3xl font-extrabold tracking-tight">

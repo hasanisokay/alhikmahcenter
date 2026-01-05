@@ -19,7 +19,7 @@ const escapeHtml = (str = "") =>
     .replace(/'/g, "&#039;");
 
 const sendEmail = async (data) => {
-  const { name, date, time, summary, phone, address, service } = data;
+  const { name, date, time, summary, phone, address, service, age, maritalStatus } = data;
 
   const html = `
   <div style="font-family: Arial, Helvetica, sans-serif; background-color:#f4f6f8; padding:30px;">
@@ -48,6 +48,15 @@ const sendEmail = async (data) => {
               name
             )}</td>
           </tr>
+          <tr>
+            <td style="padding:10px; background:#f1f5f9; font-weight:bold;">Age</td>
+            <td style="padding:10px; white-space:pre-wrap;">${age}</td>
+          </tr>
+          <tr>
+            <td style="padding:10px; background:#f1f5f9; font-weight:bold;">Marital Status</td>
+            <td style="padding:10px; white-space:pre-wrap;">${maritalStatus}</td>
+          </tr>
+          <tr>
           <tr>
             <td style="padding:10px; background:#f1f5f9; font-weight:bold;">Date</td>
             <td style="padding:10px; white-space:pre-wrap;">${date}</td>

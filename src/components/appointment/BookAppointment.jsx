@@ -20,6 +20,8 @@ const BookAppointment = () => {
   // Form fields
   const [name, setName] = useState("");
   const [address, setAddress] = useState("");
+  const [age, setAge] = useState('');
+  const [maritalStatus, setMaritalStatus] = useState('');
   const [phone, setPhone] = useState("");
   const [summary, setSummary] = useState("");
   const [bookingLoading, setBookingLoading] = useState(false);
@@ -180,16 +182,29 @@ const BookAppointment = () => {
     try {
       const selectedSlot = slots.find((s) => s.id === selectedSlotId);
 
+      // const dataToSave = {
+      //   slotId: selectedSlotId,
+      //   date: selectedDate,
+      //   time: selectedSlot?.time,
+      //   name,
+      //   address,
+      //   phone,
+      //   summary,
+      //   service: selectedService.join(", "),
+      // };
       const dataToSave = {
         slotId: selectedSlotId,
         date: selectedDate,
         time: selectedSlot?.time,
         name,
         address,
+        age,
+        maritalStatus,
         phone,
-        summary,
         service: selectedService.join(", "),
+        summary,
       };
+
 
       const res = await fetch("/api/book-appointment", {
         method: "POST",
@@ -239,6 +254,8 @@ const BookAppointment = () => {
         setName("");
         setAddress("");
         setPhone("");
+        setAge("");
+        setMaritalStatus("");
         setSummary("");
       } else {
         toast.error(data.message || "Error booking appointment");
@@ -272,7 +289,7 @@ const BookAppointment = () => {
   }
   if (loading) return <Loader />;
   return (
-    <div className="min-h-screen text-black p-6 bg-gradient-to-br from-slate-50 via-sky-50 to-slate-100">
+    <div className="min-h-screen text-black md:p-6 bg-gradient-to-br from-slate-50 via-sky-50 to-slate-100">
       <div className="max-w-6xl mx-auto grid grid-cols-1 lg:grid-cols-5 gap-6">
         {/* Calendar */}
         <section className={`${cardBase} lg:col-span-2`}>
@@ -471,6 +488,57 @@ const BookAppointment = () => {
                     </p>
                   )}
                 </div>
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                  {/* Age */}
+                  <div>
+                    <label className="text-xs font-medium">Age *</label>
+                    <input
+                      type="number"
+                      className={[
+                        "w-full rounded-xl px-3 py-2 bg-white/80 border shadow-inner",
+                        fieldErrors.age ? "border-red-400" : "",
+                      ].join(" ")}
+                      value={age}
+                      onChange={(e) => {
+                        setAge(e.target.value);
+                        setFieldErrors((prev) => ({ ...prev, age: undefined }));
+                      }}
+                    />
+                    {fieldErrors.age && (
+                      <p className="mt-1 text-xs text-red-500">{fieldErrors.age}</p>
+                    )}
+                  </div>
+
+                  {/* Marital Status */}
+                  <div>
+                    <label className="text-xs font-medium">Marital Status *</label>
+                    <select
+                      className={[
+                        "w-full rounded-xl px-3 py-2 bg-white/80 border shadow-inner",
+                        fieldErrors.maritalStatus ? "border-red-400" : "",
+                      ].join(" ")}
+                      value={maritalStatus}
+                      onChange={(e) => {
+                        setMaritalStatus(e.target.value);
+                        setFieldErrors((prev) => ({
+                          ...prev,
+                          maritalStatus: undefined,
+                        }));
+                      }}
+                    >
+                      <option value="">Select</option>
+                      <option value="Single">Single</option>
+                      <option value="Married">Married</option>
+                      <option value="Divorced">Divorced</option>
+                    </select>
+
+                    {fieldErrors.maritalStatus && (
+                      <p className="mt-1 text-xs text-red-500">
+                        {fieldErrors.maritalStatus}
+                      </p>
+                    )}
+                  </div>
+                </div>
 
                 <div>
                   <label className="text-xs font-medium">Phone *</label>
@@ -493,7 +561,7 @@ const BookAppointment = () => {
                   )}
                 </div>
               </div>
-
+              {/* address */}
               <div>
                 <label className="text-xs font-medium">Address *</label>
                 <input
@@ -526,13 +594,12 @@ const BookAppointment = () => {
           rounded-2xl border p-4
           cursor-pointer
           transition-all duration-300
-          ${
-            hasError
-              ? "border-red-400 bg-red-50/40"
-              : isChecked
-              ? "border-blue-600 bg-gradient-to-br from-blue-50 to-white shadow-lg"
-              : "border-gray-200 bg-white hover:border-blue-400 hover:shadow-md"
-          }
+          ${hasError
+                          ? "border-red-400 bg-red-50/40"
+                          : isChecked
+                            ? "border-blue-600 bg-gradient-to-br from-blue-50 to-white shadow-lg"
+                            : "border-gray-200 bg-white hover:border-blue-400 hover:shadow-md"
+                        }
         `}
                     >
                       {/* Hidden Input */}
@@ -549,13 +616,12 @@ const BookAppointment = () => {
             relative flex h-7 w-7 items-center justify-center
             rounded-lg border-2
             transition-all duration-300
-            ${
-              hasError
-                ? "border-red-500"
-                : isChecked
-                ? "border-blue-600 bg-blue-600"
-                : "border-gray-300 bg-white"
-            }
+            ${hasError
+                            ? "border-red-500"
+                            : isChecked
+                              ? "border-blue-600 bg-blue-600"
+                              : "border-gray-300 bg-white"
+                          }
           `}
                       >
                         {/* Check */}
@@ -581,13 +647,12 @@ const BookAppointment = () => {
                         <span
                           className={`
               absolute inset-0 rounded-lg blur-md
-              ${
-                hasError
-                  ? "bg-red-400/30 opacity-100"
-                  : isChecked
-                  ? "bg-blue-500/30 opacity-100"
-                  : "opacity-0"
-              }
+              ${hasError
+                              ? "bg-red-400/30 opacity-100"
+                              : isChecked
+                                ? "bg-blue-500/30 opacity-100"
+                                : "opacity-0"
+                            }
               transition
             `}
                         />
@@ -599,9 +664,8 @@ const BookAppointment = () => {
                           {option}
                         </span>
                         <span
-                          className={`text-xs ${
-                            hasError ? "text-red-600" : "text-gray-500"
-                          }`}
+                          className={`text-xs ${hasError ? "text-red-600" : "text-gray-500"
+                            }`}
                         >
                           Professional service selection
                         </span>
@@ -612,20 +676,19 @@ const BookAppointment = () => {
                         className={`
             ml-auto rounded-full px-3 py-1 text-[11px] font-medium
             transition-all
-            ${
-              hasError
-                ? "bg-red-100 text-red-600"
-                : isChecked
-                ? "bg-blue-600 text-white"
-                : "bg-gray-100 text-gray-400"
-            }
+            ${hasError
+                            ? "bg-red-100 text-red-600"
+                            : isChecked
+                              ? "bg-blue-600 text-white"
+                              : "bg-gray-100 text-gray-400"
+                          }
           `}
                       >
                         {hasError
                           ? "Required"
                           : isChecked
-                          ? "Selected"
-                          : "Select"}
+                            ? "Selected"
+                            : "Select"}
                       </div>
 
                       {/* Accent rail */}
@@ -633,13 +696,12 @@ const BookAppointment = () => {
                         className={`
             absolute left-0 top-1/2 h-10 w-1 -translate-y-1/2 rounded-r-full
             transition-all
-            ${
-              hasError
-                ? "bg-red-500 opacity-100"
-                : isChecked
-                ? "bg-blue-600 opacity-100"
-                : "opacity-0"
-            }
+            ${hasError
+                            ? "bg-red-500 opacity-100"
+                            : isChecked
+                              ? "bg-blue-600 opacity-100"
+                              : "opacity-0"
+                          }
           `}
                       />
                     </label>
@@ -658,11 +720,10 @@ const BookAppointment = () => {
                 <div
                   className={`
       rounded-2xl border border-dashed p-4 text-xs
-      ${
-        fieldErrors.selectedService
-          ? "border-red-300 bg-red-50/40"
-          : "border-gray-300 bg-gray-50"
-      }
+      ${fieldErrors.selectedService
+                      ? "border-red-300 bg-red-50/40"
+                      : "border-gray-300 bg-gray-50"
+                    }
     `}
                 >
                   <span className="font-semibold text-gray-800">
@@ -727,14 +788,13 @@ const BookAppointment = () => {
                     !selectedSlotId ||
                     loading
                   }
-                  className={`px-5 py-2.5 rounded-xl text-sm font-medium ${
-                    bookingLoading ||
+                  className={`px-5 py-2.5 rounded-xl text-sm font-medium ${bookingLoading ||
                     !selectedDate ||
                     !selectedSlotId ||
                     loading
-                      ? "bg-slate-300 text-slate-600 cursor-not-allowed"
-                      : "bg-sky-600 text-white hover:bg-sky-700"
-                  }`}
+                    ? "bg-slate-300 text-slate-600 cursor-not-allowed"
+                    : "bg-sky-600 text-white hover:bg-sky-700"
+                    }`}
                 >
                   {bookingLoading ? "Booking..." : "Confirm"}
                 </button>

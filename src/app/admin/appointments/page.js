@@ -15,15 +15,19 @@ const Page = () => {
   const [search, setSearch] = useState("");
   const [dateFilter, setDateFilter] = useState(""); // YYYY-MM-DD
   const [upcomingOnly, setUpcomingOnly] = useState(true);
+  const [selectedAppointment, setSelectedAppointment] = useState(null);
 
   // fetch appointments from API
   const fetchAppointments = async () => {
     try {
       setLoading(true);
       setError(null);
-      const res = await fetch(`/api/get-appointments?limit=${limit}&&search=${search}`, {
-        credentials: "include",
-      });
+      const res = await fetch(
+        `/api/get-appointments?limit=${limit}&&search=${search}`,
+        {
+          credentials: "include",
+        }
+      );
       const data = await res.json().catch(() => ({}));
 
       if (res.ok && (data.status === 200 || data.success)) {
@@ -44,6 +48,7 @@ const Page = () => {
   useEffect(() => {
     fetchAppointments();
     // re-fetch when limit changes
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [limit]);
 
   // helper: normalize appointment datetime
@@ -81,8 +86,21 @@ const Page = () => {
   const cardBase =
     "rounded-2xl p-5 bg-white/70 backdrop-blur-md shadow-[8px_8px_20px_rgba(15,23,42,0.08),-8px_-8px_20px_rgba(255,255,255,0.9)] border border-white/60";
 
+  const Detail = ({ label, value, multiline }) => (
+    <div>
+      <div className="text-xs text-slate-500 mb-1">{label}</div>
+      <div
+        className={`text-slate-800 ${
+          multiline ? "whitespace-pre-wrap h-[200px]  overflow-y-auto" : ""
+        }`}
+      >
+        {value || "-"}
+      </div>
+    </div>
+  );
+
   return (
-    <div className="min-h-screen p-6 bg-gradient-to-br from-slate-50 via-sky-50 to-slate-100">
+    <div className="min-h-screen md:p-6 bg-gradient-to-br from-slate-50 via-sky-50 to-slate-100">
       <div className="max-w-6xl mx-auto space-y-6">
         {/* Header */}
         <div className="flex flex-col gap-2 sm:flex-row sm:items-center sm:justify-between">
@@ -172,9 +190,8 @@ const Page = () => {
               <span className="font-semibold">
                 {filteredAppointments.length}
               </span>{" "}
-              of{" "}
-              <span className="font-semibold">{appointments.length}</span> loaded
-              appointments
+              of <span className="font-semibold">{appointments.length}</span>{" "}
+              loaded appointments
               {dateFilter && (
                 <>
                   {" "}
@@ -227,11 +244,20 @@ const Page = () => {
                         key={apt.id || apt._id}
                         className="border-b border-slate-100 last:border-none"
                       >
-                        <td className="py-3 pr-4 align-top">
+                        {/* <td className="py-3 pr-4 align-top">
                           <div className="font-medium text-slate-800">
                             {apt.name || "-"}
                           </div>
+                        </td> */}
+                        <td className="py-3 pr-4 align-top">
+                          <button
+                            onClick={() => setSelectedAppointment(apt)}
+                            className="font-medium text-sky-700 hover:underline focus:outline-none"
+                          >
+                            {apt.name || "-"}
+                          </button>
                         </td>
+
                         <td className="py-3 pr-4 align-top">
                           <div className="text-slate-700">
                             {apt.phone || apt.mobile || "-"}
@@ -275,6 +301,59 @@ const Page = () => {
           )}
         </div>
       </div>
+      {selectedAppointment && (
+        <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/40 backdrop-blur-sm">
+          <div className="w-full max-w-lg rounded-2xl bg-white shadow-xl p-6 relative">
+            {/* Close */}
+            <button
+              onClick={() => setSelectedAppointment(null)}
+              className="absolute top-3 right-3 text-slate-400 hover:text-slate-600"
+            >
+              ✕
+            </button>
+
+            <h2 className="text-lg font-semibold text-slate-800 mb-4">
+              Appointment Details
+            </h2>
+
+            <div className="space-y-3 text-sm">
+              <Detail label="Name" value={selectedAppointment.name} />
+
+              <Detail label="Address" value={selectedAppointment.address} />
+
+              <Detail label="Age" value={selectedAppointment.age} />
+
+              <Detail
+                label="Marital Status"
+                value={selectedAppointment.maritalStatus}
+              />
+
+              <Detail
+                label="Mobile Number"
+                value={selectedAppointment.phone || selectedAppointment.mobile}
+              />
+
+              <Detail label="Service" value={selectedAppointment.service} />
+
+              <Detail
+                label="Summary"
+                value={
+                  selectedAppointment.summary || selectedAppointment.problem
+                }
+                multiline
+              />
+            </div>
+            <div className="mt-6 flex justify-end">
+              <button
+                onClick={() => setSelectedAppointment(null)}
+                className="px-4 py-2 rounded-xl bg-slate-100 text-slate-700 hover:bg-slate-200 text-sm"
+              >
+                Close
+              </button>
+            </div>
+          </div>
+        </div>
+      )}
     </div>
   );
 };
