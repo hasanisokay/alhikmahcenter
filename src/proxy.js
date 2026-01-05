@@ -5,7 +5,7 @@ export async function proxy(request) {
   let token = request.cookies.get('token')?.value;
   const pathName = request.nextUrl.pathname;
   if (!token && pathName.startsWith("/admin") && pathName !=='/admin/login') {
-    return NextResponse.redirect(new URL("/admin/login", request.url));
+    return NextResponse.redirect(new URL("/login", request.url));
   }
   if(pathName==="/appointment" || pathName==="/book" || pathName==="/book-now"){
         return NextResponse.redirect(new URL("/book-appointment", request.url));

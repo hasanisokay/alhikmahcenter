@@ -72,7 +72,6 @@ const strictAdminCheck = async (requiredRole = "admin") => {
       );
     }
 
-    // ✅ SUCCESS: return user object (not a Response)
     return {
       id: payload.sub,
       username: payload.username,

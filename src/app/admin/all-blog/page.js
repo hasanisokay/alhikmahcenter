@@ -58,9 +58,9 @@ const AllBlogAdmin = () => {
   };
 
   return (
-    <main className="mx-auto max-w-6xl px-6 py-10">
+    <main className="mx-auto max-w-6xl md:px-6 md:py-10">
       {/* Header */}
-      <div className="mb-8 flex items-center justify-between">
+      <div className="mb-8 px-3 flex flex-wrap gap-6 items-center justify-between">
         <div>
           <h1 className="text-2xl font-semibold text-gray-900">
             All Blogs
@@ -88,7 +88,7 @@ const AllBlogAdmin = () => {
           No blogs found.
         </div>
       ) : (
-        <div className="overflow-hidden rounded-3xl border border-gray-200 bg-white">
+        <div className="overflow-x-auto rounded-3xl border border-gray-200 bg-white">
           <table className="w-full text-sm">
             <thead className="bg-gray-50 text-left text-xs uppercase text-gray-500">
               <tr>

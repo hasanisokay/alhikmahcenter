@@ -211,7 +211,7 @@ export default function MorphicScheduleManager({
     "rounded-2xl p-4 bg-white/60 backdrop-blur-sm shadow-[8px_8px_20px_rgba(17,24,39,0.06),-8px_-8px_20px_rgba(255,255,255,0.8)] border border-white/40";
 
   return (
-    <div className="min-h-screen p-6 bg-gradient-to-br from-slate-50 to-slate-100">
+    <div className="min-h-screen md:p-6 bg-gradient-to-br from-slate-50 to-slate-100">
       <div className="max-w-6xl mx-auto grid grid-cols-1 lg:grid-cols-3 gap-6">
         {/* Left: Calendar */}
         <section className={`${cardBase} lg:col-span-1`}>
@@ -333,7 +333,7 @@ export default function MorphicScheduleManager({
                   return (
                     <li
                       key={key}
-                      className="flex items-center justify-between p-3 rounded-xl bg-white/60 border border-white/30 shadow-[inset_6px_6px_14px_rgba(2,6,23,0.02)]"
+                      className="flex items-center justify-between md:p-3 p-1 rounded-xl bg-white/60 border border-white/30 shadow-[inset_6px_6px_14px_rgba(2,6,23,0.02)]"
                     >
                       <div className="flex items-center gap-3">
                         <input

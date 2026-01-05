@@ -4,17 +4,18 @@ import { NextResponse } from "next/server";
 
 export async function GET() {
   const auth = await authUser("admin");
-  await strictAdminCheck()
+  await strictAdminCheck();
   if (!auth.ok) {
     return NextResponse.json(
-      { error: auth.error, status: auth.status },
+      { error: auth.error, message: "failed admin auth" },
       { status: auth.status }
     );
   }
-  return NextResponse.json({
-    message: "Protected",
-    status: 200,
-    user: auth.user,
-  });
+  return NextResponse.json(
+    {
+      message: "Protected",
+      user: auth.user,
+    },
+    { status: 200 }
+  );
 }
-

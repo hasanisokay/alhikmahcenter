@@ -2,7 +2,13 @@
 import React, { useState, useMemo } from "react";
 import DatePicker from "react-datepicker";
 import { FiTrash2, FiPlus, FiCalendar } from "react-icons/fi";
-import { format, addMinutes, addDays } from "date-fns";
+import {
+  format,
+  addMinutes,
+  addDays,
+  setHours,
+  setMinutes,
+} from "date-fns";
 import "react-datepicker/dist/react-datepicker.css";
 import toast from "react-hot-toast";
 import combineDateTime from "@/utils/combineDateTime.mjs";
@@ -210,7 +216,7 @@ const generateSlots = () => {
                 />
               </div>
 
-              <div className="col-span-2 flex gap-3 mt-2">
+              <div className="col-span-2 flex flex-wrap gap-3 mt-2">
                 <button
                   onClick={generateSlots}
                   className="flex items-center gap-2 px-5 py-3 rounded-3xl bg-gradient-to-r from-rose-500 via-pink-500 to-indigo-600 shadow-2xl transform hover:-translate-y-0.5 transition"
@@ -228,7 +234,7 @@ const generateSlots = () => {
                 <button
                   onClick={submitSchedule}
                   disabled={loading || slots.length === 0}
-                  className="ml-auto px-5 py-3 rounded-3xl bg-gradient-to-r from-green-400 to-emerald-600 text-black font-semibold shadow-lg disabled:opacity-50"
+                  className=" px-5 py-3 rounded-3xl bg-green-600 text-white font-semibold shadow-lg disabled:opacity-50 "
                 >
                   {loading ? "Saving..." : "Save to server"}
                 </button>

@@ -134,11 +134,11 @@ const AddBlogAdmin = () => {
   };
   return (
     <main className="mx-auto md:max-w-6xl max-w-full md:px-6 md:py-10 ">
-      <h1 className="text-2xl font-semibold">Add New Blog</h1>
+      <h1 className="text-2xl font-semibold px-2">Add New Blog</h1>
 
       <div className="mt-6 space-y-8 rounded-3xl bg-white md:p-6 p-0">
         {/* BASIC INFO */}
-        <div className="grid gap-4 md:grid-cols-2">
+        <div className="grid gap-4 md:grid-cols-2 px-2">
           <input
             placeholder="Blog title"
             value={title}
@@ -171,7 +171,7 @@ const AddBlogAdmin = () => {
         </div>
 
         {/* PRIVACY */}
-        <div>
+        <div className="px-2" >
           <label className="text-sm font-medium">Visibility</label>
           <select
             value={privacy}
@@ -183,8 +183,8 @@ const AddBlogAdmin = () => {
           </select>
         </div>
 
-        {/* TOOLBAR */}
         <div className="relative">
+          {/* TOOLBAR */}
           <div className="sticky top-[64px] md:top-[80px] z-20 bg-gray-200   md:p-2 p-1">
             <div className="flex flex-wrap gap-2">
               {[
@@ -284,7 +284,7 @@ const AddBlogAdmin = () => {
         </div>
 
         {/* SEO */}
-        <div className="space-y-4 border-t pt-6">
+        <div className="space-y-4 border-t pt-6 px-2">
           <h3 className="font-semibold text-sm">SEO Settings (Optional)</h3>
 
           <textarea
@@ -324,7 +324,7 @@ const AddBlogAdmin = () => {
         </div>
 
         {/* SAVE */}
-        <div className="flex justify-end">
+        <div className="flex justify-end px-2">
           <button
             onClick={saveBlog}
             disabled={loading}

@@ -168,6 +168,12 @@ const BookAppointment = () => {
     if (!summary.trim()) {
       errors.summary = "Problem summary is required.";
     }
+    if (!age) {
+      errors.age = "Age is required.";
+    }
+    if (!maritalStatus) {
+      errors.age = "Marital status is required.";
+    }
 
     if (Object.keys(errors).length > 0) {
       setFieldErrors(errors);
@@ -548,7 +554,8 @@ const BookAppointment = () => {
                       fieldErrors.phone ? "border-red-400" : "",
                     ].join(" ")}
                     value={phone}
-                    type="number"
+                    type="tel"
+                    inputMode="numeric"
                     onChange={(e) => {
                       setPhone(e.target.value);
                       setFieldErrors((prev) => ({ ...prev, phone: undefined }));
