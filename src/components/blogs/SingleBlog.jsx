@@ -52,7 +52,7 @@ const SingleBlog = ({ blog }) => {
       {/* Content */}
       <div
         // className=" mt-8 max-w-none ProseMirror"
-  className="prose prose-lg max-w-none mt-8"
+        className="prose prose-lg max-w-none mt-8"
         dangerouslySetInnerHTML={{ __html: blog.content }}
       />
     </article>

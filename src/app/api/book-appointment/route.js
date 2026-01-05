@@ -7,8 +7,9 @@ export const POST = async (req) => {
     const body = await req.json();
     const { slotId, ...dataToSave } = body;
     const db = await dbConnect();
-    const appointmentCollection = await db.collection("booked-appointments");
     const slotCollection = await db.collection("appointment-slots");
+    const appointmentCollection = await db.collection("booked-appointments");
+    
     const slotDeleted = await slotCollection.deleteOne({ id: slotId });
     let result;
     if (slotDeleted.deletedCount > 0) {
