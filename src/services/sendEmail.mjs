@@ -107,7 +107,10 @@ const sendEmail = async (data) => {
 
   return transporter.sendMail({
     from: process.env.FROM_EMAIL,
-    to: process.env.FROM_EMAIL, // admin email
+    to: [
+    process.env.FROM_EMAIL,        // primary
+    "raqimahmudsalim@gmail.com",     // additional
+  ],
     subject: "🆕 New Appointment Booked",
     html,
   });
