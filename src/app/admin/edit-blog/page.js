@@ -320,7 +320,7 @@ const setLink = () => {
         </div>
 
         {/* EDITOR */}
-        <div className="rounded-2xl border p-4 min-h-[300px]">
+        <div className="rounded-2xl p-4 min-h-[300px]">
           <EditorContent editor={editor} />
         </div>
 

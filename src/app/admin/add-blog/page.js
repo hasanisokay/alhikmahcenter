@@ -260,7 +260,7 @@ const AddBlogAdmin = () => {
         </div>
 
         {/* EDITOR */}
-        <div className="rounded-2xl border p-4 min-h-[300px] ProseMirror">
+        <div className="rounded-2xl p-4 min-h-[300px] ProseMirror">
           <EditorContent editor={editor} />
         </div>
 
