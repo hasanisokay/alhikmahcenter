@@ -1,12 +1,128 @@
 import hostname from "@/utils/hostname.mjs";
 import React from "react";
 import alhikmah from "@/../public/images/og-audio.jpg";
+
+
 const audioList = [
   {
-    title: "Evil Eye Ruqyah",
-    src: "https://ia600309.us.archive.org/21/items/ruqyah-evil-eye-ruqyahbd.org/Ruqyah-EvilEye-ruqyahbd.org.mp3",
+    title: "১. বদনজর (Evil Eye) – রুকইয়াহ",
+    src: "https://files.ruqyahbd.org/audio/Ruqyah-EvilEye-ruqyahbd.org.mp3",
+  },
+  {
+    title: "২. বদনজর (Eye Hasad)",
+    src: "https://files.ruqyahbd.org/audio/Ruqyah-EyeHasad-ruqyahbd.org.mp3",
+  },
+  {
+    title: "৩. জাদু ও জিন (Sihr Mass)",
+    src: "https://files.ruqyahbd.org/audio/Ruqyah-Sihr-Mass-ruqyahbd.org.mp3",
+  },
+  {
+    title: "৪. কালো যাদু, বান ও জিন (Sihr Hibshi)",
+    src: "https://files.ruqyahbd.org/audio/Ruqyah-Sihr-Hibshi-ruqyahbd.org.mp3",
+  },
+  {
+    title: "৫. আয়াতুল হারক",
+    src: "https://files.ruqyahbd.org/audio/Ruqyah-Harq-ruqyahbd.org.mp3",
+  },
+  {
+    title: "৬. জিনের আছর – রুকইয়াহ",
+    src: "https://files.ruqyahbd.org/audio/Ruqyah-Jinn-ruqyahbd.org.mp3",
+  },
+  {
+    title: "৭. তিন কুলের রুকইয়াহ",
+    src: "https://files.ruqyahbd.org/audio/Ruqyah-3Kul-ruqyahbd.org.mp3",
+  },
+  {
+    title: "৮. আট সুরার রুকইয়াহ",
+    src: "https://files.ruqyahbd.org/audio/Ruqyah-8surah-ruqyahbd.org.mp3",
+  },
+  {
+    title: "৯. আয়াতুল কুরসি – রুকইয়াহ",
+    src: "https://files.ruqyahbd.org/audio/Ruqyah-AyatulKursi-ruqyahbd.org.mp3",
+  },
+  {
+    title: "১০. যাদুকরদের প্রতি অভিশাপ",
+    src: "https://files.ruqyahbd.org/audio/curse-against-magician-ruqyahbd.org.mp3",
+  },
+  {
+    title: "১১. শাইখ আব্দুর রহমান আস-সুদাইস",
+    src: "https://files.ruqyahbd.org/audio/Ruqyah-Sudais-ruqyahbd.org.mp3",
+  },
+  {
+    title: "১২. শাইখ আলী আল-হুজাইফি",
+    src: "https://files.ruqyahbd.org/audio/Ruqyah-Hujaifi-ruqyahbd.org.mp3",
+  },
+  {
+    title: "১৩. শাইখ সৌদ আশ-শুরাইম",
+    src: "https://files.ruqyahbd.org/audio/Ruqyah-Shuraim-ruqyahbd.org.mp3",
+  },
+  {
+    title: "১৪. সা’দ আল-গামিদী",
+    src: "https://files.ruqyahbd.org/audio/Ruqyah-Ghamidi-ruqyahbd.org.mp3",
+  },
+  {
+    title: "১৫. মিশারী রাশেদ আল-আফাসী",
+    src: "https://files.ruqyahbd.org/audio/Ruqyah-Mishary-ruqyahbd.org.mp3",
+  },
+  {
+    title: "১৬. শাইখ আহমাদ আজমী",
+    src: "https://files.ruqyahbd.org/audio/Ruqyah-AhmadAjmy-ruqyahbd.org.mp3",
+  },
+  {
+    title: "১৭. নাসের আল-কাতামি",
+    src: "https://files.ruqyahbd.org/audio/Ruqyah-NasserQatami-ruqyahbd.org.mp3",
+  },
+  {
+    title: "১৮. শাইখ ইদরীস আবকার",
+    src: "https://files.ruqyahbd.org/audio/Ruqyah-IdreesAbkar-ruqyahbd.org.mp3",
+  },
+  {
+    title: "১৯. খালিদ আল-হিবশী",
+    src: "https://files.ruqyahbd.org/audio/Ruqyah-KhalidHibshi-ruqyahbd.org.mp3",
+  },
+  {
+    title: "২০. শাইখ লুহাইদান",
+    src: "https://files.ruqyahbd.org/audio/Ruqyah-Luhaidan-ruqyahbd.org.mp3",
+  },
+  {
+    title: "২১. মুফতি জুনাইদ – সিডি",
+    src: "https://files.ruqyahbd.org/audio/Ruqyah-JunaidCD1-ruqyahbd.org.mp3",
+  },
+  {
+    title: "২২. মাজিদ আয-যামিল",
+    src: "https://files.ruqyahbd.org/audio/Ruqyah-MajidZamil-ruqyahbd.org.mp3",
+  },
+  {
+    title: "২৩. রুকইয়াহ – দোআ",
+    src: "https://files.ruqyahbd.org/audio/Ruqyah-dua-ruqyahbd.org.mp3",
+  },
+  {
+    title: "২৪. আযান রুকইয়াহ (পুনরাবৃত্তি)",
+    src: "http://bitly.com/2YoCfEq",
+  },
+  {
+    title: "২৫. সূরা বাকারা – শাইখ সুদাইস",
+    src: "https://files.ruqyahbd.org/audio/Surah-Baqara-by-Sudais-ruqyahbd.org.mp3",
+  },
+  {
+    title: "২৬. সূরা ফাতিহার রুকইয়াহ",
+    src: "https://files.ruqyahbd.org/audio/Ruqyah-SuraFatiha-ruqyahbd.org.mp3",
+  },
+  {
+    title: "২৭. যিনা ও ফাহিশা বিষয়ক রুকইয়াহ",
+    src: "https://files.ruqyahbd.org/audio/Ruqyah-Zina-ruqyahbd.org.mp3",
+  },
+  {
+    title: "২৮. শিফা ও সাকিনাহ",
+    src: "https://files.ruqyahbd.org/audio/Ruqyah-Shifa-Sakina-ruqyahbd.org.mp3",
+  },
+  {
+    title: "২৯. রুকইয়াহ খুরুজ",
+    src: "https://files.ruqyahbd.org/audio/Ruqyah-Khuruj-ruqyahbd.org.mp3",
   },
 ];
+
+
 
 const AudioPage = () => {
   return (
@@ -33,9 +149,9 @@ const AudioPage = () => {
               className="group rounded-3xl border border-gray-200 bg-white p-6 transition-all duration-300 hover:shadow-lg"
             >
               {/* Index */}
-              <div className="mb-3 text-xs font-semibold text-blue-600">
+              {/* <div className="mb-3 text-xs font-semibold text-blue-600">
                 {index + 1 < 10 ? `0${index + 1}` : index + 1}
-              </div>
+              </div> */}
 
               <h3 className="text-sm font-semibold text-gray-900">
                 {audio.title}
