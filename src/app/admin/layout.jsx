@@ -3,11 +3,12 @@ import AdminLogin from "@/components/admin/AdminLogin";
 import Loading from "@/components/Loading";
 import { useEffect, useState } from "react";
 import Sidebar from "@/components/admin/Sidebar";
+import { useRouter } from "next/navigation";
 
 export default function AdminLayout({ children }) {
   const [loading, setLoading] = useState(true);
   const [isAdmin, setIsAdmin] = useState(false);
-
+const router = useRouter();
   const checkAdmin = async () => {
     try {
       setLoading(true);
@@ -24,12 +25,13 @@ export default function AdminLayout({ children }) {
     checkAdmin();
   }, []);
 
+
   if (loading) return <Loading />;
-  if (!isAdmin) return <AdminLogin />;
+  if (!isAdmin && !loading) return router.push('/admin/login')
   return (
     <div className="min-h-screen flex md:flex-row flex-col  bg-white text-black">
       {isAdmin && <Sidebar />}
-      <main className="flex-1 p-6  mt-16 md:mt-0">{children}</main>
+      <main className="flex-1 md:p-6  mt-16 md:mt-0">{children}</main>
     </div>
   );
 }

@@ -133,10 +133,10 @@ const AddBlogAdmin = () => {
     }
   };
   return (
-    <main className="mx-auto max-w-6xl px-6 py-10">
+    <main className="mx-auto md:max-w-6xl max-w-full md:px-6 md:py-10 ">
       <h1 className="text-2xl font-semibold">Add New Blog</h1>
 
-      <div className="mt-6 space-y-8 rounded-3xl border bg-white p-6">
+      <div className="mt-6 space-y-8 rounded-3xl bg-white md:p-6 p-0">
         {/* BASIC INFO */}
         <div className="grid gap-4 md:grid-cols-2">
           <input
@@ -184,84 +184,103 @@ const AddBlogAdmin = () => {
         </div>
 
         {/* TOOLBAR */}
-        <div className="flex flex-wrap gap-2">
-          {[
-            ["Bold", () => editor.chain().focus().toggleBold().run()],
-            ["Italic", () => editor.chain().focus().toggleItalic().run()],
-            ["Underline", () => editor.chain().focus().toggleUnderline().run()],
-            ["Link", setLink],
-            [
-              "H1",
-              () => editor.chain().focus().toggleHeading({ level: 1 }).run(),
-            ],
-            [
-              "H2",
-              () => editor.chain().focus().toggleHeading({ level: 2 }).run(),
-            ],
-            [
-              "H3",
-              () => editor.chain().focus().toggleHeading({ level: 3 }).run(),
-            ],
-            ["Bullet", () => editor.chain().focus().toggleBulletList().run()],
-            [
-              "Numbered",
-              () => editor.chain().focus().toggleOrderedList().run(),
-            ],
-            ["Quote", () => editor.chain().focus().toggleBlockquote().run()],
-            ["Code", () => editor.chain().focus().toggleCodeBlock().run()],
-            ["Divider", () => editor.chain().focus().setHorizontalRule().run()],
-          ].map(([label, action]) => (
-            <button
-              key={label}
-              onClick={action}
-              className="rounded-full border px-3 py-1 text-xs hover:bg-gray-100"
-            >
-              {label}
-            </button>
-          ))}
+        <div className="relative">
+          <div className="sticky top-[64px] md:top-[80px] z-20 bg-gray-200   md:p-2 p-1">
+            <div className="flex flex-wrap gap-2">
+              {[
+                ["Bold", () => editor.chain().focus().toggleBold().run()],
+                ["Italic", () => editor.chain().focus().toggleItalic().run()],
+                [
+                  "Underline",
+                  () => editor.chain().focus().toggleUnderline().run(),
+                ],
+                ["Link", setLink],
+                [
+                  "H1",
+                  () =>
+                    editor.chain().focus().toggleHeading({ level: 1 }).run(),
+                ],
+                [
+                  "H2",
+                  () =>
+                    editor.chain().focus().toggleHeading({ level: 2 }).run(),
+                ],
+                [
+                  "H3",
+                  () =>
+                    editor.chain().focus().toggleHeading({ level: 3 }).run(),
+                ],
+                [
+                  "Bullet",
+                  () => editor.chain().focus().toggleBulletList().run(),
+                ],
+                [
+                  "Numbered",
+                  () => editor.chain().focus().toggleOrderedList().run(),
+                ],
+                [
+                  "Quote",
+                  () => editor.chain().focus().toggleBlockquote().run(),
+                ],
+                ["Code", () => editor.chain().focus().toggleCodeBlock().run()],
+                [
+                  "Divider",
+                  () => editor.chain().focus().setHorizontalRule().run(),
+                ],
+              ].map(([label, action]) => (
+                <button
+                  key={label}
+                  onClick={action}
+                  className="rounded-full border px-3 py-1 text-xs hover:bg-gray-100"
+                >
+                  {label}
+                </button>
+              ))}
 
-          {/* IMAGE */}
-          <label className="rounded-full border px-3 py-1 text-xs cursor-pointer">
-            Image
-            <input
-              type="file"
-              hidden
-              accept="image/*"
-              onChange={(e) => handleImageUpload(e.target.files[0])}
-            />
-          </label>
+              {/* IMAGE */}
+              <label className="rounded-full border px-3 py-1 text-xs cursor-pointer">
+                Image
+                <input
+                  type="file"
+                  hidden
+                  accept="image/*"
+                  onChange={(e) => handleImageUpload(e.target.files[0])}
+                />
+              </label>
 
-          {/* 🎨 COLOR PICKER */}
-          <input
-            type="color"
-            value={textColor}
-            onChange={(e) => {
-              setTextColor(e.target.value);
-              editor.chain().focus().setColor(e.target.value).run();
-            }}
-            className="h-8 w-10 cursor-pointer"
-          />
+              {/* 🎨 COLOR PICKER */}
+              <input
+                type="color"
+                value={textColor}
+                onChange={(e) => {
+                  setTextColor(e.target.value);
+                  editor.chain().focus().setColor(e.target.value).run();
+                }}
+                className="h-8 w-10 cursor-pointer"
+              />
 
-          <input
-            type="text"
-            value={textColor}
-            onChange={(e) => setTextColor(e.target.value)}
-            onBlur={() => editor.chain().focus().setColor(textColor).run()}
-            className="w-24 rounded border px-2 text-sm"
-            placeholder="#2563eb"
-          />
+              <input
+                type="text"
+                value={textColor}
+                onChange={(e) => setTextColor(e.target.value)}
+                onBlur={() => editor.chain().focus().setColor(textColor).run()}
+                className="w-24 rounded border px-2 text-sm"
+                placeholder="#2563eb"
+              />
 
-          <button
-            onClick={() => editor.chain().focus().unsetColor().run()}
-            className="rounded border px-2 text-sm"
-          >
-            Clear Color
-          </button>
-        </div>
+              <button
+                onClick={() => editor.chain().focus().unsetColor().run()}
+                className="rounded border px-2 text-sm"
+              >
+                Clear Color
+              </button>
+            </div>
+          </div>
 
-        {/* EDITOR */}
-        <div className="rounded-2xl p-4 min-h-[300px] ProseMirror">
-          <EditorContent editor={editor} />
+          {/* EDITOR */}
+          <div className="border-[1px] p-4 min-h-[300px] ProseMirror">
+            <EditorContent editor={editor} />
+          </div>
         </div>
 
         {/* SEO */}

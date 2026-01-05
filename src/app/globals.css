@@ -494,4 +494,8 @@ color: blue !important;
   content: "";
   display: block;
   margin-bottom: 0.5rem;
+}
+.ProseMirror-focused{
+  border: none !important;
+  outline: none !important;
 } 
