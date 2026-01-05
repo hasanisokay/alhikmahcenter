@@ -473,8 +473,8 @@ const Homepage = () => {
                       <div>
                         <h4 className="text-lg font-bold mb-1">Opening Hours</h4>
                         <p className="text-emerald-100 text-sm">
-                          Sat - Thu: 9:00 AM - 9:00 PM<br/>
-                          Friday: 3:00 PM - 9:00 PM
+                          Sat - Thu: 10:00 AM - 8:00 PM<br/>
+                          Friday: 3:00 PM - 8:00 PM
                         </p>
                       </div>
                     </div>

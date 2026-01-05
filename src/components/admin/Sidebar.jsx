@@ -178,7 +178,7 @@ export default function Sidebar() {
             <div className="flex items-center justify-between gap-3">
               <div>
                 <p className="text-xs text-slate-100/70">Signed in as</p>
-                <p className="text-sm font-semibold">Mahmud Selim</p>
+                <p className="text-sm font-semibold">Mahmud Salim</p>
               </div>
               <div onClick={()=>logOut()} className="px-3 py-1.5 cursor-pointer rounded-full bg-white/15 text-[0.7rem] uppercase tracking-wide">
                 Log Out

@@ -36,7 +36,7 @@ const sendEmail = async (data) => {
       <!-- Body -->
       <div style="padding:24px; color:#333333;">
         <p style="font-size:15px; margin-bottom:20px;">
-          Hello Mahmud Selim,
+          Hello Mahmud Salim,
           <br />
           A new appointment has just been booked. Here are the details:
         </p>
