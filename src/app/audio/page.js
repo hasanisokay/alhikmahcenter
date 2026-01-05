@@ -2,7 +2,6 @@ import hostname from "@/utils/hostname.mjs";
 import React from "react";
 import alhikmah from "@/../public/images/og-audio.jpg";
 
-
 const audioList = [
   {
     title: "১. বদনজর (Evil Eye) – রুকইয়াহ",
@@ -122,8 +121,6 @@ const audioList = [
   },
 ];
 
-
-
 const AudioPage = () => {
   return (
     <main className="bg-white text-gray-800">
@@ -180,8 +177,14 @@ const AudioPage = () => {
         <div className="mx-auto max-w-4xl px-6 text-center">
           <p className="text-xs text-gray-500">
             Audio content is sourced and curated with credit to{" "}
-            <span className="font-medium text-gray-700">RuqyahBD</span>. All
-            recitations are based on Qur’an and authentic Sunnah.
+            <a
+              href="https://ruqyahbd.org/ayat"
+              rel="noreferrer noopener"
+              className="font-medium text-gray-700"
+            >
+              Ruqyah Support BD
+            </a>
+            . All materials are intended for sincere and respectful use.
           </p>
         </div>
       </section>

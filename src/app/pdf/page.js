@@ -3,11 +3,82 @@ import hostname from "@/utils/hostname.mjs";
 
 const pdfList = [
   {
-    title: "Common Ruqyah Ayat",
+    title: "১। রুকইয়ার কমন আয়াত",
     viewLink: "https://files.ruqyahbd.org/pdf/ruqyah-ayat-ruqyahbd.org.pdf",
     downloadLink: "https://files.ruqyahbd.org/pdf/ruqyah-ayat-ruqyahbd.org.pdf",
   },
+  {
+    title: "২। রুকইয়াহ'র দোয়া",
+    viewLink: "https://files.ruqyahbd.org/pdf/ruqyah-dua-ruqyahbd.org.pdf",
+    downloadLink: "https://files.ruqyahbd.org/pdf/ruqyah-dua-ruqyahbd.org.pdf",
+  },
+  {
+    title: "৩। রুকইয়ার আয়াত ও দোয়া (একত্রে)",
+    viewLink: "https://files.ruqyahbd.org/pdf/ayat-ruqyah-n-dua-ruqyahbd.org.pdf",
+    downloadLink: "https://files.ruqyahbd.org/pdf/ayat-ruqyah-n-dua-ruqyahbd.org.pdf",
+  },
+  {
+    title: "৪। বদনজরের রুকইয়াহ",
+    viewLink: "https://files.ruqyahbd.org/pdf/ayat-ruqyah-evileye-ruqyahbd.org.pdf",
+    downloadLink: "https://files.ruqyahbd.org/pdf/ayat-ruqyah-evileye-ruqyahbd.org.pdf",
+  },
+  {
+    title: "৫। আয়াতুল হারক",
+    viewLink: "https://files.ruqyahbd.org/pdf/ayatul-harq-ruqyahbd.org.pdf",
+    downloadLink: "https://files.ruqyahbd.org/pdf/ayatul-harq-ruqyahbd.org.pdf",
+  },
+  {
+    title: "৬। সিহরের আয়াত (অর্থসহ, সংক্ষিপ্ত)",
+    viewLink: "https://files.ruqyahbd.org/pdf/ayat-sihr-bangla-ruqyahbd.org.pdf",
+    downloadLink: "https://files.ruqyahbd.org/pdf/ayat-sihr-bangla-ruqyahbd.org.pdf",
+  },
+  {
+    title: "৭। জ্বিন-শয়তান বিষয়ক আয়াত",
+    viewLink: "https://files.ruqyahbd.org/pdf/ayat-jinn-full-ruqyahbd.org.pdf",
+    downloadLink: "https://files.ruqyahbd.org/pdf/ayat-jinn-full-ruqyahbd.org.pdf",
+  },
+  {
+    title: "৮। আয়াতুশ শিফা এবং তাখফীফ",
+    viewLink: "https://files.ruqyahbd.org/pdf/ayat-shifa-ruqyahbd.org.pdf",
+    downloadLink: "https://files.ruqyahbd.org/pdf/ayat-shifa-ruqyahbd.org.pdf",
+  },
+  {
+    title: "৯। আয়াতুস সাকিনাহ",
+    viewLink: "https://files.ruqyahbd.org/pdf/ayat-sakina-ruqyahbd.org.pdf",
+    downloadLink: "https://files.ruqyahbd.org/pdf/ayat-sakina-ruqyahbd.org.pdf",
+  },
+  {
+    title: "১০। যাদুকরের প্রতি অভিশাপ এবং যাদু ধ্বংসের দোয়া",
+    viewLink: "https://files.ruqyahbd.org/pdf/curse-against-magician-ruqyahbd.org.pdf",
+    downloadLink: "https://files.ruqyahbd.org/pdf/curse-against-magician-ruqyahbd.org.pdf",
+  },
+  {
+    title: "১১। আয়াতে কিতাল ওয়া তাদমির",
+    viewLink: "https://files.ruqyahbd.org/pdf/ayat-qital-tadmir-ruqyahbd.org.pdf",
+    downloadLink: "https://files.ruqyahbd.org/pdf/ayat-qital-tadmir-ruqyahbd.org.pdf",
+  },
+  {
+    title: "১২। আয়াতে ইযাম",
+    viewLink: "https://files.ruqyahbd.org/pdf/ayat-ejam-mobile-ruqyahbd.org.pdf",
+    downloadLink: "https://files.ruqyahbd.org/pdf/ayat-ejam-mobile-ruqyahbd.org.pdf",
+  },
+  {
+    title: "১৩। রুকইয়াহ যিনা ফাহিশা",
+    viewLink: "https://files.ruqyahbd.org/pdf/ayat-zina-fahisha-ruqyahbd.org.pdf",
+    downloadLink: "https://files.ruqyahbd.org/pdf/ayat-zina-fahisha-ruqyahbd.org.pdf",
+  },
+  {
+    title: "১৪। আয়াত খুরুজ ওয়া তানযিল",
+    viewLink: "https://files.ruqyahbd.org/pdf/ayat-khuruj-ruqyahbd.org.pdf",
+    downloadLink: "https://files.ruqyahbd.org/pdf/ayat-khuruj-ruqyahbd.org.pdf",
+  },
+  {
+    title: "১৫। মাসনুন আমল (সংক্ষিপ্ত)",
+    viewLink: "https://files.ruqyahbd.org/docs/masnun-amal-ruqyahbd.org.pdf",
+    downloadLink: "https://files.ruqyahbd.org/docs/masnun-amal-ruqyahbd.org.pdf",
+  },
 ];
+
 
 const PdfPage = () => {
   return (
@@ -34,9 +105,9 @@ const PdfPage = () => {
               className="group relative rounded-3xl border border-gray-200 bg-white p-6 transition-all duration-300 hover:shadow-lg"
             >
               {/* Index */}
-              <div className="mb-3 text-xs font-semibold text-blue-600">
+              {/* <div className="mb-3 text-xs font-semibold text-blue-600">
                 {index + 1 < 10 ? `0${index + 1}` : index + 1}
-              </div>
+              </div> */}
 
               {/* Title */}
               <h3 className="text-base font-semibold text-gray-900">
@@ -72,11 +143,17 @@ const PdfPage = () => {
       {/* Credit */}
       <section className="bg-gray-50 py-8">
         <div className="mx-auto max-w-4xl px-6 text-center">
-          <p className="text-xs text-gray-500">
-            PDF topics are curated with reference and credit to{" "}
-            <span className="font-medium text-gray-700">RuqyahBD</span>. All
-            materials are intended for sincere and respectful use.
-          </p>
+  <p className="text-xs text-gray-500">
+  PDF topics are curated with reference and credit to{" "}
+  <a
+    href="https://ruqyahbd.org/ayat"
+    rel="noreferrer noopener"
+    className="font-medium text-gray-700"
+  >
+    Ruqyah Support BD
+  </a>. All
+  materials are intended for sincere and respectful use.
+</p>
         </div>
       </section>
     </main>
