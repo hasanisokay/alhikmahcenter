@@ -178,7 +178,7 @@ const Homepage = () => {
                    className="absolute -right-4 top-20 bg-white p-4 rounded-xl shadow-lg border-l-4 border-amber-400"
                  >
                    <p className="text-xs text-gray-500 font-bold uppercase">Experience</p>
-                   <p className="text-xl font-bold text-emerald-900">5+ Years</p>
+                   <p className="text-xl font-bold text-emerald-900">8+ Years</p>
                  </motion.div>
 
                  <motion.div 
@@ -187,7 +187,7 @@ const Homepage = () => {
                    className="absolute -left-4 md:bottom-20 bottom-4 bg-white p-4 rounded-xl shadow-lg border-l-4 border-emerald-500"
                  >
                    <p className="text-xs text-gray-500 font-bold uppercase">Happy Patients</p>
-                   <p className="text-xl font-bold text-emerald-900">500+</p>
+                   <p className="text-xl font-bold text-emerald-900">2000+</p>
                  </motion.div>
               </div>
             </motion.div>
