@@ -3,12 +3,12 @@
 import { useState, useEffect } from 'react';
 import Link from 'next/link';
 import { motion } from 'framer-motion';
-import { 
-  FaPhoneAlt, 
-  FaMapMarkerAlt, 
-  FaClock, 
-  FaStethoscope, 
-  FaBookOpen, 
+import {
+  FaPhoneAlt,
+  FaMapMarkerAlt,
+  FaClock,
+  FaStethoscope,
+  FaBookOpen,
   FaHeartbeat,
   FaMapMarkedAlt,
   FaArrowRight,
@@ -16,7 +16,7 @@ import {
   FaUserMd,
   FaStar,
 } from 'react-icons/fa';
-import { GiHealing} from 'react-icons/gi';
+import { GiHealing } from 'react-icons/gi';
 import { IoMdCheckmarkCircle } from 'react-icons/io';
 import alhikmahLogo from './../../public/images/alhikmah.png';
 import Image from 'next/image';
@@ -98,17 +98,17 @@ const Homepage = () => {
   return (
     <div className="min-h-screen bg-slate-50 font-sans selection:bg-emerald-200">
       {/* Navigation Bar */}
- 
+
 
       {/* Hero Section */}
       <section className="relative pt-32 pb-20 lg:pt-48 lg:pb-32 overflow-hidden">
         {/* Background Patterns */}
         <div className="absolute inset-0 bg-[url('https://www.transparenttextures.com/patterns/arabesque.png')] opacity-5 z-0"></div>
         <div className="absolute top-0 right-0 w-1/2 h-full bg-gradient-to-l from-emerald-50/50 to-transparent z-0"></div>
-        
+
         <div className="relative z-10 container mx-auto px-6">
           <div className="flex flex-col lg:flex-row items-center gap-12">
-            <motion.div 
+            <motion.div
               initial={{ opacity: 0, x: -30 }}
               animate={{ opacity: 1, x: 0 }}
               transition={{ duration: 0.8 }}
@@ -122,7 +122,7 @@ const Homepage = () => {
                 Trusted Healing Center in Mymensingh
               </div>
               <h1 className="text-5xl lg:text-7xl font-bold text-emerald-900 mb-6 leading-tight">
-                Spiritual & <br/>
+                Spiritual & <br />
                 <span className="text-transparent bg-clip-text bg-gradient-to-r from-amber-500 to-yellow-600">Physical Healing</span>
               </h1>
               <h2 className="text-2xl lg:text-3xl font-light text-emerald-800 mb-6 opacity-90">
@@ -131,7 +131,7 @@ const Homepage = () => {
               <p className="text-lg text-gray-600 mb-8 max-w-xl mx-auto lg:mx-0 leading-relaxed">
                 Restore your balance through authentic Quranic Ruqyah and traditional Hijama therapy. A sanctuary for holistic well-being rooted in Sunnah.
               </p>
-              
+
               <div className="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start">
                 <Link href="/book-appointment">
                   <motion.button
@@ -139,7 +139,7 @@ const Homepage = () => {
                     whileTap={{ scale: 0.95 }}
                     className="bg-gradient-to-r from-emerald-600 to-emerald-800 text-white px-8 py-4 rounded-full font-bold text-lg shadow-xl shadow-emerald-200 hover:shadow-emerald-300 transition-all flex items-center justify-center gap-2"
                   >
-                    Book Appointment <FaArrowRight className="text-sm"/>
+                    Book Appointment <FaArrowRight className="text-sm" />
                   </motion.button>
                 </Link>
                 <a href="tel:01723501455">
@@ -155,7 +155,7 @@ const Homepage = () => {
               </div>
             </motion.div>
 
-            <motion.div 
+            <motion.div
               initial={{ opacity: 0, scale: 0.9 }}
               animate={{ opacity: 1, scale: 1 }}
               transition={{ duration: 0.8, delay: 0.2 }}
@@ -163,32 +163,32 @@ const Homepage = () => {
             >
               {/* Decorative Elements around Logo/Image */}
               <div className="absolute w-[500px] h-[500px] bg-emerald-100 rounded-full blur-3xl opacity-50 -z-10 top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2"></div>
-              
-              <div className="relative w-full max-w-md aspect-square bg-white rounded-full shadow-2xl p-4 border-4 border-white ring-1 ring-emerald-100 flex items-center justify-center">
-                 <Image 
-                 src={alhikmahLogo} 
-                 alt="Al-Hikmah Center" 
-                 loading='lazy'
-                 className="w-full h-full object-contain drop-shadow-xl" />
-                 
-                 {/* Floating Badges */}
-                 <motion.div 
-                   animate={{ y: [0, -10, 0] }}
-                   transition={{ repeat: Infinity, duration: 4 }}
-                   className="absolute -right-4 top-20 bg-white p-4 rounded-xl shadow-lg border-l-4 border-amber-400"
-                 >
-                   <p className="text-xs text-gray-500 font-bold uppercase">Experience</p>
-                   <p className="text-xl font-bold text-emerald-900">8+ Years</p>
-                 </motion.div>
 
-                 <motion.div 
-                   animate={{ y: [0, 10, 0] }}
-                   transition={{ repeat: Infinity, duration: 5, delay: 1 }}
-                   className="absolute -left-4 md:bottom-20 bottom-4 bg-white p-4 rounded-xl shadow-lg border-l-4 border-emerald-500"
-                 >
-                   <p className="text-xs text-gray-500 font-bold uppercase">Happy Patients</p>
-                   <p className="text-xl font-bold text-emerald-900">2000+</p>
-                 </motion.div>
+              <div className="relative w-full max-w-md aspect-square bg-white rounded-full shadow-2xl p-4 border-4 border-white ring-1 ring-emerald-100 flex items-center justify-center">
+                <Image
+                  src={alhikmahLogo}
+                  alt="Al-Hikmah Center"
+                  loading='lazy'
+                  className="w-full h-full object-contain drop-shadow-xl" />
+
+                {/* Floating Badges */}
+                <motion.div
+                  animate={{ y: [0, -10, 0] }}
+                  transition={{ repeat: Infinity, duration: 4 }}
+                  className="absolute -right-4 top-20 bg-white p-4 rounded-xl shadow-lg border-l-4 border-amber-400"
+                >
+                  <p className="text-xs text-gray-500 font-bold uppercase">Experience</p>
+                  <p className="text-xl font-bold text-emerald-900">7+ Years</p>
+                </motion.div>
+
+                <motion.div
+                  animate={{ y: [0, 10, 0] }}
+                  transition={{ repeat: Infinity, duration: 5, delay: 1 }}
+                  className="absolute -left-4 md:bottom-20 bottom-4 bg-white p-4 rounded-xl shadow-lg border-l-4 border-emerald-500"
+                >
+                  <p className="text-xs text-gray-500 font-bold uppercase">Happy Patients</p>
+                  <p className="text-xl font-bold text-emerald-900">2000+</p>
+                </motion.div>
               </div>
             </motion.div>
           </div>
@@ -200,7 +200,7 @@ const Homepage = () => {
         <div className="container mx-auto px-6">
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
             {processSteps.map((step, idx) => (
-              <motion.div 
+              <motion.div
                 key={idx}
                 initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
@@ -210,7 +210,7 @@ const Homepage = () => {
               >
                 <div className="bg-emerald-50 rounded-2xl p-8 h-full border border-emerald-100 hover:border-amber-200 transition-all duration-300 relative overflow-hidden">
                   <div className="absolute top-0 right-0 w-24 h-24 bg-emerald-100 rounded-full blur-2xl group-hover:bg-amber-100 transition-colors"></div>
-                  
+
                   <div className="relative z-10 flex flex-col items-center text-center">
                     <div className="w-16 h-16 bg-white rounded-full flex items-center justify-center text-emerald-700 text-2xl shadow-md mb-4 group-hover:scale-110 transition-transform">
                       {step.icon}
@@ -218,7 +218,7 @@ const Homepage = () => {
                     <h3 className="text-xl font-bold text-emerald-900 mb-2">{step.title}</h3>
                     <p className="text-gray-600">{step.desc}</p>
                   </div>
-                  
+
                   {/* Connector Line (Desktop) */}
                   {idx < processSteps.length - 1 && (
                     <div className="hidden md:block absolute top-1/2 -right-4 w-8 border-t-2 border-dashed border-emerald-200 z-0"></div>
@@ -233,7 +233,7 @@ const Homepage = () => {
       {/* Services Section */}
       <section id="services" className="py-24 bg-gradient-to-b from-emerald-50 to-white relative">
         <div className="container mx-auto px-6">
-          <motion.div 
+          <motion.div
             initial={{ opacity: 0 }}
             whileInView={{ opacity: 1 }}
             viewport={{ once: true }}
@@ -284,10 +284,10 @@ const Homepage = () => {
       <section id="about" className="py-24 bg-emerald-900 text-white overflow-hidden relative">
         {/* Pattern Overlay */}
         <div className="absolute inset-0 bg-[url('https://www.transparenttextures.com/patterns/cubes.png')] opacity-5"></div>
-        
+
         <div className="container mx-auto px-6 relative z-10">
           <div className="flex flex-col lg:flex-row items-center gap-16">
-            <motion.div 
+            <motion.div
               initial={{ opacity: 0, x: -20 }}
               whileInView={{ opacity: 1, x: 0 }}
               viewport={{ once: true }}
@@ -298,7 +298,7 @@ const Homepage = () => {
               <p className="text-emerald-100 text-lg mb-6 leading-relaxed">
                 "Al-Hikmah" means wisdom. Our center is dedicated to providing authentic Ruqyah Shar'iyyah and Hijama therapy strictly according to the Quran and Sunnah. We believe in the power of spiritual healing complemented by physical well-being.
               </p>
-              
+
               <ul className="space-y-4 mb-8">
                 {[
                   "Experienced Practitioners",
@@ -314,7 +314,7 @@ const Homepage = () => {
                   </li>
                 ))}
               </ul>
-              
+
               <Link href="/blog">
                 <motion.button
                   whileHover={{ scale: 1.05 }}
@@ -325,7 +325,7 @@ const Homepage = () => {
               </Link>
             </motion.div>
 
-            <motion.div 
+            <motion.div
               initial={{ opacity: 0, x: 20 }}
               whileInView={{ opacity: 1, x: 0 }}
               viewport={{ once: true }}
@@ -385,7 +385,7 @@ const Homepage = () => {
               className="bg-white p-10 md:p-12 rounded-3xl shadow-xl relative"
             >
               <div className="absolute top-8 left-8 text-6xl text-emerald-100 font-serif">"</div>
-              
+
               <div className="relative z-10 flex flex-col md:flex-row items-center md:items-start gap-8">
                 <div className="flex-shrink-0">
                   <div className="w-24 h-24 bg-gradient-to-br from-emerald-400 to-emerald-600 rounded-full flex items-center justify-center text-white text-3xl font-bold shadow-lg">
@@ -413,9 +413,8 @@ const Homepage = () => {
                 <button
                   key={index}
                   onClick={() => setActiveTestimonial(index)}
-                  className={`h-2 rounded-full transition-all duration-300 ${
-                    index === activeTestimonial ? 'bg-amber-500 w-8' : 'bg-emerald-200 w-2 hover:bg-emerald-400'
-                  }`}
+                  className={`h-2 rounded-full transition-all duration-300 ${index === activeTestimonial ? 'bg-amber-500 w-8' : 'bg-emerald-200 w-2 hover:bg-emerald-400'
+                    }`}
                 />
               ))}
             </div>
@@ -431,9 +430,9 @@ const Homepage = () => {
               <div className="bg-emerald-900 p-10 md:p-14 text-white flex flex-col justify-between relative overflow-hidden">
                 {/* Decorative Islamic Pattern */}
                 <div className="absolute top-0 right-0 w-64 h-64 opacity-10 pointer-events-none">
-                   <svg viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
-                     <path fill="#FFFFFF" d="M44.7,-76.4C58.9,-69.2,71.8,-59.1,79.6,-46.4C87.4,-33.7,90.1,-18.4,88.2,-3.6C86.3,11.2,79.8,25.5,71.3,37.8C62.8,50.1,52.3,60.4,40.3,67.6C28.3,74.8,14.8,78.9,0.5,78C-13.8,77.1,-27.1,71.2,-39.3,63.7C-51.5,56.2,-62.6,47.1,-70.4,35.6C-78.2,24.1,-82.7,10.2,-81.2,-3.2C-79.7,-16.6,-72.2,-29.5,-62.7,-40.3C-53.2,-51.1,-41.7,-59.8,-29.6,-68.1C-17.5,-76.4,-4.8,-84.3,4.5,-91.6C13.8,-98.9,19.7,-105.6,26.3,-108.4" transform="translate(100 100)" />
-                   </svg>
+                  <svg viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
+                    <path fill="#FFFFFF" d="M44.7,-76.4C58.9,-69.2,71.8,-59.1,79.6,-46.4C87.4,-33.7,90.1,-18.4,88.2,-3.6C86.3,11.2,79.8,25.5,71.3,37.8C62.8,50.1,52.3,60.4,40.3,67.6C28.3,74.8,14.8,78.9,0.5,78C-13.8,77.1,-27.1,71.2,-39.3,63.7C-51.5,56.2,-62.6,47.1,-70.4,35.6C-78.2,24.1,-82.7,10.2,-81.2,-3.2C-79.7,-16.6,-72.2,-29.5,-62.7,-40.3C-53.2,-51.1,-41.7,-59.8,-29.6,-68.1C-17.5,-76.4,-4.8,-84.3,4.5,-91.6C13.8,-98.9,19.7,-105.6,26.3,-108.4" transform="translate(100 100)" />
+                  </svg>
                 </div>
 
                 <div>
@@ -450,7 +449,7 @@ const Homepage = () => {
                       <div>
                         <h4 className="text-lg font-bold mb-1">Address</h4>
                         <p className="text-emerald-100 text-sm leading-relaxed">
-                          মাসকান্দা গনশার মোড়, চারতলা মাদরাসা সংলগ্ন<br/>
+                          মাসকান্দা গনশার মোড়, চারতলা মাদরাসা সংলগ্ন<br />
                           আনিস সাহেবের বাসা, Mymensingh
                         </p>
                       </div>
@@ -473,7 +472,7 @@ const Homepage = () => {
                       <div>
                         <h4 className="text-lg font-bold mb-1">Opening Hours</h4>
                         <p className="text-emerald-100 text-sm">
-                          Sat - Thu: 10:00 AM - 8:00 PM<br/>
+                          Sat - Thu: 10:00 AM - 8:00 PM<br />
                           Friday: 3:00 PM - 8:00 PM
                         </p>
                       </div>
@@ -483,7 +482,7 @@ const Homepage = () => {
 
                 <div className="mt-12">
                   <a
-                    href="https://maps.google.com/?q=Al+Hikmah+Ruqyah+Hijama+Center+Mymensingh"
+                    href="https://www.google.com/maps?q=24.73613834841448,90.40089931754339"
                     target="_blank"
                     rel="noopener noreferrer"
                   >
@@ -501,7 +500,7 @@ const Homepage = () => {
 
               <div className="h-96 lg:h-auto relative bg-gray-100">
                 <iframe
-                  src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3618.855877209562!2d91.8791373150061!3d24.897920984033445!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3750552a2e2a22ed%3A0xa6e3b7a92d5c4b5d!2sMymensingh%2C%20Bangladesh!5e0!3m2!1sen!2sbd!4v1645781234567!5m2!1sen!2sbd"
+                  src="https://www.google.com/maps?q=24.73613834841448,90.40089931754339&z=16&output=embed"
                   width="100%"
                   height="100%"
                   style={{ border: 0 }}
