@@ -184,7 +184,7 @@ const EditBlogAdminPage = () => {
   }
 
   return (
-    <main className="mx-auto max-w-6xl">
+    <div className="mx-auto max-w-6xl">
       <div className="mb-6 flex items-center justify-between">
         <h1 className="text-2xl font-semibold px-2">Edit Blog</h1>
         <span className="rounded-full bg-gray-100 px-3 py-1 text-xs">
@@ -393,7 +393,7 @@ const EditBlogAdminPage = () => {
           </button>
         </div>
       </div>
-    </main>
+    </div>
   );
 };
 

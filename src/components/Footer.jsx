@@ -11,7 +11,7 @@ const Footer = () => {
                         <div className="flex items-center gap-3 mb-4">
                             <Image src={logo} alt="Logo" loading='lazy' width={1000} height={1000} className="w-12 h-12 rounded-full bg-white p-1" />
                             <div>
-                                <h4 className="font-bold text-lg">AL-HIKMAH</h4>
+                                <p className="font-bold text-lg">AL-HIKMAH</p>
                                 <p className="text-xs text-emerald-400">Mymensingh</p>
                             </div>
                         </div>
@@ -20,14 +20,30 @@ const Footer = () => {
                         </p>
                         <div className="flex gap-4">
                             {/* Social Placeholders */}
-                            <Link href={'https://www.facebook.com/ruqyahcentermymensingh'} target='_blank' className="w-8 h-8 bg-emerald-900 rounded-full flex items-center justify-center hover:bg-amber-500 hover:text-emerald-900 cursor-pointer transition-colors"><FaFacebook /></Link>
+                          <Link
+  href="https://www.facebook.com/ruqyahcentermymensingh"
+  target="_blank"
+  className="
+    w-8 h-8 
+    bg-emerald-900 
+    text-[#1877F2]
+    rounded-full 
+    flex items-center justify-center 
+    hover:bg-[#1877F2]
+    hover:text-white
+    transition-colors
+  "
+>
+  <FaFacebook  aria-label="Visit our Facebook page" />
+</Link>
+
                             {/* <div className="w-8 h-8 bg-emerald-900 rounded-full flex items-center justify-center hover:bg-amber-500 hover:text-emerald-900 cursor-pointer transition-colors">in</div>
                             <div className="w-8 h-8 bg-emerald-900 rounded-full flex items-center justify-center hover:bg-amber-500 hover:text-emerald-900 cursor-pointer transition-colors">yt</div> */}
                         </div>
                     </div>
 
                     <div>
-                        <h5 className="text-lg font-bold mb-6 text-amber-400">Quick Links</h5>
+                        <p className="text-lg font-bold mb-6 text-amber-400">Quick Links</p>
                         <ul className="space-y-3 text-emerald-300 text-sm">
                             <li><Link href="/" className="hover:text-white transition-colors">Home</Link></li>
                             <li><Link href="/about" className="hover:text-white transition-colors">About Us</Link></li>
@@ -37,7 +53,7 @@ const Footer = () => {
                     </div>
 
                     <div>
-                        <h5 className="text-lg font-bold mb-6 text-amber-400">Services</h5>
+                        <p className="text-lg font-bold mb-6 text-amber-400">Services</p>
                         <ul className="space-y-3 text-emerald-300 text-sm">
                             <li><Link href="/book-appointment?service=Ruqyah" className="hover:text-white transition-colors">Ruqyah Shar'iyyah</Link></li>
                             <li><Link href="/book-appointment?service=Hijama" className="hover:text-white transition-colors">Hijama Therapy</Link></li>
@@ -47,7 +63,7 @@ const Footer = () => {
                     </div>
 
                     <div>
-                        <h5 className="text-lg font-bold mb-6 text-amber-400">Contact</h5>
+                        <p className="text-lg font-bold mb-6 text-amber-400">Contact</p>
                         <ul className="space-y-4 text-emerald-300 text-sm">
                             <li className="flex items-start gap-3">
                                 <FaMapMarkerAlt className="mt-1 text-amber-500" />

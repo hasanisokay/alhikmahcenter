@@ -24,7 +24,7 @@ const geistMono = Geist_Mono({
 
 export async function generateMetadata() {
   const siteName = "Al Hikmah Ruqyah & Hijama Center";
-  const host = await hostname()
+  const host = await hostname();
   const siteUrl = host || "https://alhikmahbd.org";
   const title = "Al Hikmah Center – আল হিকমাহ রুকইয়াহ এন্ড হিজামা সেন্টার";
   const description =
@@ -125,7 +125,6 @@ export const viewport = {
   width: "device-width",
   initialScale: 1,
   maximumScale: 1,
-  userScalable: false,
   // Also supported but less commonly used
   // interactiveWidget: 'resizes-visual',
 };
@@ -146,7 +145,7 @@ export default async function RootLayout({ children }) {
           <div className="h-[64px] md:h-[80px]">
             <Navbar />
           </div>
-          {children}
+          <main>{children}</main>
           <Footer />
           <Toaster />
         </AuthProvider>
