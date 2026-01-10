@@ -1,7 +1,7 @@
 import BookAppointment from "@/components/appointment/BookAppointment";
 import alhikmah from "@/../public/images/og-book-appointment.jpg";
 import hostname from "@/utils/hostname.mjs";
-const page = () => {
+const page = async() => {
   return <BookAppointment />
 };
 
